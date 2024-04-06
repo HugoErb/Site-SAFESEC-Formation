@@ -1,0 +1,364 @@
+<header class="px-4 lg:px-6 h-16 flex items-center fixed w-full bg-white z-50 shadow-sm border-b border-gray-200">
+  <div class="flex items-center justify-center mb-0.5 cursor-pointer" (click)="scrollToSection('landing')">
+    <img src="../../assets/imgs/logo.png" alt="Logo" class="w-14">
+    <span class="text-xl font-semibold ml-4">SGP Formation</span>
+  </div>
+
+  <!-- Bouton du menu burger pour les petits écrans -->
+  <button class="lg:hidden ml-auto mr-3" (click)="toggleBurgerMenu($event)">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+
+  <!-- Navigation principale pour les grands écrans -->
+  <nav class="hidden lg:flex ml-auto gap-4 sm:gap-6 items-center">
+    <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('fonctionnalites')">
+      Fonctionnalités</div>
+    <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('catalogue')">
+      Catalogue</div>
+    <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('contact')">Contact
+    </div>
+  </nav>
+
+  <!-- Menu burger pour les petits écrans -->
+  <div #menuBurger class="lg:hidden absolute top-full left-0 w-full bg-white shadow-md" *ngIf="burgerMenuOpened">
+    <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
+      (click)="scrollToSection('fonctionnalites')">Fonctionnalités</div>
+    <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
+      (click)="scrollToSection('catalogue')">Catalogue</div>
+    <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
+      (click)="scrollToSection('contact')">Contact</div>
+  </div>
+</header>
+
+<main class="flex-1">
+  <section id="landing" class="w-full h-screen pt-20 md:pt-24 lg:pt-32 border-y px-2 md:px-0">
+    <div class="px-4 md:px-6 space-y-10 xl:space-y-16 flex items-center justify-center h-full"
+      style="margin-top: -5rem;">
+      <div class="grid max-w-[1300px] mx-auto gap-4 px-4 sm:px-6 md:px-10 md:grid-cols-2 md:gap-16">
+          <h1
+            class="lg:leading-tighter text-3xl tracking-tighter mt-28 sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem]">
+            <span class="text-blue-600 font-bold">SGP Formation</span>
+            L'expertise au service<br> de vos équipes.
+          </h1>
+        <div class="flex flex-col space-y-4">
+          <div class="flex justify-center items-center w-full">
+            <img src="../../assets/imgs/logo.png" alt="Logo" class="w-60">
+          </div>
+          <p class="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
+            SGP Formation vous propose des apprentissages délivrés par un expert vous permettant de sensibiliser vos
+            équipes à la prévention et la gestion des risques au quotidien ou au sein de votre coeur de métier.
+          </p>
+          <div class="space-x-4">
+            <div
+              class="inline-flex cursor-pointer h-9 items-center justify-center rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-900 disabled:pointer-events-none disabled:opacity-50"
+              (click)="scrollToSection('fonctionnalites')">
+              Commencer
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="fonctionnalites"
+    class="flex justify-center items-center w-full py-12 md:py-24 lg:py-20 px-2 md:px-0 pt-16">
+    <div class="container space-y-12 px-4 md:px-6">
+      <div class="flex flex-col items-center justify-center space-y-4 text-center">
+        <div class="space-y-2">
+          <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Fonctionnalités</h2>
+          <p class="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400 text-center">
+            SGP Formation est doté de fonctionnalités puissantes conçues pour améliorer votre productivité et vous
+            faciliter la vie.
+          </p>
+        </div>
+      </div>
+      <div
+        class="mx-auto grid items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3 justify-items-center">
+        <div class="grid gap-1 text-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" class="h-10 w-10 mx-auto" data-darkreader-inline-stroke=""
+            style="--darkreader-inline-stroke: currentColor;">
+            <path d="M18 6 7 17l-5-5"></path>
+            <path d="m22 10-7.5 7.5L13 16"></path>
+          </svg>
+          <h3 class="text-lg font-bold">Gestion des compétitions</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            Gardez une trace de vos compétitions et gérez les automatiquement grâce une interface simple, fluide et
+            intuitive.
+          </p>
+        </div>
+        <div class="grid gap-1 text-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" class="h-10 w-10 mx-auto" data-darkreader-inline-stroke=""
+            style="--darkreader-inline-stroke: currentColor;">
+            <path d="M3 7V5c0-1.1.9-2 2-2h2"></path>
+            <path d="M17 3h2c1.1 0 2 .9 2 2v2"></path>
+            <path d="M21 17v2c0 1.1-.9 2-2 2h-2"></path>
+            <path d="M7 21H5c-1.1 0-2-.9-2-2v-2"></path>
+            <rect width="7" height="5" x="7" y="7" rx="1"></rect>
+            <rect width="7" height="5" x="10" y="12" rx="1"></rect>
+          </svg>
+          <h3 class="text-lg font-bold">Affichage du classement</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400">Affichez en un clic le classement d'une compétition afin
+            que les participants puisse suivre leur position en temps réel .</p>
+        </div>
+        <div class="grid gap-1 text-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" class="h-10 w-10 mx-auto" data-darkreader-inline-stroke=""
+            style="--darkreader-inline-stroke: currentColor;">
+            <line x1="12" x2="12" y1="20" y2="10"></line>
+            <line x1="18" x2="18" y1="20" y2="4"></line>
+            <line x1="6" x2="6" y1="20" y2="16"></line>
+          </svg>
+          <h3 class="text-lg font-bold">Rapports &amp; Analytiques</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            Obtenez des informations sur vos compétitions grâce à des rapports, des analyses détaillés ainsi que des
+            conseils personnalisés pour les tireurs.
+          </p>
+        </div>
+        <div class="grid gap-1 text-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" class="h-10 w-10 mx-auto" data-darkreader-inline-stroke=""
+            style="--darkreader-inline-stroke: currentColor;">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+          </svg>
+          <h3 class="text-lg font-bold">Sécurité</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            Des mesures de sécurité de haut niveau pour protéger vos données.
+          </p>
+        </div>
+        <div class="grid gap-1 text-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" class="h-10 w-10 mx-auto" data-darkreader-inline-stroke=""
+            style="--darkreader-inline-stroke: currentColor;">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <h3 class="text-lg font-bold">Suivi du temps</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            Suivez le temps passé sur les tâches et les projets.
+          </p>
+        </div>
+        <div class="grid gap-1 text-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" class="h-10 w-10 mx-auto" data-darkreader-inline-stroke=""
+            style="--darkreader-inline-stroke: currentColor;">
+            <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+          </svg>
+          <h3 class="text-lg font-bold">Stockage en nuage</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            Accédez à vos fichiers et données de n'importe où et sous n'importe quel format.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="catalogue"
+    class="flex justify-center items-center w-full py-12 md:py-32 lg:py-20 bg-gray-100 px-2 md:px-0">
+    <div class="container grid items-center justify-center gap-6 px-4 md:px-6">
+      <div class="space-y-4 text-center mx-auto">
+        <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Catalogue de formations</h2>
+        <p
+          class="mx-auto max-w-[500px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 text-center mb-12">
+          Choisissez la formation qui correspond aux besoins de votre équipe.
+        </p>
+      </div>
+      <div class="grid gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-3 w-full mt-6 justify-items-center">
+        <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col" data-v0-t="card">
+          <div class="flex flex-col space-y-1.5 p-6 text-center">
+            <h3 class="text-2xl font-semibold leading-none tracking-tight">Prévention des risques</h3>
+            <p class="text-sm text-muted-foreground"><span class="text-3xl font-bold mt-4 inline-flex">
+                7.99€
+                <span class="text-base ml-1 mt-2.5" style="font-weight: normal; vertical-align: bottom;">
+                  /mois
+                </span></span></p>
+          </div>
+          <div class="p-6 flex-grow">
+            <ul>
+              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
+                  style="--darkreader-inline-stroke: currentColor;">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Gestion de 2 compétitions par mois
+              </li>
+              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
+                  style="--darkreader-inline-stroke: currentColor;">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Génération de rapport de compétition
+              </li>
+              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
+                  style="--darkreader-inline-stroke: currentColor;">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Dashboard des données
+              </li>
+            </ul>
+          </div>
+          <div class="flex items-center p-6"><button
+              class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-700 w-full">Choisir
+              le plan</button></div>
+        </div>
+        <div
+          class="rounded-lg bg-card text-card-foreground shadow-sm w-[340px] bg-white border border-2 border-blue-500 relative flex flex-col"
+          data-v0-t="card">
+          <div
+            class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white px-2 py-1 rounded-md">
+            Populaire
+          </div>
+          <div class="flex flex-col space-y-1.5 p-6 text-center">
+            <h3 class="text-2xl font-semibold leading-none tracking-tight">Pro</h3>
+            <p class="text-sm text-muted-foreground"><span class="text-3xl font-bold mt-4 inline-flex">
+                14.99€
+                <span class="text-base ml-1 mt-2.5" style="font-weight: normal; vertical-align: bottom;">
+                  /mois
+                </span></span></p>
+          </div>
+          <div class="p-6 flex-grow">
+            <ul>
+              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
+                  style="--darkreader-inline-stroke: currentColor;">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Fonctionnalités de l'abonnement Basique
+              </li>
+              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
+                  style="--darkreader-inline-stroke: currentColor;">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Gestion de 4 compétitions par mois
+              </li>
+              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
+                  style="--darkreader-inline-stroke: currentColor;">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Génération de rapport personnalisé par tireur
+              </li>
+              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
+                  style="--darkreader-inline-stroke: currentColor;">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Conseils personnalisés pour les tireurs
+              </li>
+            </ul>
+          </div>
+          <div class="flex items-center p-6"><button
+              class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-700 w-full">Choisir
+              le plan</button></div>
+        </div>
+        <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col" data-v0-t="card">
+          <div class="flex flex-col space-y-1.5 p-6 text-center">
+            <h3 class="text-2xl font-semibold leading-none tracking-tight">VIP</h3>
+            <p class="text-sm text-muted-foreground"><span class="text-3xl font-bold mt-4 inline-flex">
+                19.99€
+                <span class="text-base ml-1 mt-2.5" style="font-weight: normal; vertical-align: bottom;">
+                  /mois
+                </span></span></p>
+          </div>
+          <div class="p-6 flex-grow">
+            <ul>
+              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
+                  style="--darkreader-inline-stroke: currentColor;">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Fonctionnalités de l'abonnement Pro
+              </li>
+              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
+                  style="--darkreader-inline-stroke: currentColor;">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Gestion de compétitions illimitée
+              </li>
+              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
+                  style="--darkreader-inline-stroke: currentColor;">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Génération de QR Code de consultation du classement
+              </li>
+              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
+                  style="--darkreader-inline-stroke: currentColor;">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Support dédié
+              </li>
+            </ul>
+          </div>
+          <div class="flex items-center p-6"><button
+              class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-700 w-full">Choisir
+              le plan</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="contact" class="flex justify-center items-center w-full py-12 md:py-24 lg:py-20 px-2 md:px-0">
+    <div class="container space-y-12 px-4 md:px-6">
+      <div class="flex flex-col items-center justify-center space-y-4 text-center">
+        <div class="space-y-2">
+          <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Contactez-moi</h2>
+          <p
+            class="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+            Vous avez des questions ? Vous voulez en savoir plus ? Contactez-moi et je vous répondrai dans les plus
+            bref délais.
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-col items-center justify-center cursor-default">
+        <div class="inline-flex flex-col space-y-4 w-full max-w-md">
+          <div class="space-y-2"><label
+              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              for="name">Nom</label><input
+              class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              id="name" placeholder="Entrez votre nom"></div>
+          <div class="space-y-2"><label
+              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              for="email">Email</label><input
+              class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              id="email" placeholder="Entrez votre email" type="email"></div>
+          <div class="space-y-2"><label
+              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              for="message">Message</label><textarea
+              class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-[100px]"
+              id="message" placeholder="Entrez votre message"></textarea></div>
+          <button (click)="sendMail()"
+            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-700">Envoyer
+            le message</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
+  <p class="text-sm text-gray-600">© SGP Formation. Tous droits réservés.</p>
+  <nav class="sm:ml-auto flex gap-4 sm:gap-6">
+    <a class="text-sm hover:text-blue-600" href="#">
+      Conditions de service
+    </a>
+    <a class="text-sm hover:text-blue-600" href="#">
+      Confidentialité
+    </a>
+  </nav>
+</footer>
