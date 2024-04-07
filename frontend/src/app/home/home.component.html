@@ -16,7 +16,9 @@
   <nav class="hidden lg:flex ml-auto gap-4 sm:gap-6 items-center">
     <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('fonctionnalites')">
       Fonctionnalités</div>
-    <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('catalogue')">
+    <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('formateur')">
+      Formateur</div>
+      <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('catalogue')">
       Catalogue</div>
     <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('contact')">Contact
     </div>
@@ -26,6 +28,8 @@
   <div #menuBurger class="lg:hidden absolute top-full left-0 w-full bg-white shadow-md" *ngIf="burgerMenuOpened">
     <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
       (click)="scrollToSection('fonctionnalites')">Fonctionnalités</div>
+      <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
+      (click)="scrollToSection('formateur')">Formateur</div>
     <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
       (click)="scrollToSection('catalogue')">Catalogue</div>
     <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
@@ -38,16 +42,16 @@
     <div class="px-4 md:px-6 space-y-10 xl:space-y-16 flex items-center justify-center h-full"
       style="margin-top: -5rem;">
       <div class="grid max-w-[1300px] mx-auto gap-4 px-4 sm:px-6 md:px-10 md:grid-cols-2 md:gap-16">
-          <h1
-            class="lg:leading-tighter text-3xl tracking-tighter mt-28 sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem]">
-            <span class="text-blue-600 font-bold">SGP Formation</span>
-            L'expertise au service<br> de vos équipes.
-          </h1>
+        <h1
+          class="lg:leading-tighter text-3xl tracking-tighter mt-28 sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem]">
+          <span class="text-blue-600 font-bold">SGP Formation</span>
+          L'expertise au service<br> de vos équipes.
+        </h1>
         <div class="flex flex-col space-y-4">
           <div class="flex justify-center items-center w-full">
             <img src="../../assets/imgs/logo.png" alt="Logo" class="w-60">
           </div>
-          <p class="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
+          <p class="mx-auto max-w-[700px] text-gray-500 md:text-xl">
             SGP Formation vous propose des apprentissages délivrés par un expert vous permettant de sensibiliser vos
             équipes à la prévention et la gestion des risques au quotidien ou au sein de votre coeur de métier.
           </p>
@@ -68,7 +72,7 @@
       <div class="flex flex-col items-center justify-center space-y-4 text-center">
         <div class="space-y-2">
           <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Fonctionnalités</h2>
-          <p class="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400 text-center">
+          <p class="mx-auto max-w-[700px] text-gray-500 md:text-xl text-center">
             SGP Formation est doté de fonctionnalités puissantes conçues pour améliorer votre productivité et vous
             faciliter la vie.
           </p>
@@ -84,7 +88,7 @@
             <path d="m22 10-7.5 7.5L13 16"></path>
           </svg>
           <h3 class="text-lg font-bold">Gestion des compétitions</h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400">
+          <p class="text-sm text-gray-500">
             Gardez une trace de vos compétitions et gérez les automatiquement grâce une interface simple, fluide et
             intuitive.
           </p>
@@ -101,7 +105,7 @@
             <rect width="7" height="5" x="10" y="12" rx="1"></rect>
           </svg>
           <h3 class="text-lg font-bold">Affichage du classement</h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400">Affichez en un clic le classement d'une compétition afin
+          <p class="text-sm text-gray-500">Affichez en un clic le classement d'une compétition afin
             que les participants puisse suivre leur position en temps réel .</p>
         </div>
         <div class="grid gap-1 text-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -113,7 +117,7 @@
             <line x1="6" x2="6" y1="20" y2="16"></line>
           </svg>
           <h3 class="text-lg font-bold">Rapports &amp; Analytiques</h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400">
+          <p class="text-sm text-gray-500">
             Obtenez des informations sur vos compétitions grâce à des rapports, des analyses détaillés ainsi que des
             conseils personnalisés pour les tireurs.
           </p>
@@ -125,7 +129,7 @@
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
           </svg>
           <h3 class="text-lg font-bold">Sécurité</h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400">
+          <p class="text-sm text-gray-500">
             Des mesures de sécurité de haut niveau pour protéger vos données.
           </p>
         </div>
@@ -137,7 +141,7 @@
             <polyline points="12 6 12 12 16 14"></polyline>
           </svg>
           <h3 class="text-lg font-bold">Suivi du temps</h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400">
+          <p class="text-sm text-gray-500">
             Suivez le temps passé sur les tâches et les projets.
           </p>
         </div>
@@ -148,20 +152,60 @@
             <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
           </svg>
           <h3 class="text-lg font-bold">Stockage en nuage</h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400">
+          <p class="text-sm text-gray-500">
             Accédez à vos fichiers et données de n'importe où et sous n'importe quel format.
           </p>
         </div>
       </div>
     </div>
   </section>
+
+  <section id="formateur" class="flex justify-center items-center w-full py-12 md:py-24 lg:py-20 px-2 md:px-0 pt-16 bg-gray-100">
+    <div class="container space-y-12 px-4 md:px-6">
+      <div class="flex flex-col items-center justify-center space-y-4 text-center mx-auto">
+        <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Votre formateur</h2>
+        <p class="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+          Retrouvez ici toutes les informations me concernant, et découvrez pourquoi et comment je vous propose mon expertise aujourd'hui.
+        </p>
+      </div>
+      <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-10 lg:gap-16">
+        <div class="flex flex-col items-center justify-center w-full max-w-[400px] p-4 md:p-8">
+          <img src="../../assets/imgs/logo.png" alt="Photo" class="rounded-full object-cover object-center border-4 border-blue-500 aspect-square" />
+          <div class="text-lg font-semibold mt-4">Christophe Eribon</div>
+        </div>
+        <div class="flex flex-col w-full max-w-[700px] items-center justify-center p-4 md:p-8">
+          <div class="space-y-4 text-center">
+            <p class="text-gray-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="text-gray-500">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <button class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 text-sm inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-700 text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" x2="12" y1="15" y2="3"></line>
+              </svg>
+              Télécharger mon CV
+            </button>
+          </div>
+          <div class="flex justify-center gap-4 mt-4">
+            <a href="mailto:votre.email@exemple.com" class="hover:text-blue-700">
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/votreprofil" class="hover:text-blue-700">
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="catalogue"
-    class="flex justify-center items-center w-full py-12 md:py-32 lg:py-20 bg-gray-100 px-2 md:px-0">
+    class="flex justify-center items-center w-full py-12 md:py-32 lg:py-20 px-2 md:px-0">
     <div class="container grid items-center justify-center gap-6 px-4 md:px-6">
       <div class="space-y-4 text-center mx-auto">
         <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Catalogue de formations</h2>
         <p
-          class="mx-auto max-w-[500px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 text-center mb-12">
+          class="mx-auto max-w-[500px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-center mb-12">
           Choisissez la formation qui correspond aux besoins de votre équipe.
         </p>
       </div>
@@ -314,13 +358,12 @@
       </div>
     </div>
   </section>
-  <section id="contact" class="flex justify-center items-center w-full py-12 md:py-24 lg:py-20 px-2 md:px-0">
+  <section id="contact" class="flex justify-center items-center w-full py-12 md:py-24 lg:py-20 px-2 md:px-0 bg-gray-100">
     <div class="container space-y-12 px-4 md:px-6">
       <div class="flex flex-col items-center justify-center space-y-4 text-center">
         <div class="space-y-2">
           <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Contactez-moi</h2>
-          <p
-            class="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+          <p class="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
             Vous avez des questions ? Vous voulez en savoir plus ? Contactez-moi et je vous répondrai dans les plus
             bref délais.
           </p>
