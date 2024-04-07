@@ -1,10 +1,13 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FontAwesomeModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
@@ -12,6 +15,7 @@ export class HomeComponent {
   userConnected: boolean = false;
   accountMenuOpened: boolean = false;
   burgerMenuOpened: boolean = false;
+  icons = {faLinkedin, faEnvelope};
 
   @ViewChild('menuContainerRef') menuContainerRef!: ElementRef;
   @ViewChild('menuBurger') menuBurger!: ElementRef;
