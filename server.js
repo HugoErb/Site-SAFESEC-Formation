@@ -32,7 +32,7 @@ app.post('/sendmail', [
   const mailOptions = {
     from: 'aim-display@gmail.com',
     to: 'aim-display@gmail.com',
-    subject: 'Nouveau Message de SGP Formation',
+    subject: 'Nouveau Message de SAFESEC Formation',
     text: `Nom: ${name}\nEmail: ${email}\nMessage: ${message}`
   };
 
