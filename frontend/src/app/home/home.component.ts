@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faWheelchair } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons';
+import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
+import { faPeopleLine } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -12,19 +16,14 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  userConnected: boolean = false;
-  accountMenuOpened: boolean = false;
   burgerMenuOpened: boolean = false;
-  icons = {faLinkedin, faEnvelope};
+  icons = { faLinkedin, faEnvelope, faWheelchair, faCalendarCheck, faGraduationCap, faPeopleLine };
 
   @ViewChild('menuContainerRef') menuContainerRef!: ElementRef;
   @ViewChild('menuBurger') menuBurger!: ElementRef;
 
   @HostListener('document:click', ['$event'])
   onClickOutside(event: MouseEvent) {
-    if (this.accountMenuOpened && !this.menuContainerRef.nativeElement.contains(event.target)) {
-      this.accountMenuOpened = false;
-    }
     if (this.burgerMenuOpened && !this.menuBurger.nativeElement.contains(event.target)) {
       this.burgerMenuOpened = false;
     }
@@ -34,7 +33,7 @@ export class HomeComponent {
     if (this.burgerMenuOpened) {
       this.burgerMenuOpened = !this.burgerMenuOpened;
     }
-  
+
     setTimeout(() => {
       const section = document.getElementById(sectionId);
       if (section) {
@@ -46,19 +45,9 @@ export class HomeComponent {
     }, 50);
   }
 
-  toggleAccountMenu(event: MouseEvent) {
-    event.stopPropagation();
-    this.accountMenuOpened = !this.accountMenuOpened;
-  }
-
   toggleBurgerMenu(event: MouseEvent): void {
     event.stopPropagation();
     this.burgerMenuOpened = !this.burgerMenuOpened;
-  }
-
-  onAccountMenuOptionClick(option: string) {
-    console.log(option);
-    this.accountMenuOpened = false;
   }
 
   sendMail() {
