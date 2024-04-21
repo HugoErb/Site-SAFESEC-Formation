@@ -6,7 +6,9 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faWheelchair } from '@fortawesome/free-solid-svg-icons';
 import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons';
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
-import { faPeopleLine } from '@fortawesome/free-solid-svg-icons';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faBookOpen } from '@fortawesome/free-solid-svg-icons';
+import { faPersonWalkingArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +19,7 @@ import { faPeopleLine } from '@fortawesome/free-solid-svg-icons';
 })
 export class HomeComponent {
   burgerMenuOpened: boolean = false;
-  icons = { faLinkedin, faEnvelope, faWheelchair, faCalendarCheck, faGraduationCap, faPeopleLine };
+  icons = { faLinkedin, faEnvelope, faWheelchair, faCalendarCheck, faGraduationCap, faUsers, faBookOpen, faPersonWalkingArrowRight };
 
   @ViewChild('menuContainerRef') menuContainerRef!: ElementRef;
   @ViewChild('menuBurger') menuBurger!: ElementRef;
