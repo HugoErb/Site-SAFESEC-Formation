@@ -14,8 +14,8 @@
 
   <!-- Navigation principale pour les grands écrans -->
   <nav class="hidden lg:flex ml-auto gap-4 sm:gap-6 items-center">
-    <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('fonctionnalites')">
-      Fonctionnalités</div>
+    <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('services')">
+      Services</div>
     <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('formateur')">
       Formateur</div>
     <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('catalogue')">
@@ -27,7 +27,7 @@
   <!-- Menu burger pour les petits écrans -->
   <div #menuBurger class="lg:hidden absolute top-full left-0 w-full bg-white shadow-md" *ngIf="burgerMenuOpened">
     <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
-      (click)="scrollToSection('fonctionnalites')">Fonctionnalités</div>
+      (click)="scrollToSection('services')">Services</div>
     <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
       (click)="scrollToSection('formateur')">Formateur</div>
     <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
@@ -58,7 +58,7 @@
           <div class="space-x-4">
             <div
               class="inline-flex cursor-pointer h-9 items-center justify-center rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-900 disabled:pointer-events-none disabled:opacity-50"
-              (click)="scrollToSection('fonctionnalites')">
+              (click)="scrollToSection('services')">
               Commencer
             </div>
           </div>
@@ -66,17 +66,14 @@
       </div>
     </div>
   </section>
-  <section id="fonctionnalites"
-    class="flex justify-center items-center w-full py-12 md:py-24 lg:py-20 px-2 md:px-0 pt-16">
+  <section id="services" class="flex justify-center items-center w-full py-12 md:py-24 lg:py-20 px-2 md:px-0 pt-16">
     <div class="container space-y-12 px-4 md:px-6">
       <div class="flex flex-col items-center justify-center space-y-4 text-center">
-        <div class="space-y-2">
-          <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Fonctionnalités</h2>
-          <p class="mx-auto max-w-[700px] text-gray-500 md:text-xl text-center">
-            SAFESEC Formation est doté de fonctionnalités puissantes conçues pour améliorer votre productivité et vous
-            faciliter la vie.
-          </p>
-        </div>
+        <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Services</h2>
+        <p class="mx-auto max-w-[800px] text-gray-500 md:text-xl text-center">
+          SAFESEC Formation propose plusieurs programmes éducatifs, spécialement conçus pour renforcer les compétences
+          professionnelles et offrir des connaissances pratiques immédiatement applicables à vos équipes.
+        </p>
       </div>
       <div
         class="mx-auto grid items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3 justify-items-center">
@@ -87,10 +84,10 @@
             <path d="M18 6 7 17l-5-5"></path>
             <path d="m22 10-7.5 7.5L13 16"></path>
           </svg>
-          <h3 class="text-lg font-bold">Gestion des compétitions</h3>
+          <h3 class="text-lg font-bold">Catalogue complet de formations</h3>
           <p class="text-sm text-gray-500">
-            Gardez une trace de vos compétitions et gérez les automatiquement grâce une interface simple, fluide et
-            intuitive.
+            Découvrez notre sélection de formations couvrant divers domaines et compétences, conçues pour répondre
+            aux besoins de toutes les entreprises.
           </p>
         </div>
         <div class="grid gap-1 text-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -104,9 +101,9 @@
             <rect width="7" height="5" x="7" y="7" rx="1"></rect>
             <rect width="7" height="5" x="10" y="12" rx="1"></rect>
           </svg>
-          <h3 class="text-lg font-bold">Affichage du classement</h3>
-          <p class="text-sm text-gray-500">Affichez en un clic le classement d'une compétition afin
-            que les participants puisse suivre leur position en temps réel .</p>
+          <h3 class="text-lg font-bold">Flexibilité du formateur</h3>
+          <p class="text-sm text-gray-500">Nous offrons une flexibilité d'horaires pour s'adapter au mieux aux besoins
+            des entreprises et minimiser l'impact sur la productivité.</p>
         </div>
         <div class="grid gap-1 text-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -116,10 +113,10 @@
             <line x1="18" x2="18" y1="20" y2="4"></line>
             <line x1="6" x2="6" y1="20" y2="16"></line>
           </svg>
-          <h3 class="text-lg font-bold">Rapports &amp; Analytiques</h3>
+          <h3 class="text-lg font-bold">Adapté aux personnes handicapées</h3>
           <p class="text-sm text-gray-500">
-            Obtenez des informations sur vos compétitions grâce à des rapports, des analyses détaillés ainsi que des
-            conseils personnalisés pour les tireurs.
+            Nos formations sont adaptées pour garantir l'accessibilité aux participants handicapés, pour un
+            apprentissage inclusif et équitable.
           </p>
         </div>
         <div class="grid gap-1 text-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -128,9 +125,10 @@
             style="--darkreader-inline-stroke: currentColor;">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
           </svg>
-          <h3 class="text-lg font-bold">Sécurité</h3>
+          <h3 class="text-lg font-bold">Certification des acquis</h3>
           <p class="text-sm text-gray-500">
-            Des mesures de sécurité de haut niveau pour protéger vos données.
+            À la fin de chaque formation, recevez une certification attestant de vos compétences et connaissances
+            acquises, ainsi que la réussite des examens finaux.
           </p>
         </div>
         <div class="grid gap-1 text-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -140,9 +138,10 @@
             <circle cx="12" cy="12" r="10"></circle>
             <polyline points="12 6 12 12 16 14"></polyline>
           </svg>
-          <h3 class="text-lg font-bold">Suivi du temps</h3>
+          <h3 class="text-lg font-bold">Mises en situation pratique</h3>
           <p class="text-sm text-gray-500">
-            Suivez le temps passé sur les tâches et les projets.
+            Nos formations intègrent des scénarios pratiques et des mises en situation pour permettre une application
+            concrète des connaissances, améliorant ainsi l'apprentissage.
           </p>
         </div>
         <div class="grid gap-1 text-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -151,9 +150,10 @@
             style="--darkreader-inline-stroke: currentColor;">
             <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
           </svg>
-          <h3 class="text-lg font-bold">Stockage en nuage</h3>
+          <h3 class="text-lg font-bold">Sessions de formation en groupe</h3>
           <p class="text-sm text-gray-500">
-            Accédez à vos fichiers et données de n'importe où et sous n'importe quel format.
+            Participez à des sessions de formation en groupe qui favorisent l'échange d'idées et la collaboration entre
+            les participants, enrichissant l'expérience d'apprentissage.
           </p>
         </div>
       </div>
@@ -178,12 +178,17 @@
         </div>
         <div class="flex flex-col w-full max-w-[700px] items-center justify-center p-4 md:p-8">
           <div class="space-y-4 text-center">
-            <p class="text-gray-500 italic"> Ayant rejoint les rangs de la gendarmerie nationale en 1992, j'ai consacré de
+            <p class="text-gray-500 italic"> Ayant rejoint les rangs de la gendarmerie nationale en 1992, j'ai consacré
+              de
               nombreuses années à des missions opérationnelles ainsi qu'à la formation dans les domaines de
               l'intervention professionnelle et des premiers secours.
               Aujourd’hui, nouvelle vie, nouveau public, mais toujours le même bonheur de pouvoir partager mes
               connaissances.</p>
-            <p class="text-gray-500 italic">Si vous souhaitez monter en compétences sur des sujets tels que la gestion des comportements agressifs, la sécurisation de site, les premiers secours (sécurité civile, SST, sauvetage tactique ou au combat), les réactions face à une situation d'attentat ou d'agression collective avec arme, les sports de combat et la self défense, ou encore le port, l’emploi et l’usage des armes de catégories B et D, je suis l'homme qu'il vous faut.</p>
+            <p class="text-gray-500 italic">Si vous souhaitez monter en compétences sur des sujets tels que la gestion
+              des comportements agressifs, la sécurisation de site, les premiers secours (sécurité civile, SST,
+              sauvetage tactique ou au combat), les réactions face à une situation d'attentat ou d'agression collective
+              avec arme, les sports de combat et la self défense, ou encore le port, l’emploi et l’usage des armes de
+              catégories B et D, je suis l'homme qu'il vous faut.</p>
             <a class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 text-sm inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-700 text-white"
               href="../../assets/pdf/CV.pdf" target="_blank">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
