@@ -1,0 +1,238 @@
+<header class="px-4 lg:px-6 h-16 flex items-center fixed w-full bg-white z-50 shadow-sm border-b border-gray-200">
+    <div class="flex items-center justify-center mb-0.5 cursor-pointer" (click)="scrollToSection('landing')">
+        <img src="../../assets/imgs/logo.png" alt="Logo" class="w-14">
+        <span class="text-xl font-semibold ml-4">SAFESEC Formation</span>
+    </div>
+
+    <!-- Bouton du menu burger pour les petits écrans -->
+    <button class="lg:hidden ml-auto mr-3" (click)="toggleBurgerMenu($event)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+    </button>
+
+    <!-- Navigation principale pour les grands écrans -->
+    <nav class="hidden lg:flex ml-auto gap-4 sm:gap-6 items-center">
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('services')">
+            Services</div>
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('formateur')">
+            Formateur</div>
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('catalogue')">
+            Catalogue</div>
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('contact')">
+            Contact
+        </div>
+    </nav>
+
+    <!-- Menu burger pour les petits écrans -->
+    <div #menuBurger class="lg:hidden absolute top-full left-0 w-full bg-white shadow-md" *ngIf="burgerMenuOpened">
+        <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
+            (click)="scrollToSection('services')">Services</div>
+        <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
+            (click)="scrollToSection('formateur')">Formateur</div>
+        <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
+            (click)="scrollToSection('catalogue')">Catalogue</div>
+        <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
+            (click)="scrollToSection('contact')">Contact</div>
+    </div>
+</header>
+
+<main class="flex-1">
+    <section class="w-full py-12 md:py-24 lg:py-32">
+        <div class="container px-4 md:px-6">
+            <div class="mx-auto max-w-2xl space-y-8">
+                <div class="space-y-4 text-center">
+                    <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Inscrivez-vous à la formation</h2>
+                    <p
+                        class="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                        Remplissez le formulaire ci-dessous pour vous inscrire à notre prochaine formation.
+                    </p>
+                </div>
+                <form class="space-y-6">
+                    <div class="space-y-4">
+                        <h3 class="text-2xl font-bold">Localisation</h3>
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                            <div class="space-y-2">
+                                <label
+                                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    for="postal-code">
+                                    Code postal
+                                </label>
+                                <input
+                                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    id="postal-code" placeholder="Entrez votre code postal" required="" />
+                            </div>
+                            <div class="space-y-2">
+                                <label
+                                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    for="city">
+                                    Ville
+                                </label>
+                                <input
+                                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    id="city" placeholder="Entrez votre ville" required="" />
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                            <div class="space-y-2">
+                                <label
+                                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    for="country">
+                                    Pays
+                                </label>
+                                <input
+                                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    id="country" placeholder="Entrez votre pays" required="" />
+                            </div>
+                            <div class="space-y-2">
+                                <label
+                                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    for="training-address">
+                                    Adresse de la formation
+                                </label>
+                                <input
+                                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    id="training-address" placeholder="Entrez l'adresse de la formation" required="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-8">
+                        <div class="space-y-4">
+                            <h3 class="text-2xl font-bold">Informations de contact</h3>
+                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                <div class="space-y-2">
+                                    <label
+                                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        for="name">
+                                        Nom
+                                    </label>
+                                    <input
+                                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        id="name" placeholder="Entrez votre nom" required="" />
+                                </div>
+                                <div class="space-y-2">
+                                    <label
+                                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        for="email">
+                                        Email
+                                    </label>
+                                    <input
+                                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        id="email" placeholder="Entrez votre email" required="" type="email" />
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                <div class="space-y-2">
+                                    <label
+                                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        for="phone">
+                                        Téléphone
+                                    </label>
+                                    <input
+                                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        id="phone" placeholder="Entrez votre numéro de téléphone" required=""
+                                        type="tel" />
+                                </div>
+                                <div class="space-y-2">
+                                    <label
+                                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        for="company">
+                                        Entreprise
+                                    </label>
+                                    <input
+                                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        id="company" placeholder="Entrez le nom de votre entreprise" required="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <h3 class="text-2xl font-bold">Informations sur la formation</h3>
+                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                <div class="space-y-2">
+                                    <label
+                                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        for="job-title">
+                                        Titre du poste
+                                    </label>
+                                    <input
+                                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        id="job-title" placeholder="Entrez votre titre de poste" required="" />
+                                </div>
+                                <div class="space-y-2">
+                                    <label
+                                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        for="num-persons">
+                                        Nombre de personnes
+                                    </label>
+                                    <input
+                                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        id="num-persons" min="1" placeholder="Entrez le nombre de personnes" required=""
+                                        type="number" />
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                <div class="space-y-2">
+                                    <label
+                                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        for="training-date">
+                                        Date de la formation
+                                    </label>
+                                    <button
+                                        class="inline-flex items-center whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full justify-start text-left font-normal"
+                                        id="training-date" type="button" aria-haspopup="dialog" aria-expanded="false"
+                                        aria-controls="radix-:rb:" data-state="closed">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="mr-1 h-4 w-4 -translate-x-1">
+                                            <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+                                            <line x1="16" x2="16" y1="2" y2="6"></line>
+                                            <line x1="8" x2="8" y1="2" y2="6"></line>
+                                            <line x1="3" x2="21" y1="10" y2="10"></line>
+                                            <path d="M8 14h.01"></path>
+                                            <path d="M12 14h.01"></path>
+                                            <path d="M16 14h.01"></path>
+                                            <path d="M8 18h.01"></path>
+                                            <path d="M12 18h.01"></path>
+                                            <path d="M16 18h.01"></path>
+                                        </svg>
+                                        Sélectionnez une date
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="space-y-2">
+                                <label
+                                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    for="additional-info">
+                                    Informations complémentaires
+                                </label>
+                                <textarea
+                                    class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-[100px]"
+                                    id="additional-info"
+                                    placeholder="Entrez vos informations complémentaires"></textarea>
+                            </div>
+                        <button
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
+                            type="submit">
+                            Envoyer la demande de formation
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
+    <p class="text-sm text-gray-600">© SAFESEC Formation. Tous droits réservés.</p>
+    <nav class="sm:ml-auto flex gap-4 sm:gap-6">
+        <a class="text-sm hover:text-blue-600" href="#">
+            Conditions de service
+        </a>
+        <a class="text-sm hover:text-blue-600" href="#">
+            Confidentialité
+        </a>
+    </nav>
+</footer>
