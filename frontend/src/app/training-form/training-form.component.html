@@ -1,5 +1,5 @@
 <header class="px-4 lg:px-6 h-16 flex items-center fixed w-full bg-white z-50 shadow-sm border-b border-gray-200">
-    <div class="flex items-center justify-center mb-0.5 cursor-pointer" (click)="scrollToSection('landing')">
+    <div class="flex items-center justify-center mb-0.5 cursor-pointer" (click)="navigateToHome('landing')">
         <img src="../../assets/imgs/logo.png" alt="Logo" class="w-14">
         <span class="text-xl font-semibold ml-4">SAFESEC Formation</span>
     </div>
@@ -14,13 +14,13 @@
 
     <!-- Navigation principale pour les grands écrans -->
     <nav class="hidden lg:flex ml-auto gap-4 sm:gap-6 items-center">
-        <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('services')">
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="navigateToHome('services')">
             Services</div>
-        <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('formateur')">
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="navigateToHome('formateur')">
             Formateur</div>
-        <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('catalogue')">
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="navigateToHome('catalogue')">
             Catalogue</div>
-        <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('contact')">
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="navigateToHome('contact')">
             Contact
         </div>
     </nav>
@@ -28,13 +28,13 @@
     <!-- Menu burger pour les petits écrans -->
     <div #menuBurger class="lg:hidden absolute top-full left-0 w-full bg-white shadow-md" *ngIf="burgerMenuOpened">
         <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
-            (click)="scrollToSection('services')">Services</div>
+            (click)="navigateToHome('services')">Services</div>
         <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
-            (click)="scrollToSection('formateur')">Formateur</div>
+            (click)="navigateToHome('formateur')">Formateur</div>
         <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
-            (click)="scrollToSection('catalogue')">Catalogue</div>
+            (click)="navigateToHome('catalogue')">Catalogue</div>
         <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
-            (click)="scrollToSection('contact')">Contact</div>
+            (click)="navigateToHome('contact')">Contact</div>
     </div>
 </header>
 

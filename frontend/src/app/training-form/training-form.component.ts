@@ -33,20 +33,10 @@ export class TrainingFormComponent implements OnInit {
     }
   }
 
-  scrollToSection(sectionId: string): void {
-    if (this.burgerMenuOpened) {
-      this.burgerMenuOpened = !this.burgerMenuOpened;
-    }
-
-    setTimeout(() => {
-      const section = document.getElementById(sectionId);
-      if (section) {
-        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-        const headerHeight = 64;
-        const position = sectionTop - headerHeight;
-        window.scrollTo({ top: position, behavior: 'smooth' });
-      }
-    }, 50);
+  navigateToHome(section: string) {
+    console.log(section);
+    
+    this.router.navigate(['home', { redirectionSection: section }]);
   }
 
   toggleBurgerMenu(event: MouseEvent): void {

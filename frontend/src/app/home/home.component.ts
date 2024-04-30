@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 // Icons
@@ -22,11 +22,20 @@ import { faPersonWalkingArrowRight } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
+  redirectionSection: string = "";
   burgerMenuOpened: boolean = false;
   icons = { faLinkedin, faEnvelope, faWheelchair, faCalendarCheck, faGraduationCap, faUsers, faBookOpen, faPersonWalkingArrowRight };
-  chosenTrainingName = "";
-  phoneNumber = "";
+  chosenTrainingName: string = "";
+  phoneNumber: string = "";
+
+  ngOnInit() {
+
+    // On récupère le nom de la formation de la page home
+    if (this.activatedRoute.snapshot.params.hasOwnProperty('redirectionSection')) {
+      this.scrollToSection(this.activatedRoute.snapshot.params['redirectionSection']);
+    }
+  }
 
   @ViewChild('menuContainerRef') menuContainerRef!: ElementRef;
   @ViewChild('menuBurger') menuBurger!: ElementRef;
