@@ -65,7 +65,7 @@ export class HomeComponent {
     const trainingName = target.closest('.rounded-lg')?.querySelector('h3')?.textContent?.trim();
     if (trainingName) {
       console.log(trainingName);
-      this.router.navigate(['/training-form'], { state: { chosenTrainingName: trainingName } });
+      this.router.navigate(['/training-form', { chosenTrainingName: trainingName }]);
     } else {
       console.error('Could not retrieve training name.');
     }

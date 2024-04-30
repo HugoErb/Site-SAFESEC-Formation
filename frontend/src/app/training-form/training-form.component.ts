@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostListener, ViewChild, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -11,18 +11,14 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './training-form.component.scss'
 })
 export class TrainingFormComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
   burgerMenuOpened: boolean = false;
   chosenTrainingName = "";
   phoneNumber = "";
 
   ngOnInit() {
-    console.log("hello");
-    const navigation = this.router.getCurrentNavigation();
-    if (navigation?.extras.state) {
-      console.log("hello2");
-      this.chosenTrainingName = (navigation.extras.state as { chosenTrainingName: string }).chosenTrainingName;
-      console.log(this.chosenTrainingName);
+    if (this.activatedRoute.snapshot.params.hasOwnProperty('chosenTrainingName')) {
+      this.chosenTrainingName = this.activatedRoute.snapshot.params['chosenTrainingName'];
     }
   }
 
