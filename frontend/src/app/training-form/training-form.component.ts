@@ -7,8 +7,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-training-form',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './training-form.component.html',
-  styleUrl: './training-form.component.scss'
+  templateUrl: './training-form.component.html'
 })
 export class TrainingFormComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
@@ -17,6 +16,8 @@ export class TrainingFormComponent implements OnInit {
   phoneNumber = "";
 
   ngOnInit() {
+
+    // On récupère le nom de la formation de la page home
     if (this.activatedRoute.snapshot.params.hasOwnProperty('chosenTrainingName')) {
       this.chosenTrainingName = this.activatedRoute.snapshot.params['chosenTrainingName'];
     }

@@ -19,8 +19,7 @@ import { faPersonWalkingArrowRight } from '@fortawesome/free-solid-svg-icons';
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule, FontAwesomeModule, FormsModule],
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  templateUrl: './home.component.html'
 })
 export class HomeComponent {
   constructor(private router: Router) { }
