@@ -60,8 +60,15 @@ export class HomeComponent {
     this.burgerMenuOpened = !this.burgerMenuOpened;
   }
 
-  choosePlan() {
-    this.router.navigate(['/training-form'], { state: { trainingName: this.chosenTrainingName } });
+  chooseTrainingPlan(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const trainingName = target.closest('.rounded-lg')?.querySelector('h3')?.textContent?.trim();
+    if (trainingName) {
+      console.log(trainingName);
+      this.router.navigate(['/training-form'], { state: { chosenTrainingName: trainingName } });
+    } else {
+      console.error('Could not retrieve training name.');
+    }
   }
 
   /**
