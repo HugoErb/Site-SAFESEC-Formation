@@ -34,8 +34,6 @@ export class TrainingFormComponent implements OnInit {
   }
 
   navigateToHome(section: string) {
-    console.log(section);
-    
     this.router.navigate(['home', { redirectionSection: section }]);
   }
 
