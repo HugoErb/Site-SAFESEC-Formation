@@ -1,4 +1,5 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-training-form',
@@ -7,8 +8,17 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
   templateUrl: './training-form.component.html',
   styleUrl: './training-form.component.scss'
 })
-export class TrainingFormComponent {
+export class TrainingFormComponent implements OnInit {
+  constructor(private router: Router) {}
   burgerMenuOpened: boolean = false;
+  chosenTrainingName?: string;
+
+  ngOnInit() {
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation?.extras.state) {
+      this.chosenTrainingName = (navigation.extras.state as { chosenTrainingName: string }).chosenTrainingName;
+    }
+  }
 
   @ViewChild('menuContainerRef') menuContainerRef!: ElementRef;
   @ViewChild('menuBurger') menuBurger!: ElementRef;
