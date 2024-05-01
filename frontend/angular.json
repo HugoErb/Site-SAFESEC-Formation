@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Site_AimDisplay": {
+    "Site_SafeSecFormation": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/site-aim-display",
+            "outputPath": "dist/site-safesecformation",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -78,14 +78,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "Site_AimDisplay:build"
+            "buildTarget": "Site_SafeSecFormation:build"
           },
           "configurations": {
             "production": {
-              "buildTarget": "Site_AimDisplay:build:production"
+              "buildTarget": "Site_SafeSecFormation:build:production"
             },
             "development": {
-              "buildTarget": "Site_AimDisplay:build:development"
+              "buildTarget": "Site_SafeSecFormation:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -93,7 +93,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "Site_AimDisplay:build"
+            "buildTarget": "Site_SafeSecFormation:build"
           }
         },
         "test": {

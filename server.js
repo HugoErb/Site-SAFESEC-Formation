@@ -30,8 +30,8 @@ app.post('/sendmail', [
 
   // Préparer l'email
   const mailOptions = {
-    from: 'aim-display@gmail.com',
-    to: 'aim-display@gmail.com',
+    from: 'safesecformation@gmail.com',
+    to: 'safesecformation@gmail.com',
     subject: 'Nouveau Message de SAFESEC Formation',
     text: `Nom: ${name}\nEmail: ${email}\nMessage: ${message}`
   };
