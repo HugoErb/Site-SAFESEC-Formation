@@ -1,39 +1,46 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const { body, validationResult } = require('express-validator');
+const cors = require('cors');
+const optionsCors = {
+  maxHttpBufferSize: 1e9,
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization']
+}
+
+if (process.env.NODE_ENV === 'dev') {
+  optionsCors.cors = {
+      origin: 'http://localhost:4200/',
+      methods: ["GET", "POST"]
+  }
+}
 
 const app = express();
 app.use(express.json());
+app.use(cors(optionsCors));
 
 // Configurer le transporteur Nodemailer
 const transporter = nodemailer.createTransport({
-  host: 'smtp.votreserveurmail.com', // Remplacez par votre serveur SMTP
-  port: 587, // Port SMTP standard
-  secure: false, // true pour 465, false pour les autres ports
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false,
   auth: {
-    user: 'votre@adressemail.com', // Votre adresse mail
-    pass: 'votremotdepasse' // Votre mot de passe mail
+    user: 'safesecformation@gmail.com',
+    pass: ''
   }
 });
 
-app.post('/sendmail', [
-  body('email').isEmail(),
-  body('name').trim().escape(),
-  body('message').trim().escape()
-], (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
+app.post('/sendmail', (req, res) => {
+  
 
-  const { name, email, message } = req.body;
+  const { name, email, tel, message } = req.body;
 
   // Préparer l'email
   const mailOptions = {
-    from: 'safesecformation@gmail.com',
+    from: email,
     to: 'safesecformation@gmail.com',
-    subject: 'Nouveau Message de SAFESEC Formation',
-    text: `Nom: ${name}\nEmail: ${email}\nMessage: ${message}`
+    subject: `Nouveau message de ${name}`,
+    text: `Nom : ${name}\nEmail : ${email}\nNuméro de tél : ${tel}\n\nMessage : ${message}`
   };
 
   // Envoyer l'email
