@@ -436,7 +436,7 @@
             </label>
             <input
               class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              id="name" placeholder="Entrez votre nom et votre prénom">
+              id="name" [(ngModel)]="nameMail" placeholder="Entrez votre nom et votre prénom">
           </div>
           <div class="space-y-2">
             <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -444,7 +444,7 @@
             </label>
             <input
               class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              id="email" placeholder="Entrez votre email" type="email">
+              id="email" [(ngModel)]="emailMail" placeholder="Entrez votre email" type="email">
           </div>
           <div class="space-y-2">
             <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -452,7 +452,8 @@
             </label>
             <input
               class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              id="tel" placeholder="Entrez votre numéro de téléphone" type="tel" [(ngModel)]="phoneNumber" (input)="formatAndRestrictPhoneInput($event)">
+              id="tel" placeholder="Entrez votre numéro de téléphone" type="tel" [(ngModel)]="phoneNumberMail"
+              (input)="formatAndRestrictPhoneInput($event)">
           </div>
           <div class="space-y-2">
             <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -460,10 +461,10 @@
             </label>
             <textarea
               class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-[100px]"
-              id="message" placeholder="Entrez votre message">
+              id="message" [(ngModel)]="messageMail" placeholder="Entrez votre message">
             </textarea>
           </div>
-          <button (click)="sendMail()"
+          <button (click)="sendMail(nameMail, emailMail, phoneNumberMail,messageMail)"
             class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-700">Envoyer
             le message
           </button>
@@ -476,8 +477,8 @@
 <footer class="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
   <p class="text-sm text-gray-600">© SAFESEC Formation. Tous droits réservés.</p>
   <nav class="sm:ml-auto flex gap-4 sm:gap-6">
-      <a class="text-sm hover:text-blue-600" href="#">
-          Mentions légales
-      </a>
+    <a class="text-sm hover:text-blue-600" href="#">
+      Mentions légales
+    </a>
   </nav>
 </footer>

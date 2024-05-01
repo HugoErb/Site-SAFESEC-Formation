@@ -2,6 +2,7 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { MailService } from '../mail.service';
 
 // Icons
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -22,12 +23,19 @@ import { faPersonWalkingArrowRight } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
-  redirectionSection: string = "";
-  burgerMenuOpened: boolean = false;
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private mailService: MailService) { }
   icons = { faLinkedin, faEnvelope, faWheelchair, faCalendarCheck, faGraduationCap, faUsers, faBookOpen, faPersonWalkingArrowRight };
+  burgerMenuOpened: boolean = false;
+
+  // Variables concernants la page de formulaire de demande de formation
+  redirectionSection: string = "";
   chosenTrainingName: string = "";
-  phoneNumber: string = "";
+
+  // Variables pour le mail
+  nameMail: string = "";
+  emailMail: string = "";
+  phoneNumberMail: string = "";
+  messageMail: string = "";
 
   ngOnInit() {
 
@@ -37,9 +45,17 @@ export class HomeComponent {
     }
   }
 
+  /**
+  * Gère les clics à l'extérieur du menu burger pour fermer le menu.
+  * 
+  * Cette méthode est déclenchée par un écouteur d'événements qui surveille tous les clics dans le document.
+  * Si le menu burger est ouvert (`burgerMenuOpened` est `true`) et que le clic n'est pas dans le menu burger,
+  * alors le menu sera fermé. Ceci est vérifié en utilisant la méthode `contains` sur l'élément natif du menu burger.
+  * 
+  * @param event L'objet MouseEvent associé au clic du document.
+  */
   @ViewChild('menuContainerRef') menuContainerRef!: ElementRef;
   @ViewChild('menuBurger') menuBurger!: ElementRef;
-
   @HostListener('document:click', ['$event'])
   onClickOutside(event: MouseEvent) {
     if (this.burgerMenuOpened && !this.menuBurger.nativeElement.contains(event.target)) {
@@ -47,6 +63,17 @@ export class HomeComponent {
     }
   }
 
+  /**
+  * Déplace la vue de la fenêtre du navigateur vers la section spécifiée de la page.
+  *
+  * Permet la navigation vers différentes sections de la page en utilisant un défilement fluide.
+  * Si le menu burger est ouvert, il est d'abord fermé avant de procéder au défilement.
+  * La méthode recherche l'élément de section par son identifiant. Si l'élément est trouvé, elle calcule la position de l'élément
+  * en tenant compte de la hauteur fixe de l'en-tête et déplace le défilement à cette position avec un comportement fluide.
+  *
+  * @param sectionId L'identifiant de l'élément HTML vers lequel défiler. Cet identifiant doit correspondre à un élément existant
+  * dans le DOM pour que la méthode fonctionne correctement.
+  */
   scrollToSection(sectionId: string): void {
     if (this.burgerMenuOpened) {
       this.burgerMenuOpened = !this.burgerMenuOpened;
@@ -107,10 +134,15 @@ export class HomeComponent {
     }
 
     // Mettre à jour la valeur du modèle et de l'input
-    this.phoneNumber = formattedValue;
+    this.phoneNumberMail = formattedValue;
     input.value = formattedValue;
   }
 
-  sendMail() {
+  sendMail(name: string, email: string, tel: string, message: string) {
+    const mailData = { name, email, tel, message };
+    this.mailService.sendMail(mailData).subscribe({
+      next: (response) => alert('Mail envoyé avec succès !'),
+      error: (error) => alert('Erreur lors de l\'envoi du mail : ' + error.message)
+    });
   }
 }
