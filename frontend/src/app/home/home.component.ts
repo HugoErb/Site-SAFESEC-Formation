@@ -49,7 +49,7 @@ export class HomeComponent {
   * Gère les clics à l'extérieur du menu burger pour fermer le menu.
   * 
   * Cette méthode est déclenchée par un écouteur d'événements qui surveille tous les clics dans le document.
-  * Si le menu burger est ouvert (`burgerMenuOpened` est `true`) et que le clic n'est pas dans le menu burger,
+  * Si le menu burger est ouvert et que le clic n'est pas dans le menu burger,
   * alors le menu sera fermé. Ceci est vérifié en utilisant la méthode `contains` sur l'élément natif du menu burger.
   * 
   * @param event L'objet MouseEvent associé au clic du document.
@@ -64,15 +64,12 @@ export class HomeComponent {
   }
 
   /**
-  * Déplace la vue de la fenêtre du navigateur vers la section spécifiée de la page.
-  *
   * Permet la navigation vers différentes sections de la page en utilisant un défilement fluide.
   * Si le menu burger est ouvert, il est d'abord fermé avant de procéder au défilement.
   * La méthode recherche l'élément de section par son identifiant. Si l'élément est trouvé, elle calcule la position de l'élément
   * en tenant compte de la hauteur fixe de l'en-tête et déplace le défilement à cette position avec un comportement fluide.
   *
-  * @param sectionId L'identifiant de l'élément HTML vers lequel défiler. Cet identifiant doit correspondre à un élément existant
-  * dans le DOM pour que la méthode fonctionne correctement.
+  * @param sectionId L'identifiant de l'élément HTML vers lequel défiler.
   */
   scrollToSection(sectionId: string): void {
     if (this.burgerMenuOpened) {
@@ -90,11 +87,25 @@ export class HomeComponent {
     }, 50);
   }
 
+  /**
+  * Sert à ouvrir ou fermer le menu burger en inversant l'état actuel du menu chaque fois qu'elle est appelée. 
+  * Elle arrête également la propagation de l'événement de clic pour éviter des interactions indésirables avec d'autres éléments de l'interface utilisateur.
+  * 
+  * @param {MouseEvent} event - L'événement de clic qui a déclenché l'appel de la méthode. Utilisé pour arrêter la propagation de l'événement.
+  */
   toggleBurgerMenu(event: MouseEvent): void {
     event.stopPropagation();
     this.burgerMenuOpened = !this.burgerMenuOpened;
   }
 
+  /**
+  * Extrait le nom de la formation à partir de l'élément HTML cliqué qui déclenche l'événement. 
+  * Le nom est recherché dans un élément `<h3>` qui doit se trouver à l'intérieur du premier parent avec la classe 'rounded-lg' du point de clic. 
+  * Si le nom est trouvé, la méthode redirige l'utilisateur vers le formulaire de formation associé au plan choisi. 
+  * En cas d'échec lors de la recherche du nom, une erreur est enregistrée dans la console.
+  * 
+  * @param {MouseEvent} event - L'événement de clic qui a déclenché l'appel de la méthode.
+  */
   chooseTrainingPlan(event: MouseEvent) {
     const target = event.target as HTMLElement;
     const trainingName = target.closest('.rounded-lg')?.querySelector('h3')?.textContent?.trim();
@@ -138,6 +149,17 @@ export class HomeComponent {
     input.value = formattedValue;
   }
 
+  /**
+  * Prépare et envoie un email à l'aide d'un service de messagerie. 
+  * Avant l'envoi, elle vérifie les entrées pour s'assurer qu'elles sont valides en utilisant la méthode `validateInputs`. 
+  * Si les validations échouent, l'envoi est interrompu. Si les validations réussissent, les données sont envoyées au service de messagerie. 
+  * Les réactions aux réponses du service de messagerie, qu'elles soient réussies ou en erreur, sont gérées via des alertes à l'utilisateur.
+  * 
+  * @param {string} name - Le nom de l'expéditeur.
+  * @param {string} email - L'adresse email de l'expéditeur.
+  * @param {string} tel - Le numéro de téléphone de l'expéditeur, qui peut être vide.
+  * @param {string} message - Le message à envoyer dans l'email.
+  */
   sendMail(name: string, email: string, tel: string, message: string) {
 
     // On vérifie les données
