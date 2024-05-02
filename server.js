@@ -21,12 +21,10 @@ app.use(cors(optionsCors));
 
 // Configurer le transporteur Nodemailer
 const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
+  service: 'gmail',
   auth: {
     user: 'safesecformation@gmail.com',
-    pass: ''
+    pass: 'mxhz eqwn iutm vcqz'
   }
 });
 

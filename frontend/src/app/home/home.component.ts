@@ -102,7 +102,7 @@ export class HomeComponent {
       console.log(trainingName);
       this.router.navigate(['/training-form', { chosenTrainingName: trainingName }]);
     } else {
-      console.error('Could not retrieve training name.');
+      console.error('Impossible de trouver le nom de la formation.');
     }
   }
 
@@ -139,10 +139,60 @@ export class HomeComponent {
   }
 
   sendMail(name: string, email: string, tel: string, message: string) {
+
+    // On vérifie les données
+    if (!this.validateInputs(name, email, tel, message)) {
+      return;
+    }
+
     const mailData = { name, email, tel, message };
     this.mailService.sendMail(mailData).subscribe({
       next: (response) => alert('Mail envoyé avec succès !'),
       error: (error) => alert('Erreur lors de l\'envoi du mail : ' + error.message)
     });
   }
+
+  /**
+  * Vérifie que le nom, l'email et le message ne sont pas vides et que ces derniers ainsi que le numéro de téléphone (s'il est fourni) sont dans un format correct.
+  * 
+  * @param {string} name - Le nom de l'utilisateur, ne doit pas être vide.
+  * @param {string} email - L'adresse email de l'utilisateur, ne doit pas être vide et doit respecter un format spécifique.
+  * @param {string} tel - Le numéro de téléphone de l'utilisateur, est optionnel mais, s'il est fourni, doit respecter un format spécifique.
+  * @param {string} message - Le message de l'utilisateur, ne doit pas être vide.
+  * @returns {boolean} Retourne `true` si toutes les validations sont passées, sinon `false`.
+  */
+  validateInputs(name: string, email: string, tel: string, message: string): boolean {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    const telRegex = /^(0[1-9]) (\d{2}) (\d{2}) (\d{2}) (\d{2})$/;
+
+    // Vérification du nom et prénom
+    if (!name.trim()) {
+      alert('Le champ "Nom et prénom" est obligatoire.');
+      return false;
+    }
+
+    // Vérification de l'email
+    if (!email.trim()) {
+      alert('Le champ "Adresse email" est obligatoire.');
+      return false;
+    } else if (!emailRegex.test(email)) {
+      alert('Le format de l\'adresse email est invalide.');
+      return false;
+    }
+
+    // Vérification du numéro de téléphone
+    if (tel.trim() && !telRegex.test(tel)) {
+      alert('Le format du numéro de téléphone est invalide.');
+      return false;
+    }
+
+    // Vérification du message
+    if (!message.trim()) {
+      alert('Le champ "Message" est obligatoire.');
+      return false;
+    }
+
+    return true;
+  }
+
 }
