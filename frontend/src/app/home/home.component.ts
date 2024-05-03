@@ -99,11 +99,10 @@ export class HomeComponent {
   }
 
   /**
-  * Extrait le nom de la formation à partir de l'élément HTML cliqué qui déclenche l'événement. 
-  * Le nom est recherché dans un élément `<h3>` qui doit se trouver à l'intérieur du premier parent avec la classe 'rounded-lg' du point de clic. 
-  * Si le nom est trouvé, la méthode redirige l'utilisateur vers le formulaire de formation associé au plan choisi. 
-  * En cas d'échec lors de la recherche du nom, une erreur est enregistrée dans la console.
-  * 
+  * Extrait le nom de la formation à partir de l'élément HTML cliqué qui déclenche l'événement.
+  * Le nom est recherché dans un élément `<h3>` qui doit se trouver à l'intérieur du premier parent avec la classe 'rounded-lg' du point de clic.
+  * Si le nom est trouvé, la méthode redirige l'utilisateur vers le formulaire de formation associé au plan choisi.
+  *
   * @param {MouseEvent} event - L'événement de clic qui a déclenché l'appel de la méthode.
   */
   chooseTrainingPlan(event: MouseEvent) {
@@ -111,7 +110,9 @@ export class HomeComponent {
     const trainingName = target.closest('.rounded-lg')?.querySelector('h3')?.textContent?.trim();
     if (trainingName) {
       console.log(trainingName);
-      this.router.navigate(['/training-form', { chosenTrainingName: trainingName }]);
+      this.router.navigate(['/training-form', { chosenTrainingName: trainingName }]).then(() => {
+        window.scrollTo(0, 0);
+      });;
     } else {
       console.error('Impossible de trouver le nom de la formation.');
     }

@@ -12,8 +12,20 @@ import { FormsModule } from '@angular/forms';
 export class TrainingFormComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
   burgerMenuOpened: boolean = false;
+  
+  // Variables pour le mail
+  postalCodeMail: string = "";
+  cityMail: string = "";
+  countryMail: string = "";
+  adressMail: string = "";
+  nameMail: string = "";
+  emailMail: string = "";
+  phoneNumberMail: string = "";
+  companyMail: string = "";
   chosenTrainingName = "";
-  phoneNumber = "";
+  personNumberMail: string = "";
+  jobTrainedMail: string = "";
+  trainingDateMail: string = "";
 
   ngOnInit() {
 
@@ -70,7 +82,7 @@ export class TrainingFormComponent implements OnInit {
     }
 
     // Mettre à jour la valeur du modèle et de l'input
-    this.phoneNumber = formattedValue;
+    this.phoneNumberMail = formattedValue;
     input.value = formattedValue;
   }
 
