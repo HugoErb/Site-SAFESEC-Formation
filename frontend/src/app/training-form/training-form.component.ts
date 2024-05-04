@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
+import { CalendarModule } from 'primeng/calendar';
+
 @Component({
   selector: 'app-training-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, CalendarModule],
   templateUrl: './training-form.component.html'
 })
 export class TrainingFormComponent implements OnInit {

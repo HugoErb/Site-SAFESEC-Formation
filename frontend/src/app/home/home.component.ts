@@ -109,7 +109,6 @@ export class HomeComponent {
     const target = event.target as HTMLElement;
     const trainingName = target.closest('.rounded-lg')?.querySelector('h3')?.textContent?.trim();
     if (trainingName) {
-      console.log(trainingName);
       this.router.navigate(['/training-form', { chosenTrainingName: trainingName }]).then(() => {
         window.scrollTo(0, 0);
       });;
