@@ -62,8 +62,8 @@
                                 </label>
                                 <input
                                     class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                    id="postalCodeMail" name="postalCodeMail" [(ngModel)]="postalCodeMail"
-                                    placeholder="Entrez votre code postal" required="" />
+                                    id="postalCodeMail" name="postalCodeMail" [(ngModel)]="postalCodeMail" pInputText
+                                    placeholder="Entrez votre code postal" />
                             </div>
                             <div class="space-y-2">
                                 <label
@@ -73,8 +73,8 @@
                                 </label>
                                 <input
                                     class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                    id="cityMail" name="cityMail" [(ngModel)]="cityMail"
-                                    placeholder="Entrez votre ville" required="" />
+                                    id="cityMail" name="cityMail" [(ngModel)]="cityMail" pInputText
+                                    placeholder="Entrez votre ville" />
                             </div>
                         </div>
                         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -86,8 +86,8 @@
                                 </label>
                                 <input
                                     class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                    id="countryMail" name="countryMail" [(ngModel)]="countryMail"
-                                    placeholder="Entrez votre pays" required="" />
+                                    id="countryMail" name="countryMail" [(ngModel)]="countryMail" pInputText
+                                    placeholder="Entrez votre pays" />
                             </div>
                             <div class="space-y-2">
                                 <label
@@ -97,8 +97,8 @@
                                 </label>
                                 <input
                                     class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                    id="adressMail" name="adressMail" [(ngModel)]="adressMail"
-                                    placeholder="Entrez l'adresse de la formation" required="" />
+                                    id="adressMail" name="adressMail" [(ngModel)]="adressMail" pInputText
+                                    placeholder="Entrez l'adresse de la formation" />
                             </div>
                         </div>
                     </div>
@@ -114,8 +114,8 @@
                                     </label>
                                     <input
                                         class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                        id="nameMail" name="nameMail" [(ngModel)]="nameMail"
-                                        placeholder="Entrez votre nom" required="" />
+                                        id="nameMail" name="nameMail" [(ngModel)]="nameMail" pInputText
+                                        placeholder="Entrez votre nom" />
                                 </div>
                                 <div class="space-y-2">
                                     <label
@@ -125,8 +125,8 @@
                                     </label>
                                     <input
                                         class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                        id="emailMail" name="emailMail" [(ngModel)]="emailMail"
-                                        placeholder="Entrez votre email" required="" type="email" />
+                                        id="emailMail" name="emailMail" [(ngModel)]="emailMail" pInputText
+                                        placeholder="Entrez votre email" type="email" />
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -138,8 +138,8 @@
                                     </label>
                                     <input
                                         class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                        id="phoneNumberMail" placeholder="Entrez votre numéro de téléphone" required=""
-                                        type="tel" name="phoneNumberMail" [(ngModel)]="phoneNumberMail"
+                                        id="phoneNumberMail" placeholder="Entrez votre numéro de téléphone" type="tel"
+                                        name="phoneNumberMail" [(ngModel)]="phoneNumberMail" pInputText
                                         (input)="formatAndRestrictPhoneInput($event)" />
                                 </div>
                                 <div class="space-y-2">
@@ -150,8 +150,8 @@
                                     </label>
                                     <input
                                         class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                        id="companyMail" name="companyMail" [(ngModel)]="companyMail"
-                                        placeholder="Entrez le nom de votre entreprise" required="" />
+                                        id="companyMail" name="companyMail" [(ngModel)]="companyMail" pInputText
+                                        placeholder="Entrez le nom de votre entreprise" />
                                 </div>
                             </div>
                         </div>
@@ -166,8 +166,8 @@
                                     </label>
                                     <input
                                         class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                        id="job-title" placeholder="Formation choisie" required=""
-                                        name="chosenTrainingName" [value]="chosenTrainingName" disabled />
+                                        id="job-title" placeholder="Formation choisie" name="chosenTrainingName"
+                                        [value]="chosenTrainingName" [disabled]="true" />
                                 </div>
                                 <div class="space-y-2">
                                     <label
@@ -175,10 +175,10 @@
                                         for="personNumberMail">
                                         Nombre de personnes
                                     </label>
-                                    <input
+                                    <p-inputNumber
                                         class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                                         id="personNumberMail" name="personNumberMail" [(ngModel)]="personNumberMail"
-                                        min="1" placeholder="Entrez le nombre de personnes" required="" type="number" />
+                                        inputId="integeronly" [min]="1" [max]="12" placeholder="Entrez le nombre de personnes" [showButtons]="true"/>
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -191,32 +191,38 @@
                                     <input
                                         class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                                         id="jobTrainedMail" name="jobTrainedMail" [(ngModel)]="jobTrainedMail"
-                                        placeholder="Entrez le métier de la population formée" required="" />
+                                        pInputText placeholder="Entrez le métier de la population formée" />
                                 </div>
                                 <div class="space-y-2">
                                     <label
                                         class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                         for="trainingDateMail">
-                                        Date souhaitée de la formation
+                                        Date(s) souhaitée(s) de la formation
                                     </label>
                                     <!-- <input
                                         class="inline-flex items-center whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full justify-start text-left font-normal"
                                         id="trainingDateMail" name="trainingDateMail" [(ngModel)]="trainingDateMail"
                                         type="date" placeholder="Sélectionnez une date" /> -->
-                                    <p-calendar class="inline-flex items-center whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full justify-start text-left font-normal" id="trainingDateMail" placeholder="Sélectionnez une date"
+                                    <p-calendar
+                                        class="inline-flex items-center whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full justify-start text-left font-normal"
+                                        id="trainingDateMail" placeholder="Sélectionnez une date"
                                         name="trainingDateMail" [(ngModel)]="trainingDateMail" selectionMode="range"
-                                        [readonlyInput]="true" dateFormat="dd/mm/yy" [showButtonBar]="true" [minDate]="todayDate"/>
+                                        [readonlyInput]="true" dateFormat="dd/mm/yy" [showButtonBar]="true"
+                                        [minDate]="todayDate" />
                                 </div>
                             </div>
                         </div>
                         <div class="space-y-2">
                             <label
                                 class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                for="additional-info">
+                                for="moreInformationMail">
                                 Informations complémentaires
                             </label>
-                            <textarea class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-h-[100px]"
-                            id="additional-info" placeholder="Entrez vos informations complémentaires, si vous en avez à nous soumettre" pInputTextarea [autoResize]="true" [(ngModel)]="moreInformationMail"></textarea>
+                            <textarea
+                                class="flex w-full rounded-md border border-input bg-background resize-none px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-h-[100px]"
+                                id="moreInformationMail" name="moreInformationMail"
+                                placeholder="Entrez vos informations complémentaires, si vous en avez à nous soumettre"
+                                pInputTextarea [autoResize]="true" [(ngModel)]="moreInformationMail"></textarea>
                         </div>
                         <button
                             class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full bg-blue-500 text-white hover:bg-blue-700"
