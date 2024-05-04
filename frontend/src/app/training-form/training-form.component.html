@@ -205,7 +205,7 @@
                                         type="date" placeholder="Sélectionnez une date" /> -->
                                     <p-calendar class="inline-flex items-center whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full justify-start text-left font-normal" id="trainingDateMail" placeholder="Sélectionnez une date"
                                         name="trainingDateMail" [(ngModel)]="trainingDateMail" selectionMode="range"
-                                        [readonlyInput]="true" dateFormat="dd/mm/yy"/>
+                                        [readonlyInput]="true" dateFormat="dd/mm/yy" [showButtonBar]="true" [minDate]="todayDate"/>
                                 </div>
                             </div>
                         </div>

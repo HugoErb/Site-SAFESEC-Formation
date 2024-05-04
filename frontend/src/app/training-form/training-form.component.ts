@@ -13,8 +13,11 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
   templateUrl: './training-form.component.html'
 })
 export class TrainingFormComponent implements OnInit {
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    this.todayDate = new Date();
+  }
   burgerMenuOpened: boolean = false;
+  todayDate: Date;
   
   // Variables pour le mail
   postalCodeMail: string = "";
