@@ -203,8 +203,9 @@
                                         class="inline-flex items-center whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full justify-start text-left font-normal"
                                         id="trainingDateMail" name="trainingDateMail" [(ngModel)]="trainingDateMail"
                                         type="date" placeholder="Sélectionnez une date" /> -->
-                                    <p-calendar id="trainingDateMail" placeholder="Sélectionnez une date" name="trainingDateMail" [(ngModel)]="trainingDateMail" selectionMode="range" [showIcon]="true"
-                                        [readonlyInput]="true" />
+                                    <p-calendar class="inline-flex items-center whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full justify-start text-left font-normal" id="trainingDateMail" placeholder="Sélectionnez une date"
+                                        name="trainingDateMail" [(ngModel)]="trainingDateMail" selectionMode="range"
+                                        [readonlyInput]="true" dateFormat="dd/mm/yy"/>
                                 </div>
                             </div>
                         </div>
@@ -214,10 +215,8 @@
                                 for="additional-info">
                                 Informations complémentaires
                             </label>
-                            <textarea
-                                class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-h-[100px]"
-                                id="additional-info" placeholder="Entrez vos informations complémentaires">
-                            </textarea>
+                            <textarea class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-h-[100px]"
+                            id="additional-info" placeholder="Entrez vos informations complémentaires, si vous en avez à nous soumettre" pInputTextarea [autoResize]="true" [(ngModel)]="moreInformationMail"></textarea>
                         </div>
                         <button
                             class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full bg-blue-500 text-white hover:bg-blue-700"

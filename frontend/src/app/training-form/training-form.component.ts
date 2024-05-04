@@ -1,14 +1,15 @@
 import { Component, ElementRef, HostListener, ViewChild, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CalendarModule } from 'primeng/calendar';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @Component({
   selector: 'app-training-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, CalendarModule],
+  imports: [CommonModule, FormsModule, CalendarModule, InputTextareaModule],
   templateUrl: './training-form.component.html'
 })
 export class TrainingFormComponent implements OnInit {
@@ -28,6 +29,7 @@ export class TrainingFormComponent implements OnInit {
   personNumberMail: string = "";
   jobTrainedMail: string = "";
   trainingDateMail: string = "";
+  moreInformationMail: string = "";
 
   ngOnInit() {
 
