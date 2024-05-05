@@ -156,18 +156,17 @@ export class HomeComponent {
   * Avant l'envoi, elle vérifie les entrées pour s'assurer qu'elles sont valides en utilisant la méthode `validateInputs`. 
   * Si les validations échouent, l'envoi est interrompu. Si les validations réussissent, les données sont envoyées au service de messagerie. 
   * Les réactions aux réponses du service de messagerie, qu'elles soient réussies ou en erreur, sont gérées via des alertes à l'utilisateur.
-  * 
-  * @param {string} name - Le nom de l'expéditeur.
-  * @param {string} email - L'adresse email de l'expéditeur.
-  * @param {string} tel - Le numéro de téléphone de l'expéditeur, qui peut être vide.
-  * @param {string} message - Le message à envoyer dans l'email.
   */
-  sendMail(name: string, email: string, tel: string, message: string) {
+  sendMail() {
 
     // On vérifie les données
-    if (!this.validateInputs(name, email, tel, message)) {
+    if (!this.validateInputs()) {
       return;
     }
+    var name = this.nameMail
+    var email = this.emailMail
+    var tel = this.phoneNumberMail
+    var message = this.messageMail
 
     const mailData = { name, email, tel, message };
     this.mailService.sendMail(mailData).subscribe({
@@ -179,39 +178,35 @@ export class HomeComponent {
   /**
   * Vérifie que le nom, l'email et le message ne sont pas vides et que ces derniers ainsi que le numéro de téléphone (s'il est fourni) sont dans un format correct.
   * 
-  * @param {string} name - Le nom de l'utilisateur, ne doit pas être vide.
-  * @param {string} email - L'adresse email de l'utilisateur, ne doit pas être vide et doit respecter un format spécifique.
-  * @param {string} tel - Le numéro de téléphone de l'utilisateur, est optionnel mais, s'il est fourni, doit respecter un format spécifique.
-  * @param {string} message - Le message de l'utilisateur, ne doit pas être vide.
   * @returns {boolean} Retourne `true` si toutes les validations sont passées, sinon `false`.
   */
-  validateInputs(name: string, email: string, tel: string, message: string): boolean {
+  validateInputs(): boolean {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     const telRegex = /^(0[1-9]) (\d{2}) (\d{2}) (\d{2}) (\d{2})$/;
 
     // Vérification du nom et prénom
-    if (!name.trim()) {
+    if (!this.nameMail.trim()) {
       alert('Le champ "Nom et prénom" est obligatoire.');
       return false;
     }
 
     // Vérification de l'email
-    if (!email.trim()) {
+    if (!this.emailMail.trim()) {
       alert('Le champ "Adresse email" est obligatoire.');
       return false;
-    } else if (!emailRegex.test(email)) {
+    } else if (!emailRegex.test(this.emailMail)) {
       alert('Le format de l\'adresse email est invalide.');
       return false;
     }
 
     // Vérification du numéro de téléphone
-    if (tel.trim() && !telRegex.test(tel)) {
+    if (this.phoneNumberMail.trim() && !telRegex.test(this.phoneNumberMail)) {
       alert('Le format du numéro de téléphone est invalide.');
       return false;
     }
 
     // Vérification du message
-    if (!message.trim()) {
+    if (!this.messageMail.trim()) {
       alert('Le champ "Message" est obligatoire.');
       return false;
     }

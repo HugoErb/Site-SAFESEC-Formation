@@ -2,6 +2,7 @@ import { Component, ElementRef, HostListener, ViewChild, OnInit } from '@angular
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { MailService } from '../mail.service';
 
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
@@ -15,7 +16,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
   templateUrl: './training-form.component.html'
 })
 export class TrainingFormComponent implements OnInit {
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router, private mailService: MailService, private activatedRoute: ActivatedRoute) {
     this.todayDate = new Date();
   }
   burgerMenuOpened: boolean = false;
@@ -96,5 +97,21 @@ export class TrainingFormComponent implements OnInit {
   }
 
   sendMail() {
+
+    // On vérifie les données
+    // if (!this.validateInputs(name, email, tel, message)) {
+    //   return;
+    // }
+
+    var name = this.nameMail
+    var email = this.emailMail
+    var tel = this.phoneNumberMail
+    var message = this.moreInformationMail
+
+    const mailData = { name, email, tel, message };
+    this.mailService.sendMail(mailData).subscribe({
+      next: (response) => alert('Mail envoyé avec succès !'),
+      error: (error) => alert('Erreur lors de l\'envoi du mail : ' + error.message)
+    });
   }
 }
