@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MailService } from '../mail.service';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputTextModule } from 'primeng/inputtext';
 
 // Icons
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -19,7 +21,7 @@ import { faPersonWalkingArrowRight } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule, FormsModule],
+  imports: [CommonModule, FontAwesomeModule, FormsModule, InputTextareaModule, InputTextModule],
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
