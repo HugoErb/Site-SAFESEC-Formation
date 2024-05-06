@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, ViewChild, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -23,6 +23,8 @@ export class TrainingFormComponent implements OnInit {
   todayDate: Date;
   
   // Variables pour le mail
+  @ViewChildren('inputField') inputFields!: QueryList<ElementRef>;
+  public inputLabelMap = new Map<string, string>();
   postalCodeMail: string = "";
   cityMail: string = "";
   countryMail: string = "";
@@ -103,15 +105,45 @@ export class TrainingFormComponent implements OnInit {
     //   return;
     // }
 
-    var name = this.nameMail
-    var email = this.emailMail
-    var tel = this.phoneNumberMail
-    var message = this.moreInformationMail
-
-    const mailData = { name, email, tel, message };
+    const mailData = { name : this.nameMail, email : this.emailMail, tel : this.phoneNumberMail, message : this.moreInformationMail };
     this.mailService.sendMail(mailData).subscribe({
       next: (response) => alert('Mail envoyé avec succès !'),
       error: (error) => alert('Erreur lors de l\'envoi du mail : ' + error.message)
     });
+  }
+
+  /**
+  * Vérifie que les champs remplis par l'utilisateur pour l'envoi dans le mail sont dans un format correct.
+  * 
+  * @returns {boolean} Retourne `true` si toutes les validations sont passées, sinon `false`.
+  */
+  validateInputs(): boolean {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    const telRegex = /^(0[1-9]) (\d{2}) (\d{2}) (\d{2}) (\d{2})$/;
+  
+    for (const [label, value] of this.inputLabelMap.entries()) {
+      const trimmedValue = value.trim();
+  
+      // Vérification des champs obligatoires
+      if (!trimmedValue) {
+        alert(`Le champ "${label}" est obligatoire.`);
+        return false;
+      }
+  
+      // Vérification spécifique pour l'email
+      if (label.toLowerCase().includes('email') && !emailRegex.test(trimmedValue)) {
+        alert('Le format de l\'adresse email est invalide.');
+        return false;
+      }
+  
+      // Vérification spécifique pour le numéro de téléphone
+      if (label.toLowerCase().includes('téléphone') && !telRegex.test(trimmedValue)) {
+        alert('Le format du numéro de téléphone est invalide.');
+        return false;
+      }
+    }
+  
+    // Ajouter d'autres validations spécifiques si nécessaire
+    return true;
   }
 }

@@ -1,10 +1,11 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MailService } from '../mail.service';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
+
 
 // Icons
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -34,6 +35,8 @@ export class HomeComponent {
   chosenTrainingName: string = "";
 
   // Variables pour le mail
+  @ViewChildren('inputField') inputFields!: QueryList<ElementRef>;
+  public inputLabelMap = new Map<string, string>();
   nameMail: string = "";
   emailMail: string = "";
   phoneNumberMail: string = "";
@@ -153,65 +156,72 @@ export class HomeComponent {
 
   /**
   * Prépare et envoie un email à l'aide d'un service de messagerie. 
-  * Avant l'envoi, elle vérifie les entrées pour s'assurer qu'elles sont valides en utilisant la méthode `validateInputs`. 
+  * Avant l'envoi, on vérifie les entrées pour s'assurer qu'elles sont valides en utilisant la méthode `validateInputs`. 
   * Si les validations échouent, l'envoi est interrompu. Si les validations réussissent, les données sont envoyées au service de messagerie. 
   * Les réactions aux réponses du service de messagerie, qu'elles soient réussies ou en erreur, sont gérées via des alertes à l'utilisateur.
   */
   sendMail() {
 
+    this.getDataIntoDictionary();
+
     // On vérifie les données
     if (!this.validateInputs()) {
       return;
     }
-    var name = this.nameMail
-    var email = this.emailMail
-    var tel = this.phoneNumberMail
-    var message = this.messageMail
 
-    const mailData = { name, email, tel, message };
+    const mailData = { name : this.nameMail, email : this.emailMail, tel : this.phoneNumberMail, message : this.messageMail };
     this.mailService.sendMail(mailData).subscribe({
       next: (response) => alert('Mail envoyé avec succès !'),
       error: (error) => alert('Erreur lors de l\'envoi du mail : ' + error.message)
     });
   }
 
+  private getDataIntoDictionary() {
+    this.inputFields.forEach(input => {
+      const label = document.querySelector(`label[for="${input.nativeElement.id}"]`);
+      if (label) {
+        this.inputLabelMap.set(label.textContent!.trim(), input.nativeElement.value);
+      }
+    });
+
+    // console.log(this.inputLabelMap);
+  }
+
   /**
-  * Vérifie que le nom, l'email et le message ne sont pas vides et que ces derniers ainsi que le numéro de téléphone (s'il est fourni) sont dans un format correct.
+  * Vérifie que les champs remplis par l'utilisateur pour l'envoi dans le mail sont dans un format correct.
   * 
   * @returns {boolean} Retourne `true` si toutes les validations sont passées, sinon `false`.
   */
   validateInputs(): boolean {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     const telRegex = /^(0[1-9]) (\d{2}) (\d{2}) (\d{2}) (\d{2})$/;
-
-    // Vérification du nom et prénom
-    if (!this.nameMail.trim()) {
-      alert('Le champ "Nom et prénom" est obligatoire.');
-      return false;
+  
+    for (const [label, value] of this.inputLabelMap.entries()) {
+      const trimmedValue = value.trim();
+  
+      // Vérification des champs obligatoires
+      if (!trimmedValue) {
+        alert(`Le champ "${label}" est obligatoire.`);
+        return false;
+      }
+  
+      // Vérification spécifique pour l'email
+      if (label.toLowerCase().includes('email') && !emailRegex.test(trimmedValue)) {
+        alert('Le format de l\'adresse email est invalide.');
+        return false;
+      }
+  
+      // Vérification spécifique pour le numéro de téléphone
+      if (label.toLowerCase().includes('téléphone') && !telRegex.test(trimmedValue)) {
+        alert('Le format du numéro de téléphone est invalide.');
+        return false;
+      }
     }
-
-    // Vérification de l'email
-    if (!this.emailMail.trim()) {
-      alert('Le champ "Adresse email" est obligatoire.');
-      return false;
-    } else if (!emailRegex.test(this.emailMail)) {
-      alert('Le format de l\'adresse email est invalide.');
-      return false;
-    }
-
-    // Vérification du numéro de téléphone
-    if (this.phoneNumberMail.trim() && !telRegex.test(this.phoneNumberMail)) {
-      alert('Le format du numéro de téléphone est invalide.');
-      return false;
-    }
-
-    // Vérification du message
-    if (!this.messageMail.trim()) {
-      alert('Le champ "Message" est obligatoire.');
-      return false;
-    }
-
+  
+    // Ajouter d'autres validations spécifiques si nécessaire
     return true;
   }
+  
+  
 
 }
