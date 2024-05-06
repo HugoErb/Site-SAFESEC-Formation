@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MailService } from '../mail.service';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
+import Swal from 'sweetalert2';
 
 
 // Icons
@@ -161,7 +162,7 @@ export class HomeComponent {
   * Les réactions aux réponses du service de messagerie, qu'elles soient réussies ou en erreur, sont gérées via des alertes à l'utilisateur.
   */
   sendMail() {
-
+    
     this.getDataIntoDictionary();
 
     // On vérifie les données
@@ -169,10 +170,26 @@ export class HomeComponent {
       return;
     }
 
-    const mailData = { name : this.nameMail, email : this.emailMail, tel : this.phoneNumberMail, message : this.messageMail };
+    const mailData = { name: this.nameMail, email: this.emailMail, tel: this.phoneNumberMail, message: this.messageMail };
     this.mailService.sendMail(mailData).subscribe({
-      next: (response) => alert('Mail envoyé avec succès !'),
-      error: (error) => alert('Erreur lors de l\'envoi du mail : ' + error.message)
+      next: (response) => Swal.fire({
+        position: 'top-end',
+        toast: true,
+        icon: 'success',
+        html: '<span class="font-medium text-xl">Message envoyé !</span>',
+        showConfirmButton: false,
+        width: 'auto',
+        timer: 3500
+      }),
+      error: (error) => Swal.fire({
+        position: 'top-end',
+        toast: true,
+        icon: 'error',
+        html: '<span class="font-medium text-xl">Erreur lors de l\'envoi du message.</span>',
+        showConfirmButton: false,
+        width: 'auto',
+        timer: 3500
+      })
     });
   }
 
@@ -195,33 +212,48 @@ export class HomeComponent {
   validateInputs(): boolean {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     const telRegex = /^(0[1-9]) (\d{2}) (\d{2}) (\d{2}) (\d{2})$/;
-  
+
     for (const [label, value] of this.inputLabelMap.entries()) {
       const trimmedValue = value.trim();
-  
+
       // Vérification des champs obligatoires
       if (!trimmedValue) {
-        alert(`Le champ "${label}" est obligatoire.`);
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur de saisie',
+          text: `Le champ "${label}" est obligatoire.`,
+          confirmButtonColor: "#3B82F6"
+        })
         return false;
       }
-  
+
       // Vérification spécifique pour l'email
       if (label.toLowerCase().includes('email') && !emailRegex.test(trimmedValue)) {
-        alert('Le format de l\'adresse email est invalide.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur de saisie',
+          text: 'Le format de l\'adresse email est invalide.',
+          confirmButtonColor: "#3B82F6"
+        })
         return false;
       }
-  
+
       // Vérification spécifique pour le numéro de téléphone
       if (label.toLowerCase().includes('téléphone') && !telRegex.test(trimmedValue)) {
-        alert('Le format du numéro de téléphone est invalide.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur de saisie',
+          text: 'Le format du numéro de téléphone est invalide.',
+          confirmButtonColor: "#3B82F6"
+        })
         return false;
       }
     }
-  
+
     // Ajouter d'autres validations spécifiques si nécessaire
     return true;
   }
-  
-  
+
+
 
 }
