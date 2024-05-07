@@ -184,11 +184,8 @@ export class HomeComponent {
           timer: 3500
         });
 
-        // Réinitialisation des champs
-        this.nameMail = '';
-        this.emailMail = '';
-        this.phoneNumberMail = '';
-        this.messageMail = '';
+        // Appel de la méthode pour réinitialiser les champs
+        this.resetInputFields();
       }
       ,
       error: (error) => Swal.fire({
