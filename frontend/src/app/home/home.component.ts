@@ -162,7 +162,7 @@ export class HomeComponent {
   * Les réactions aux réponses du service de messagerie, qu'elles soient réussies ou en erreur, sont gérées via des alertes à l'utilisateur.
   */
   sendMail() {
-    
+
     this.getDataIntoDictionary();
 
     // On vérifie les données
@@ -193,6 +193,11 @@ export class HomeComponent {
     });
   }
 
+  /**
+  * Parcourt les champs de saisie dans le HTML et mappe leurs valeurs à leurs labels correspondants.
+  * La méthode utilise `inputFields` pour obtenir une liste des éléments de saisie. Pour chaque champ de saisie, elle récupère
+  * le label associé en utilisant son attribut 'id'. Si un label est trouvé pour une valeur de champ, la méthode les mappent dans `inputLabelMap`.
+  */
   private getDataIntoDictionary() {
     this.inputFields.forEach(input => {
       const label = document.querySelector(`label[for="${input.nativeElement.id}"]`);
@@ -200,8 +205,6 @@ export class HomeComponent {
         this.inputLabelMap.set(label.textContent!.trim(), input.nativeElement.value);
       }
     });
-
-    // console.log(this.inputLabelMap);
   }
 
   /**
