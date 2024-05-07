@@ -39,6 +39,11 @@
 </header>
 
 <main class="flex-1 container mx-auto">
+    <div class="fixed top-16 left-4 p-4">
+        <button (click)="navigateToHome('catalogue')" class="focus:outline-none cursor-pointer">
+            <fa-icon class="text-5xl mb-2 text-blue-500" [icon]="icons.faCircleArrowLeft"></fa-icon>
+        </button>
+    </div>
     <section class="w-full py-12 md:py-24 lg:py-32">
         <div class="container px-4 md:px-6">
             <div class="mx-auto max-w-3xl space-y-8">

@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MailService } from '../mail.service';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { InputTextModule } from 'primeng/inputtext';
 import Swal from 'sweetalert2';
 
+// Prime NG
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputTextModule } from 'primeng/inputtext';
 
-// Icons
+// Font Awesome Icons
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
@@ -172,15 +173,24 @@ export class HomeComponent {
 
     const mailData = { name: this.nameMail, email: this.emailMail, tel: this.phoneNumberMail, message: this.messageMail };
     this.mailService.sendMail(mailData).subscribe({
-      next: (response) => Swal.fire({
-        position: 'top-end',
-        toast: true,
-        icon: 'success',
-        html: '<span class="font-medium text-xl">Message envoyé !</span>',
-        showConfirmButton: false,
-        width: 'auto',
-        timer: 3500
-      }),
+      next: (response) => {
+        Swal.fire({
+          position: 'top-end',
+          toast: true,
+          icon: 'success',
+          html: '<span class="font-medium text-xl">Message envoyé !</span>',
+          showConfirmButton: false,
+          width: 'auto',
+          timer: 3500
+        });
+
+        // Réinitialisation des champs
+        this.nameMail = '';
+        this.emailMail = '';
+        this.phoneNumberMail = '';
+        this.messageMail = '';
+      }
+      ,
       error: (error) => Swal.fire({
         position: 'top-end',
         toast: true,
@@ -256,7 +266,5 @@ export class HomeComponent {
     // Ajouter d'autres validations spécifiques si nécessaire
     return true;
   }
-
-
 
 }

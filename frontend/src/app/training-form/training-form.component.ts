@@ -5,24 +5,30 @@ import { FormsModule } from '@angular/forms';
 import { MailService } from '../mail.service';
 import Swal from 'sweetalert2';
 
+// Prime NG
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 
+// Font Awesome Icons
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-training-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, CalendarModule, InputTextareaModule, InputTextModule, InputNumberModule],
+  imports: [CommonModule, FormsModule, CalendarModule, InputTextareaModule, InputTextModule, InputNumberModule, FontAwesomeModule,],
   templateUrl: './training-form.component.html'
 })
 export class TrainingFormComponent implements OnInit {
   constructor(private router: Router, private mailService: MailService, private activatedRoute: ActivatedRoute) {
     this.todayDate = new Date();
   }
+  icons = { faCircleArrowLeft };
   burgerMenuOpened: boolean = false;
   todayDate: Date;
-  
+
   // Variables pour le mail
   @ViewChildren('inputField') inputFields!: QueryList<ElementRef>;
   public inputLabelMap = new Map<string, string>();
@@ -106,7 +112,7 @@ export class TrainingFormComponent implements OnInit {
     //   return;
     // }
 
-    const mailData = { name : this.nameMail, email : this.emailMail, tel : this.phoneNumberMail, message : this.moreInformationMail };
+    const mailData = { name: this.nameMail, email: this.emailMail, tel: this.phoneNumberMail, message: this.moreInformationMail };
     this.mailService.sendMail(mailData).subscribe({
       next: (response) => alert('Mail envoyé avec succès !'),
       error: (error) => alert('Erreur lors de l\'envoi du mail : ' + error.message)
@@ -121,29 +127,29 @@ export class TrainingFormComponent implements OnInit {
   validateInputs(): boolean {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     const telRegex = /^(0[1-9]) (\d{2}) (\d{2}) (\d{2}) (\d{2})$/;
-  
+
     for (const [label, value] of this.inputLabelMap.entries()) {
       const trimmedValue = value.trim();
-  
+
       // Vérification des champs obligatoires
       if (!trimmedValue) {
         alert(`Le champ "${label}" est obligatoire.`);
         return false;
       }
-  
+
       // Vérification spécifique pour l'email
       if (label.toLowerCase().includes('email') && !emailRegex.test(trimmedValue)) {
         alert('Le format de l\'adresse email est invalide.');
         return false;
       }
-  
+
       // Vérification spécifique pour le numéro de téléphone
       if (label.toLowerCase().includes('téléphone') && !telRegex.test(trimmedValue)) {
         alert('Le format du numéro de téléphone est invalide.');
         return false;
       }
     }
-  
+
     // Ajouter d'autres validations spécifiques si nécessaire
     return true;
   }
