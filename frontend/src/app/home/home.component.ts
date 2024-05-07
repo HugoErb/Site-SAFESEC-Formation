@@ -267,4 +267,16 @@ export class HomeComponent {
     return true;
   }
 
+  /**
+  * Réinitialise les valeurs de tous les champs de saisie marqués avec la directive locale #inputField.
+  * En l'occurence, la méthode permet de réinitialiser la valeur des champs de l'envoi de mail.
+  */
+  resetInputFields() {
+    this.inputFields.forEach(field => {
+      if (field.nativeElement instanceof HTMLInputElement || field.nativeElement instanceof HTMLTextAreaElement) {
+        field.nativeElement.value = '';
+      }
+    });
+  }
+
 }
