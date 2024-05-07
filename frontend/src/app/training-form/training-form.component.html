@@ -14,13 +14,13 @@
 
     <!-- Navigation principale pour les grands écrans -->
     <nav class="hidden lg:flex ml-auto gap-4 sm:gap-6 items-center">
-        <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="navigateToHome('services')">
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="navigateToHome('services')">
             Services</div>
-        <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="navigateToHome('formateur')">
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="navigateToHome('formateur')">
             Formateur</div>
-        <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="navigateToHome('catalogue')">
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="navigateToHome('catalogue')">
             Catalogue</div>
-        <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="navigateToHome('contact')">
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="navigateToHome('contact')">
             Contact
         </div>
     </nav>
@@ -41,7 +41,7 @@
 <main class="flex-1 container mx-auto">
     <div class="fixed top-16 left-4 p-4">
         <button (click)="navigateToHome('catalogue')" class="focus:outline-none cursor-pointer">
-            <fa-icon class="text-5xl mb-2 text-blue-500" [icon]="icons.faCircleArrowLeft"></fa-icon>
+            <fa-icon class="text-5xl mb-2 text-blue-500 hover:text-blue-600 transition-colors" [icon]="icons.faCircleArrowLeft"></fa-icon>
         </button>
     </div>
     <section class="w-full py-12 md:py-24 lg:py-32">
@@ -230,7 +230,7 @@
                                 pInputTextarea [autoResize]="true" [(ngModel)]="moreInformationMail"></textarea>
                         </div>
                         <button
-                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full bg-blue-500 text-white hover:bg-blue-600"
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full bg-blue-500 text-white hover:bg-blue-600 transition-colors"
                             (click)="sendMail()">
                             Envoyer la demande de formation
                         </button>

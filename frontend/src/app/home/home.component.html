@@ -14,13 +14,13 @@
 
   <!-- Navigation principale pour les grands écrans -->
   <nav class="hidden lg:flex ml-auto gap-4 sm:gap-6 items-center">
-    <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('services')">
+    <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="scrollToSection('services')">
       Services</div>
-    <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('formateur')">
+    <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="scrollToSection('formateur')">
       Formateur</div>
-    <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('catalogue')">
+    <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="scrollToSection('catalogue')">
       Catalogue</div>
-    <div class="text-base cursor-pointer font-medium hover:text-blue-600" (click)="scrollToSection('contact')">Contact
+    <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="scrollToSection('contact')">Contact
     </div>
   </nav>
 
@@ -163,11 +163,11 @@
             </a>
           </div>
           <div class="flex justify-center gap-6 mt-4">
-            <div (click)="scrollToSection('contact')" class="text-gray-500 hover:text-blue-700 cursor-pointer text-3xl">
+            <div (click)="scrollToSection('contact')" class="text-gray-500 hover:text-blue-600 cursor-pointer text-3xl transition-colors">
               <fa-icon [icon]="icons.faEnvelope"></fa-icon>
             </div>
             <a href="https://www.linkedin.com/in/christophe-e-7a6813167/" target="_blank"
-              class="text-gray-500 hover:text-blue-700 text-3xl">
+              class="text-gray-500 hover:text-blue-600 text-3xl transition-colors">
               <fa-icon [icon]="icons.faLinkedin"></fa-icon>
             </a>
           </div>
