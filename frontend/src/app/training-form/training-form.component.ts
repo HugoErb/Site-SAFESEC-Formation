@@ -120,7 +120,7 @@ export class TrainingFormComponent implements OnInit {
       return;
     }
 
-    const mailData = { name: this.nameMail, email: this.emailMail, tel: this.phoneNumberMail, message: this.messageMail };
+    const mailData = { name: this.nameMail, email: this.emailMail, tel: this.phoneNumberMail, message: this.moreInformationMail };
     this.mailService.sendMail(mailData).subscribe({
       next: (response) => {
         Swal.fire({
