@@ -129,35 +129,33 @@ export class TrainingFormComponent implements OnInit {
     }
 
     const mailData = this.createMailData()
-    console.log(mailData);
-    
-    
-    // this.mailService.sendMail(mailData).subscribe({
-    //   next: (response) => {
-    //     Swal.fire({
-    //       position: 'top-end',
-    //       toast: true,
-    //       icon: 'success',
-    //       html: '<span class="font-medium text-xl">Message envoyé !</span>',
-    //       showConfirmButton: false,
-    //       width: 'auto',
-    //       timer: 3500
-    //     });
 
-    //     // Appel de la méthode pour réinitialiser les champs
-    //     this.resetInputFields();
-    //   }
-    //   ,
-    //   error: (error) => Swal.fire({
-    //     position: 'top-end',
-    //     toast: true,
-    //     icon: 'error',
-    //     html: '<span class="font-medium text-xl">Erreur lors de l\'envoi du message.</span>',
-    //     showConfirmButton: false,
-    //     width: 'auto',
-    //     timer: 3500
-    //   })
-    // });
+    this.mailService.sendMail(mailData).subscribe({
+      next: (response) => {
+        Swal.fire({
+          position: 'top-end',
+          toast: true,
+          icon: 'success',
+          html: '<span class="font-medium text-xl">Message envoyé !</span>',
+          showConfirmButton: false,
+          width: 'auto',
+          timer: 3500
+        });
+
+        // Appel de la méthode pour réinitialiser les champs
+        this.resetInputFields();
+      }
+      ,
+      error: (error) => Swal.fire({
+        position: 'top-end',
+        toast: true,
+        icon: 'error',
+        html: '<span class="font-medium text-xl">Erreur lors de l\'envoi du message.</span>',
+        showConfirmButton: false,
+        width: 'auto',
+        timer: 3500
+      })
+    });
   }
 
   /**
@@ -167,27 +165,13 @@ export class TrainingFormComponent implements OnInit {
   */
   private getDataIntoDictionary() {
     console.log(this.inputFields);
-    
+
     this.inputFields.forEach(input => {
       const label = document.querySelector(`label[for="${input.nativeElement.id}"]`);
       if (label) {
         this.inputLabelMap.set(label.textContent!.trim(), input.nativeElement.value);
       }
     });
-  }
-
-  public createMailData(): any {
-    const mailData: any = {};
-    this.inputLabelMap.forEach((value, key) => {
-      const objectKey = this.convertLabelToObjectKey(key);
-      mailData[objectKey] = value;
-    });
-    return mailData;
-  }
-
-  private convertLabelToObjectKey(label: string): string {
-    const normalizedLabel = label.normalize("NFD").replace(/[\u0300-\u036f]/g, '');
-    return normalizedLabel.toLowerCase().replace(/\s+/g, '');
   }
 
   /**
@@ -201,6 +185,12 @@ export class TrainingFormComponent implements OnInit {
 
     for (const [label, value] of this.inputLabelMap.entries()) {
       const trimmedValue = value.trim();
+      const labelLower = label.toLowerCase();
+
+      // Exclusion du champ optionnel "Informations complémentaires"
+      if (labelLower === "informations complémentaires") {
+        continue;
+      }
 
       // Vérification des champs obligatoires
       if (!trimmedValue) {
@@ -277,6 +267,35 @@ export class TrainingFormComponent implements OnInit {
       }
       return false;
     }
+  }
+
+  /**
+  * Crée un objet de données mail en mappant les labels des champs de saisie à leurs valeurs.
+  *
+  * @returns {any} L'objet `mailData` contenant les données des champs sous forme d'objets avec des clés appropriées.
+  *                Les clés sont des versions normalisées des labels des champs, et les valeurs sont celles entrées par l'utilisateur.
+  */
+  public createMailData(): any {
+    const mailData: any = {};
+    this.inputLabelMap.forEach((value, key) => {
+      const objectKey = this.convertLabelToObjectKey(key);
+      mailData[objectKey] = value;
+    });
+    return mailData;
+  }
+
+  /**
+  * Convertit un label textuel en une clé d'objet utilisable.
+  * Cette méthode normalise le label pour retirer les accents et autres signes diacritiques,
+  * puis convertit le texte en minuscules et élimine les espaces blancs pour former une clé d'objet.
+  *
+  * @param {string} label - Le label textuel à convertir en clé d'objet.
+  * @returns {string} La clé d'objet obtenue après la normalisation, le nettoyage des diacritiques,
+  *                   la mise en minuscules et la suppression des espaces.
+  */
+  private convertLabelToObjectKey(label: string): string {
+    const normalizedLabel = label.normalize("NFD").replace(/[\u0300-\u036f]/g, '');
+    return normalizedLabel.toLowerCase().replace(/\s+/g, '');
   }
 
   /**
