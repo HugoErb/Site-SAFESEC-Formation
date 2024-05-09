@@ -31,14 +31,14 @@ const transporter = nodemailer.createTransport({
 app.post('/sendmail', (req, res) => {
   
 
-  const { name, email, tel, message } = req.body;
+  const { name, email, phoneNumber, message } = req.body;
 
   // Préparer l'email
   const mailOptions = {
     from: email,
     to: 'safesecformation@gmail.com',
     subject: `Nouveau message de ${name}`,
-    text: `Nom : ${name}\nEmail : ${email}\nNuméro de tél : ${tel}\n\nMessage : ${message}`
+    text: `Nom : ${name}\nEmail : ${email}\nNuméro de tél : ${phoneNumber}\n\nMessage : ${message}`
   };
 
   // Envoyer l'email

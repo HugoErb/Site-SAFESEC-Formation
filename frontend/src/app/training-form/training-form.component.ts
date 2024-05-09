@@ -4,21 +4,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MailService } from '../mail.service';
 import Swal from 'sweetalert2';
-
-// Prime NG
-import { CalendarModule } from 'primeng/calendar';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { InputTextModule } from 'primeng/inputtext';
-import { InputNumberModule } from 'primeng/inputnumber';
+import axios from 'axios';
 
 // Font Awesome Icons
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
+// Définition de l'interface pour la réponse de l'API de MailCheck.ai
+interface EmailValidityResponse {
+  disposable: boolean;
+  mx: boolean;
+}
+
 @Component({
   selector: 'app-training-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, CalendarModule, InputTextareaModule, InputTextModule, InputNumberModule, FontAwesomeModule,],
+  imports: [CommonModule, FormsModule, FontAwesomeModule,],
   templateUrl: './training-form.component.html'
 })
 export class TrainingFormComponent implements OnInit {
@@ -35,13 +36,13 @@ export class TrainingFormComponent implements OnInit {
   postalCodeMail: string = "";
   cityMail: string = "";
   countryMail: string = "";
-  adressMail: string = "";
+  addressMail: string = "";
   nameMail: string = "";
   emailMail: string = "";
   phoneNumberMail: string = "";
   companyMail: string = "";
   chosenTrainingName = "";
-  personNumberMail: string = "";
+  personNumberMail: number = 1;
   jobTrainedMail: string = "";
   trainingDateMail: string = "";
   moreInformationMail: string = "";
@@ -52,6 +53,12 @@ export class TrainingFormComponent implements OnInit {
     if (this.activatedRoute.snapshot.params.hasOwnProperty('chosenTrainingName')) {
       this.chosenTrainingName = this.activatedRoute.snapshot.params['chosenTrainingName'];
     }
+  }
+
+  ngAfterViewInit() {
+    this.inputFields.forEach(input => {
+      console.log(`ID: ${input.nativeElement.id}, Valeur: ${input.nativeElement.value}`);
+    });
   }
 
   @ViewChild('menuContainerRef') menuContainerRef!: ElementRef;
@@ -111,42 +118,46 @@ export class TrainingFormComponent implements OnInit {
   * Si les validations échouent, l'envoi est interrompu. Si les validations réussissent, les données sont envoyées au service de messagerie. 
   * Les réactions aux réponses du service de messagerie, qu'elles soient réussies ou en erreur, sont gérées via des alertes à l'utilisateur.
   */
-  sendMail() {
+  async sendMail() {
 
     this.getDataIntoDictionary();
 
     // On vérifie les données
-    if (!this.validateInputs()) {
+    const areInputsValid = await this.validateInputs();
+    if (!areInputsValid) {
       return;
     }
 
-    const mailData = { name: this.nameMail, email: this.emailMail, tel: this.phoneNumberMail, message: this.moreInformationMail };
-    this.mailService.sendMail(mailData).subscribe({
-      next: (response) => {
-        Swal.fire({
-          position: 'top-end',
-          toast: true,
-          icon: 'success',
-          html: '<span class="font-medium text-xl">Message envoyé !</span>',
-          showConfirmButton: false,
-          width: 'auto',
-          timer: 3500
-        });
+    const mailData = this.createMailData()
+    console.log(mailData);
+    
+    
+    // this.mailService.sendMail(mailData).subscribe({
+    //   next: (response) => {
+    //     Swal.fire({
+    //       position: 'top-end',
+    //       toast: true,
+    //       icon: 'success',
+    //       html: '<span class="font-medium text-xl">Message envoyé !</span>',
+    //       showConfirmButton: false,
+    //       width: 'auto',
+    //       timer: 3500
+    //     });
 
-        // Appel de la méthode pour réinitialiser les champs
-        this.resetInputFields();
-      }
-      ,
-      error: (error) => Swal.fire({
-        position: 'top-end',
-        toast: true,
-        icon: 'error',
-        html: '<span class="font-medium text-xl">Erreur lors de l\'envoi du message.</span>',
-        showConfirmButton: false,
-        width: 'auto',
-        timer: 3500
-      })
-    });
+    //     // Appel de la méthode pour réinitialiser les champs
+    //     this.resetInputFields();
+    //   }
+    //   ,
+    //   error: (error) => Swal.fire({
+    //     position: 'top-end',
+    //     toast: true,
+    //     icon: 'error',
+    //     html: '<span class="font-medium text-xl">Erreur lors de l\'envoi du message.</span>',
+    //     showConfirmButton: false,
+    //     width: 'auto',
+    //     timer: 3500
+    //   })
+    // });
   }
 
   /**
@@ -155,6 +166,8 @@ export class TrainingFormComponent implements OnInit {
   * le label associé en utilisant son attribut 'id'. Si un label est trouvé pour une valeur de champ, la méthode les mappent dans `inputLabelMap`.
   */
   private getDataIntoDictionary() {
+    console.log(this.inputFields);
+    
     this.inputFields.forEach(input => {
       const label = document.querySelector(`label[for="${input.nativeElement.id}"]`);
       if (label) {
@@ -163,14 +176,28 @@ export class TrainingFormComponent implements OnInit {
     });
   }
 
+  public createMailData(): any {
+    const mailData: any = {};
+    this.inputLabelMap.forEach((value, key) => {
+      const objectKey = this.convertLabelToObjectKey(key);
+      mailData[objectKey] = value;
+    });
+    return mailData;
+  }
+
+  private convertLabelToObjectKey(label: string): string {
+    const normalizedLabel = label.normalize("NFD").replace(/[\u0300-\u036f]/g, '');
+    return normalizedLabel.toLowerCase().replace(/\s+/g, '');
+  }
+
   /**
   * Vérifie que les champs remplis par l'utilisateur pour l'envoi dans le mail sont dans un format correct.
   * 
-  * @returns {boolean} Retourne `true` si toutes les validations sont passées, sinon `false`.
+  * @returns {Promise<boolean>} Retourne une promesse avec `true` si toutes les validations sont passées, sinon `false`.
   */
-  validateInputs(): boolean {
+  async validateInputs(): Promise<boolean> {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    const telRegex = /^(0[1-9]) (\d{2}) (\d{2}) (\d{2}) (\d{2})$/;
+    const phoneNumberRegex = /^(0[1-9]) (\d{2}) (\d{2}) (\d{2}) (\d{2})$/;
 
     for (const [label, value] of this.inputLabelMap.entries()) {
       const trimmedValue = value.trim();
@@ -186,19 +213,32 @@ export class TrainingFormComponent implements OnInit {
         return false;
       }
 
-      // Vérification spécifique pour l'email
-      if (label.toLowerCase().includes('email') && !emailRegex.test(trimmedValue)) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Erreur de saisie',
-          text: 'Le format de l\'adresse email est invalide.',
-          confirmButtonColor: "#3B82F6"
-        })
-        return false;
+      // Vérification pour l'email
+      if (label.toLowerCase().includes('email')) {
+        if (!emailRegex.test(trimmedValue)) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Erreur de saisie',
+            text: 'Le format de l\'adresse email est invalide.',
+            confirmButtonColor: "#3B82F6"
+          })
+          return false;
+        } else {
+          const isEmailValid = await this.checkEmailValidity(trimmedValue);
+          if (!isEmailValid) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Erreur',
+              text: 'Le domaine de l\'adresse email n\'est pas accepté.',
+              confirmButtonColor: "#3B82F6"
+            })
+            return false;
+          }
+        }
       }
 
-      // Vérification spécifique pour le numéro de téléphone
-      if (label.toLowerCase().includes('téléphone') && !telRegex.test(trimmedValue)) {
+      // Vérification pour le numéro de téléphone
+      if (label.toLowerCase().includes('téléphone') && !phoneNumberRegex.test(trimmedValue)) {
         Swal.fire({
           icon: 'error',
           title: 'Erreur de saisie',
@@ -209,8 +249,34 @@ export class TrainingFormComponent implements OnInit {
       }
     }
 
-    // Ajouter d'autres validations spécifiques si nécessaire
     return true;
+  }
+
+  /**
+  * Vérifie la validité d'une adresse email en utilisant l'API Mailcheck AI.
+  * Pour cela la méthode évalue si l'email n'est pas jetable et si un enregistrement MX valide est présent.
+  * 
+  * @param {string} email L'adresse email à vérifier.
+  * @returns {Promise<boolean>} La promesse renvoie `true` si l'email n'est pas jetable et a un enregistrement MX valide,
+  *                             sinon `false`. Renvoie également `false` en cas d'erreur lors de la requête à l'API.
+  */
+  async checkEmailValidity(email: string): Promise<boolean> {
+    const url = `https://api.mailcheck.ai/email/${email}`;
+    try {
+      const response = await axios.get<EmailValidityResponse>(url);
+      // Retourne false si l'email est jetable ou si mx est false
+      if (response.data.disposable || !response.data.mx) {
+        return false;
+      }
+      return true;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error(`Impossible de vérifier l'email : ${error.message}`);
+      } else {
+        console.error('Erreur inattendue lors de la vérification de l\email.');
+      }
+      return false;
+    }
   }
 
   /**

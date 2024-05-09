@@ -435,33 +435,33 @@
               for="name">Nom et prénom
             </label>
             <input
-              class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              id="name" #inputField [(ngModel)]="nameMail" placeholder="Entrez votre nom et votre prénom" pInputText>
+              class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              id="name" #inputField [(ngModel)]="nameMail" placeholder="Entrez votre nom et votre prénom">
           </div>
           <div class="space-y-2">
             <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               for="email">Adresse email
             </label>
             <input
-              class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              id="email" #inputField [(ngModel)]="emailMail" placeholder="Entrez votre adresse email" type="email" pInputText>
+              class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              id="email" #inputField [(ngModel)]="emailMail" placeholder="Entrez votre adresse email" type="email">
           </div>
           <div class="space-y-2">
             <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              for="tel">Téléphone
+              for="phoneNumber">Téléphone
             </label>
             <input
-              class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              id="tel" #inputField placeholder="Entrez votre numéro de téléphone" type="tel" [(ngModel)]="phoneNumberMail"
-              (input)="formatAndRestrictPhoneInput($event)" pInputText>
+              class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              id="phoneNumber" #inputField placeholder="Entrez votre numéro de téléphone" type="tel" [(ngModel)]="phoneNumberMail"
+              (input)="formatAndRestrictPhoneInput($event)">
           </div>
           <div class="space-y-2">
             <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               for="message">Message
             </label>
             <textarea
-              class="flex w-full rounded-md border border-input resize-none bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-[125px]"
-              id="message" #inputField [(ngModel)]="messageMail" placeholder="Entrez votre message" pInputTextarea [autoResize]="true">
+              class="flex w-full transition-all duration-100 ease-out rounded-md border border-input resize-none bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-[125px]"
+              id="message" #inputField [(ngModel)]="messageMail" placeholder="Entrez votre message">
             </textarea>
           </div>
           <button (click)="sendMail()"

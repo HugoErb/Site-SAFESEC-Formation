@@ -6,10 +6,6 @@ import { MailService } from '../mail.service';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
-// Prime NG
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { InputTextModule } from 'primeng/inputtext';
-
 // Font Awesome Icons
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
@@ -31,7 +27,7 @@ interface EmailValidityResponse {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule, FormsModule, InputTextareaModule, InputTextModule],
+  imports: [CommonModule, FontAwesomeModule, FormsModule],
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
@@ -179,7 +175,7 @@ export class HomeComponent {
       return;
     }
 
-    const mailData = { name: this.nameMail, email: this.emailMail, tel: this.phoneNumberMail, message: this.messageMail };
+    const mailData = { name: this.nameMail, email: this.emailMail, phoneNumber: this.phoneNumberMail, message: this.messageMail };
     this.mailService.sendMail(mailData).subscribe({
       next: (response) => {
         Swal.fire({
@@ -229,7 +225,7 @@ export class HomeComponent {
   */
   async validateInputs(): Promise<boolean> {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    const telRegex = /^(0[1-9]) (\d{2}) (\d{2}) (\d{2}) (\d{2})$/;
+    const phoneNumberRegex = /^(0[1-9]) (\d{2}) (\d{2}) (\d{2}) (\d{2})$/;
 
     for (const [label, value] of this.inputLabelMap.entries()) {
       const trimmedValue = value.trim();
@@ -270,7 +266,7 @@ export class HomeComponent {
       }
 
       // Vérification pour le numéro de téléphone
-      if (label.toLowerCase().includes('téléphone') && !telRegex.test(trimmedValue)) {
+      if (label.toLowerCase().includes('téléphone') && !phoneNumberRegex.test(trimmedValue)) {
         Swal.fire({
           icon: 'error',
           title: 'Erreur de saisie',

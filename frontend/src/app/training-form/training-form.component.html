@@ -14,13 +14,17 @@
 
     <!-- Navigation principale pour les grands écrans -->
     <nav class="hidden lg:flex ml-auto gap-4 sm:gap-6 items-center">
-        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="navigateToHome('services')">
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
+            (click)="navigateToHome('services')">
             Services</div>
-        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="navigateToHome('formateur')">
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
+            (click)="navigateToHome('formateur')">
             Formateur</div>
-        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="navigateToHome('catalogue')">
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
+            (click)="navigateToHome('catalogue')">
             Catalogue</div>
-        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="navigateToHome('contact')">
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
+            (click)="navigateToHome('contact')">
             Contact
         </div>
     </nav>
@@ -41,7 +45,8 @@
 <main class="flex-1 container mx-auto">
     <div class="fixed top-16 left-4 p-4">
         <button (click)="navigateToHome('catalogue')" class="focus:outline-none cursor-pointer">
-            <fa-icon class="text-5xl mb-2 text-blue-500 hover:text-blue-600 transition-colors" [icon]="icons.faCircleArrowLeft"></fa-icon>
+            <fa-icon class="text-5xl mb-2 text-blue-500 hover:text-blue-600 transition-colors"
+                [icon]="icons.faCircleArrowLeft"></fa-icon>
         </button>
     </div>
     <section class="w-full py-12 md:py-24 lg:py-32">
@@ -66,9 +71,9 @@
                                     Code postal
                                 </label>
                                 <input
-                                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                    id="postalCodeMail" name="postalCodeMail" [(ngModel)]="postalCodeMail" pInputText
-                                    placeholder="Entrez votre code postal" #inputField/>
+                                    class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    id="postalCodeMail" name="postalCodeMail" [(ngModel)]="postalCodeMail"
+                                    placeholder="Entrez votre code postal" #inputField />
                             </div>
                             <div class="space-y-2">
                                 <label
@@ -77,9 +82,9 @@
                                     Ville
                                 </label>
                                 <input
-                                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                    id="cityMail" name="cityMail" [(ngModel)]="cityMail" pInputText
-                                    placeholder="Entrez votre ville" #inputField/>
+                                    class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    id="cityMail" name="cityMail" [(ngModel)]="cityMail"
+                                    placeholder="Entrez votre ville" #inputField />
                             </div>
                         </div>
                         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -90,20 +95,20 @@
                                     Pays
                                 </label>
                                 <input
-                                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                    id="countryMail" name="countryMail" [(ngModel)]="countryMail" pInputText
-                                    placeholder="Entrez votre pays" #inputField/>
+                                    class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    id="countryMail" name="countryMail" [(ngModel)]="countryMail"
+                                    placeholder="Entrez votre pays" #inputField />
                             </div>
                             <div class="space-y-2">
                                 <label
                                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                    for="adressMail">
+                                    for="addressMail">
                                     Adresse de la formation
                                 </label>
                                 <input
-                                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                    id="adressMail" name="adressMail" [(ngModel)]="adressMail" pInputText
-                                    placeholder="Entrez l'adresse de la formation" #inputField/>
+                                    class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    id="addressMail" name="addressMail" [(ngModel)]="addressMail"
+                                    placeholder="Entrez l'adresse de la formation" #inputField />
                             </div>
                         </div>
                     </div>
@@ -118,9 +123,9 @@
                                         Nom
                                     </label>
                                     <input
-                                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                        id="nameMail" name="nameMail" [(ngModel)]="nameMail" pInputText
-                                        placeholder="Entrez votre nom" #inputField/>
+                                        class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        id="nameMail" name="nameMail" [(ngModel)]="nameMail"
+                                        placeholder="Entrez votre nom" #inputField />
                                 </div>
                                 <div class="space-y-2">
                                     <label
@@ -129,9 +134,9 @@
                                         Email
                                     </label>
                                     <input
-                                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                        id="emailMail" name="emailMail" [(ngModel)]="emailMail" pInputText
-                                        placeholder="Entrez votre email" type="email" #inputField/>
+                                        class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        id="emailMail" name="emailMail" [(ngModel)]="emailMail"
+                                        placeholder="Entrez votre email" type="email" #inputField />
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -142,10 +147,10 @@
                                         Téléphone
                                     </label>
                                     <input
-                                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                                         id="phoneNumberMail" placeholder="Entrez votre numéro de téléphone" type="tel"
-                                        name="phoneNumberMail" [(ngModel)]="phoneNumberMail" pInputText
-                                        (input)="formatAndRestrictPhoneInput($event)" #inputField/>
+                                        name="phoneNumberMail" [(ngModel)]="phoneNumberMail"
+                                        (input)="formatAndRestrictPhoneInput($event)" #inputField />
                                 </div>
                                 <div class="space-y-2">
                                     <label
@@ -154,9 +159,9 @@
                                         Entreprise
                                     </label>
                                     <input
-                                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                        id="companyMail" name="companyMail" [(ngModel)]="companyMail" pInputText
-                                        placeholder="Entrez le nom de votre entreprise" #inputField/>
+                                        class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        id="companyMail" name="companyMail" [(ngModel)]="companyMail"
+                                        placeholder="Entrez le nom de votre entreprise" #inputField />
                                 </div>
                             </div>
                         </div>
@@ -170,9 +175,9 @@
                                         Formation choisie
                                     </label>
                                     <input
-                                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                                         id="job-title" placeholder="Formation choisie" name="chosenTrainingName"
-                                        [value]="chosenTrainingName" [disabled]="true" #inputField/>
+                                        [value]="chosenTrainingName" [disabled]="true" #inputField />
                                 </div>
                                 <div class="space-y-2">
                                     <label
@@ -180,10 +185,11 @@
                                         for="personNumberMail">
                                         Nombre de personnes
                                     </label>
-                                    <p-inputNumber
-                                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    <input
+                                        class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                                         id="personNumberMail" name="personNumberMail" [(ngModel)]="personNumberMail"
-                                        inputId="integeronly" [min]="1" [max]="12" placeholder="Entrez le nombre de personnes" [showButtons]="true" #inputField/>
+                                        [min]="1" [max]="12" placeholder="Entrez le nombre de personnes" type="number"
+                                        #inputField />
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -194,9 +200,9 @@
                                         Métier formé
                                     </label>
                                     <input
-                                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                                         id="jobTrainedMail" name="jobTrainedMail" [(ngModel)]="jobTrainedMail"
-                                        pInputText placeholder="Entrez le métier de la population formée" #inputField/>
+                                        placeholder="Entrez le métier de la population formée" #inputField />
                                 </div>
                                 <div class="space-y-2">
                                     <label
@@ -204,16 +210,10 @@
                                         for="trainingDateMail">
                                         Date(s) souhaitée(s) de la formation
                                     </label>
-                                    <!-- <input
-                                        class="inline-flex items-center whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full justify-start text-left font-normal"
+                                    <input
+                                        class="inline-flex transition-all duration-100 ease-out items-center whitespace-nowrap rounded-md text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full justify-start text-left font-normal"
                                         id="trainingDateMail" name="trainingDateMail" [(ngModel)]="trainingDateMail"
-                                        type="date" placeholder="Sélectionnez une date" /> -->
-                                    <p-calendar
-                                        class="inline-flex items-center whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full justify-start text-left font-normal"
-                                        id="trainingDateMail" placeholder="Sélectionnez une date ou un intervalle de dates"
-                                        name="trainingDateMail" [(ngModel)]="trainingDateMail" selectionMode="range"
-                                        [readonlyInput]="true" dateFormat="dd/mm/yy" [showButtonBar]="true"
-                                        [minDate]="todayDate" #inputField/>
+                                        type="date" placeholder="Sélectionnez une date" #inputField />
                                 </div>
                             </div>
                         </div>
@@ -224,10 +224,10 @@
                                 Informations complémentaires
                             </label>
                             <textarea
-                                class="flex w-full rounded-md border border-input bg-background resize-none px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-h-[100px]"
+                                class="flex w-full transition-all duration-100 ease-out rounded-md border border-input bg-background resize-none px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-h-[100px]"
                                 id="moreInformationMail" name="moreInformationMail"
                                 placeholder="Entrez vos informations complémentaires, si vous en avez à nous soumettre"
-                                pInputTextarea [autoResize]="true" [(ngModel)]="moreInformationMail" #inputField></textarea>
+                                [(ngModel)]="moreInformationMail" #inputField></textarea>
                         </div>
                         <button
                             class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full bg-blue-500 text-white hover:bg-blue-600"
