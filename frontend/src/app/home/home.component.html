@@ -14,13 +14,17 @@
 
   <!-- Navigation principale pour les grands écrans -->
   <nav class="hidden lg:flex ml-auto gap-4 sm:gap-6 items-center">
-    <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="scrollToSection('services')">
+    <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
+      (click)="scrollToSection('services')">
       Services</div>
-    <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="scrollToSection('formateur')">
+    <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
+      (click)="scrollToSection('formateur')">
       Formateur</div>
-    <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="scrollToSection('catalogue')">
+    <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
+      (click)="scrollToSection('catalogue')">
       Catalogue</div>
-    <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="scrollToSection('contact')">Contact
+    <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
+      (click)="scrollToSection('contact')">Contact
     </div>
   </nav>
 
@@ -52,8 +56,9 @@
             <img src="../../assets/imgs/logo.png" alt="Logo" class="w-40 md:w-60">
           </div>
           <p class="mx-auto max-w-[700px] text-gray-500 md:text-xl">
-            SAFESEC Formation vous propose des apprentissages délivrés par un expert vous permettant de sensibiliser vos
-            équipes à la prévention et la gestion des risques au quotidien ou au sein de votre coeur de métier.
+            SAFESEC Formation vous propose des apprentissages délivrés par un professionnel ayant pour objectif de
+            sensibiliser vos
+            équipes à la prévention et à la gestion des risques au quotidien ou au sein de votre coeur de métier.
           </p>
           <div class="space-x-4">
             <div
@@ -81,13 +86,13 @@
           <fa-icon class="text-4xl mb-2 text-gray-800" [icon]="icons.faBookOpen"></fa-icon>
           <h3 class="text-lg font-bold">Catalogue complet de formations</h3>
           <p class="text-sm text-gray-500">
-            Découvrez notre sélection de formations couvrant divers domaines et compétences, conçues pour répondre
-            aux besoins de toutes les entreprises.
+            Notre gamme de formations, élaborées à partir d'expériences opérationnelles, est conçue pour
+            satisfaire les besoins de toutes les entreprises.
           </p>
         </div>
         <div class="grid gap-1 text-center">
           <fa-icon class="text-4xl mb-2 text-gray-800" [icon]="icons.faCalendarCheck"></fa-icon>
-          <h3 class="text-lg font-bold text-gray-800">Flexibilité des formations</h3>
+          <h3 class="text-lg font-bold text-gray-800">Flexibilité et adaptabilité</h3>
           <p class="text-sm text-gray-500">Nous offrons une flexibilité d'horaires et de lieux de formation pour
             s'adapter au mieux aux besoins
             des entreprises et des collaborateurs.</p>
@@ -104,24 +109,24 @@
           <fa-icon class="text-4xl mb-2 text-gray-800" [icon]="icons.faGraduationCap"></fa-icon>
           <h3 class="text-lg font-bold text-gray-800">Certification des acquis</h3>
           <p class="text-sm text-gray-500">
-            À la fin de chaque formation, recevez une certification attestant de vos compétences et connaissances
-            acquises, ainsi que la réussite des examens finaux.
+            À la conclusion de certaines formations, obtenez la certification qui atteste de
+            vos compétences et des connaissances acquises, sous réserve de la réussite des examens finaux.
           </p>
         </div>
         <div class="grid gap-1 text-center">
           <fa-icon class="text-4xl mb-2 text-gray-800" [icon]="icons.faPersonWalkingArrowRight"></fa-icon>
-          <h3 class="text-lg font-bold text-gray-800">Mises en situation pratique</h3>
+          <h3 class="text-lg font-bold text-gray-800">Mises en situation réalistes</h3>
           <p class="text-sm text-gray-500">
-            Nos formations intègrent des scénarios pratiques et des mises en situation pour permettre une application
-            concrète des connaissances, améliorant ainsi l'apprentissage.
+            Nos formations altèrnent apprentissages théroriques et scénarios pratiques pour permettre une application
+            concrète des savoirs en cours d'acquisition.
           </p>
         </div>
         <div class="grid gap-1 text-center">
           <fa-icon class="text-4xl mb-2 text-gray-800" [icon]="icons.faUsers"></fa-icon>
-          <h3 class="text-lg font-bold text-gray-800">Sessions de formation en groupe</h3>
+          <h3 class="text-lg font-bold text-gray-800">Travail de groupe</h3>
           <p class="text-sm text-gray-500">
-            Participez à des sessions de formation en groupe qui favorisent l'échange d'idées et la collaboration entre
-            les participants, enrichissant l'expérience d'apprentissage.
+            Assistez à des sessions de formation collective qui encouragent le partage d'idées et la collaboration entre
+            participants, améliorant ainsi l'expérience d'apprentissage.
           </p>
         </div>
       </div>
@@ -163,7 +168,8 @@
             </a>
           </div>
           <div class="flex justify-center gap-6 mt-4">
-            <div (click)="scrollToSection('contact')" class="text-gray-500 hover:text-blue-600 cursor-pointer text-3xl transition-colors">
+            <div (click)="scrollToSection('contact')"
+              class="text-gray-500 hover:text-blue-600 cursor-pointer text-3xl transition-colors">
               <fa-icon [icon]="icons.faEnvelope"></fa-icon>
             </div>
             <a href="https://www.linkedin.com/in/christophe-e-7a6813167/" target="_blank"
@@ -407,6 +413,100 @@
                 </svg>
                 Maintien et actualisation des compétences (MAC)
               </li>
+              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
+                  style="--darkreader-inline-stroke: currentColor;">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Délivrance du certificat de Sauveteur Secouriste du Travail
+              </li>
+            </ul>
+          </div>
+          <div class="flex items-center p-6"><button (click)="chooseTrainingPlan($event)"
+              class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
+              le plan</button></div>
+        </div>
+        <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
+          <div class="flex flex-col space-y-1.5 p-6 text-center">
+            <h3 class="text-2xl font-semibold leading-none tracking-tight">Prévention et secours civiques de niveau 1
+              (PSC1)
+            </h3>
+          </div>
+          <div class="p-6 flex-grow">
+            <ul>
+              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
+                  style="--darkreader-inline-stroke: currentColor;">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Formation initiale
+              </li>
+              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
+                  style="--darkreader-inline-stroke: currentColor;">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Formation continue
+              </li>
+              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
+                  style="--darkreader-inline-stroke: currentColor;">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Délivrance du certificat de compétences PSC1
+              </li>
+            </ul>
+          </div>
+          <div class="flex items-center p-6"><button (click)="chooseTrainingPlan($event)"
+              class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
+              le plan</button></div>
+        </div>
+        <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
+          <div class="flex flex-col space-y-1.5 p-6 text-center">
+            <h3 class="text-2xl font-semibold leading-none tracking-tight">Sauvetage opérationnel (Sensibilisation)</h3>
+          </div>
+          <div class="p-6 flex-grow">
+            <ul>
+              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
+                  style="--darkreader-inline-stroke: currentColor;">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Programme standard ou personnalisé
+              </li>
+              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
+                  style="--darkreader-inline-stroke: currentColor;">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Délivrance d'une attestation de participation
+              </li>
+            </ul>
+          </div>
+          <div class="flex items-center p-6"><button (click)="chooseTrainingPlan($event)"
+              class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
+              le plan</button></div>
+        </div>
+        <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
+          <div class="flex flex-col space-y-1.5 p-6 text-center">
+            <h3 class="text-2xl font-semibold leading-none tracking-tight">Plan de formation personnalisé</h3>
+          </div>
+          <div class="p-6 flex-grow">
+            <ul>
+              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
+                  style="--darkreader-inline-stroke: currentColor;">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Programme sur mesure, conçu selon vos besoins spécifiques.
+              </li>
             </ul>
           </div>
           <div class="flex items-center p-6"><button (click)="chooseTrainingPlan($event)"
@@ -452,8 +552,8 @@
             </label>
             <input
               class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              id="phoneNumber" #inputField placeholder="Entrez votre numéro de téléphone" type="tel" [(ngModel)]="phoneNumberMail"
-              (input)="formatAndRestrictPhoneInput($event)">
+              id="phoneNumber" #inputField placeholder="Entrez votre numéro de téléphone" type="tel"
+              [(ngModel)]="phoneNumberMail" (input)="formatAndRestrictPhoneInput($event)">
           </div>
           <div class="space-y-2">
             <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"

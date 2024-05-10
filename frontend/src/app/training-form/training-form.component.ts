@@ -42,7 +42,7 @@ export class TrainingFormComponent implements OnInit {
   phoneNumberMail: string = "";
   companyMail: string = "";
   chosenTrainingName = "";
-  personNumberMail: number = 1;
+  personNumberMail: string = "";
   jobTrainedMail: string = "";
   trainingDateMail: string = "";
   moreInformationMail: string = "";
@@ -204,7 +204,7 @@ export class TrainingFormComponent implements OnInit {
       }
 
       // Vérification pour l'email
-      if (label.toLowerCase().includes('email')) {
+      if (labelLower.includes('email')) {
         if (!emailRegex.test(trimmedValue)) {
           Swal.fire({
             icon: 'error',
@@ -228,7 +228,7 @@ export class TrainingFormComponent implements OnInit {
       }
 
       // Vérification pour le numéro de téléphone
-      if (label.toLowerCase().includes('téléphone') && !phoneNumberRegex.test(trimmedValue)) {
+      if (labelLower.includes('téléphone') && !phoneNumberRegex.test(trimmedValue)) {
         Swal.fire({
           icon: 'error',
           title: 'Erreur de saisie',
