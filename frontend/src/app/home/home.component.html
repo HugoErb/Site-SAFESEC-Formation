@@ -110,7 +110,7 @@
           <h3 class="text-lg font-bold text-gray-800">Certification des acquis</h3>
           <p class="text-sm text-gray-500">
             À la conclusion de certaines formations, obtenez la certification qui atteste de
-            vos compétences et des connaissances acquises, sous réserve de la réussite des examens finaux.
+            vos compétences et des connaissances acquises, sous réserve de satisfaire les critères de réussite.
           </p>
         </div>
         <div class="grid gap-1 text-center">
@@ -125,8 +125,9 @@
           <fa-icon class="text-4xl mb-2 text-gray-800" [icon]="icons.faUsers"></fa-icon>
           <h3 class="text-lg font-bold text-gray-800">Travail de groupe</h3>
           <p class="text-sm text-gray-500">
-            Assistez à des sessions de formation collective qui encouragent le partage d'idées et la collaboration entre
-            participants, améliorant ainsi l'expérience d'apprentissage.
+            Nous proposons des ateliers d'apprentissage collectifs conçus pour favoriser et stimuler l'échange d'idées
+            et la collaboration, en groupe
+            de 6 à 12 personnes.
           </p>
         </div>
       </div>
@@ -152,16 +153,17 @@
         <div class="flex flex-col w-full max-w-[700px] items-center justify-center p-4 md:p-8">
           <div class="space-y-4 text-center">
             <p class="text-gray-500 italic"> Ayant rejoint les rangs de la gendarmerie nationale en 1992, j'ai consacré
-              de
-              nombreuses années à des missions opérationnelles ainsi qu'à la formation dans les domaines de
+              de nombreuses années à des missions opérationnelles ainsi qu'à la formation dans les domaines de
               l'intervention professionnelle et des premiers secours.
               Aujourd’hui, nouvelle vie, nouveau public, mais toujours le même bonheur de pouvoir partager mes
               connaissances.</p>
-            <p class="text-gray-500 italic">Si vous souhaitez monter en compétences sur des sujets tels que la gestion
-              des comportements agressifs, la sécurisation de site, les premiers secours (sécurité civile, SST,
+            <p class="text-gray-500 italic">Si, vous souhaitez monter en compétences sur des sujets tels que la gestion
+              des
+              comportements agressifs, la sécurisation de site, les premiers secours (filières sécurité civile, SST,
               sauvetage tactique ou au combat), les réactions face à une situation d'attentat ou d'agression collective
               avec arme, les sports de combat et la self défense, ou encore le port, l’emploi et l’usage des armes de
-              catégories B et D, je suis l'homme qu'il vous faut.</p>
+              catégories B et D (professionnels armés), je vous invite à explorer nos programmes de formation dédiés.
+            </p>
             <a class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 text-sm inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white"
               href="../../assets/pdf/CV.pdf" target="_blank">
               Consulter mon CV
@@ -187,7 +189,7 @@
       <div class="space-y-4 text-center mx-auto">
         <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Catalogue de formations</h2>
         <p
-          class="mx-auto max-w-[500px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-center mb-12">
+          class="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-center mb-12">
           Choisissez la formation qui correspond aux besoins de votre équipe.
         </p>
       </div>
@@ -199,30 +201,18 @@
           </div>
           <div class="p-6 flex-grow">
             <ul>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
                 Sensibilisation sur les conduites à tenir en cas d'agression collective avec arme et/ou d'attaque
                 terroriste
               </li>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
                 Prise en charge initiale des victimes, en attente des secours spécialisés
               </li>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Safe Marche Ryan - Damage Control
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
+                SAFE MARCHE RYAN
               </li>
             </ul>
           </div>
@@ -232,27 +222,28 @@
               le plan</button>
           </div>
         </div>
-        <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
+        <div
+          class="rounded-lg bg-card text-card-foreground shadow-sm w-[340px] bg-white border-2 border-blue-500 relative flex flex-col">
+          <div
+            class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white px-2 py-1 rounded-md">
+            Populaire
+          </div>
           <div class="flex flex-col space-y-1.5 p-6 text-center">
-            <h3 class="text-2xl font-semibold leading-none tracking-tight">Gestion des comportements aggressifs et/ou
+            <h3 class="text-2xl font-semibold leading-none tracking-tight">Gestion des comportements agressifs et/ou
               violents</h3>
           </div>
           <div class="p-6 flex-grow">
             <ul>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
                 Sensibilisation à la gestion des agressions verbales et/ou physiques
               </li>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
+                Sensibilisation aux techniques de protection et de défense
+              </li>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
                 Lutte contre les violences intrafamiliales
               </li>
             </ul>
@@ -267,36 +258,20 @@
           </div>
           <div class="p-6 flex-grow">
             <ul>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Initiation à la journée, ou sur un week-end
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
+                Initiation à la journée ou sur un week-end
               </li>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
                 Formation à la semaine
               </li>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
                 Information des élus
               </li>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
                 Information au titre d'une profession
               </li>
             </ul>
@@ -311,79 +286,21 @@
           </div>
           <div class="p-6 flex-grow">
             <ul>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
                 Audit de sûreté
               </li>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
                 Conseil et accompagnement
               </li>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
                 Vérification et actualisation des mesures mises en place
               </li>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
                 Mises en situation
-              </li>
-            </ul>
-          </div>
-          <div class="flex items-center p-6"><button (click)="chooseTrainingPlan($event)"
-              class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-              le plan</button></div>
-        </div>
-        <div
-          class="rounded-lg bg-card text-card-foreground shadow-sm w-[340px] bg-white border-2 border-blue-500 relative flex flex-col">
-          <div
-            class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white px-2 py-1 rounded-md">
-            Populaire
-          </div>
-          <div class="flex flex-col space-y-1.5 p-6 text-center">
-            <h3 class="text-2xl font-semibold leading-none tracking-tight">Consolidation des compétences
-              professionnelles</h3>
-          </div>
-          <div class="p-6 flex-grow">
-            <ul>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Formation réservée aux forces de l'ordre
-              </li>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Pratique opérationnelle du bâton de défense
-              </li>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Maniement, emploi sécurisé et usage raisonné des armes à feu
               </li>
             </ul>
           </div>
@@ -393,32 +310,50 @@
         </div>
         <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
           <div class="flex flex-col space-y-1.5 p-6 text-center">
+            <h3 class="text-2xl font-semibold leading-none tracking-tight">Agent de sécurité armé</h3>
+          </div>
+          <div class="p-6 flex-grow">
+            <ul>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
+                Formation initiale ou continue aux armes de catégorie B et D
+              </li>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
+                Maniement, emploi sécurisé et usage raisonné des armes à feu
+              </li>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
+                Pratique opérationnelle du bâton de défense
+              </li>
+            </ul>
+          </div>
+          <div class="flex items-center p-6"><button (click)="chooseTrainingPlan($event)"
+              class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
+              le plan</button>
+          </div>
+        </div>
+        <div
+          class="rounded-lg bg-card text-card-foreground shadow-sm w-[340px] bg-white border-2 border-blue-500 relative flex flex-col">
+          <div
+            class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white px-2 py-1 rounded-md">
+            Populaire
+          </div>
+          <div class="flex flex-col space-y-1.5 p-6 text-center">
             <h3 class="text-2xl font-semibold leading-none tracking-tight">Sauvetage Secourisme du Travail (SST)</h3>
           </div>
           <div class="p-6 flex-grow">
             <ul>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
                 Formation initiale
               </li>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
                 Maintien et actualisation des compétences (MAC)
               </li>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
                 Délivrance du certificat de Sauveteur Secouriste du Travail
               </li>
             </ul>
@@ -435,28 +370,16 @@
           </div>
           <div class="p-6 flex-grow">
             <ul>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
                 Formation initiale
               </li>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
                 Formation continue
               </li>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
                 Délivrance du certificat de compétences PSC1
               </li>
             </ul>
@@ -471,20 +394,12 @@
           </div>
           <div class="p-6 flex-grow">
             <ul>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
                 Programme standard ou personnalisé
               </li>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
                 Délivrance d'une attestation de participation
               </li>
             </ul>
@@ -499,12 +414,8 @@
           </div>
           <div class="p-6 flex-grow">
             <ul>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-4 w-4 inline" data-darkreader-inline-stroke=""
-                  style="--darkreader-inline-stroke: currentColor;">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+              <li>
+                <fa-icon class="text-sm text-gray-700" [icon]="icons.faCheck"></fa-icon>
                 Programme sur mesure, conçu selon vos besoins spécifiques.
               </li>
             </ul>
