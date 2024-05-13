@@ -6,10 +6,7 @@
 
     <!-- Bouton du menu burger pour les petits écrans -->
     <button class="lg:hidden ml-auto mr-3" (click)="toggleBurgerMenu($event)">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
+        <fa-icon class="text-3xl text-gray-700" [icon]="icons.faBars"></fa-icon>
     </button>
 
     <!-- Navigation principale pour les grands écrans -->
@@ -54,8 +51,7 @@
             <div class="mx-auto max-w-3xl space-y-8">
                 <div class="space-y-4 text-center">
                     <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Demande de formation</h2>
-                    <p
-                        class="text-gray-500 md:text-xl/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                    <p class="text-gray-500 md:text-xl/relaxed xl:text-xl/relaxed dark:text-gray-400">
                         Remplissez le formulaire ci-dessous pour faire une demande de formation. Cette demande sera
                         étudiée et nous reviendrons vers vous dès que possible.
                     </p>

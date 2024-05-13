@@ -9,6 +9,7 @@ import axios from 'axios';
 // Font Awesome Icons
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 // Définition de l'interface pour la réponse de l'API de MailCheck.ai
 interface EmailValidityResponse {
@@ -26,7 +27,7 @@ export class TrainingFormComponent implements OnInit {
   constructor(private router: Router, private mailService: MailService, private activatedRoute: ActivatedRoute) {
     this.todayDate = new Date();
   }
-  icons = { faCircleArrowLeft };
+  icons = { faCircleArrowLeft, faBars };
   burgerMenuOpened: boolean = false;
   todayDate: Date;
 

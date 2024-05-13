@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { MailService } from '../mail.service';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-import { HttpClient } from '@angular/common/http';
 
 // Font Awesome Icons
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -18,6 +17,7 @@ import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faBookOpen } from '@fortawesome/free-solid-svg-icons';
 import { faPersonWalkingArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 
 // Définition de l'interface pour la réponse de l'API de MailCheck.ai
@@ -33,8 +33,8 @@ interface EmailValidityResponse {
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private mailService: MailService, private http: HttpClient) { }
-  icons = { faLinkedin, faEnvelope, faWheelchair, faCalendarCheck, faGraduationCap, faUsers, faBookOpen, faPersonWalkingArrowRight,faCheck };
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private mailService: MailService) { }
+  icons = { faLinkedin, faEnvelope, faWheelchair, faCalendarCheck, faGraduationCap, faUsers, faBookOpen, faPersonWalkingArrowRight, faCheck, faBars };
   burgerMenuOpened: boolean = false;
 
   // Variables concernants la page de formulaire de demande de formation

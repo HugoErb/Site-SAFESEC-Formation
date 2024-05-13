@@ -6,10 +6,7 @@
 
   <!-- Bouton du menu burger pour les petits écrans -->
   <button class="lg:hidden ml-auto mr-3" (click)="toggleBurgerMenu($event)">
-    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
-      stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-    </svg>
+    <fa-icon class="text-3xl text-gray-700" [icon]="icons.faBars"></fa-icon>
   </button>
 
   <!-- Navigation principale pour les grands écrans -->
