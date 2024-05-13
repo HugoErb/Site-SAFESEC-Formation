@@ -55,12 +55,6 @@ export class TrainingFormComponent implements OnInit {
     }
   }
 
-  ngAfterViewInit() {
-    this.inputFields.forEach(input => {
-      console.log(`ID: ${input.nativeElement.id}, Valeur: ${input.nativeElement.value}`);
-    });
-  }
-
   @ViewChild('menuContainerRef') menuContainerRef!: ElementRef;
   @ViewChild('menuBurger') menuBurger!: ElementRef;
 
