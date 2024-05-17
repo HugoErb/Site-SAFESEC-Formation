@@ -66,11 +66,12 @@
       </div>
     </div>
   </section>
+
   <section id="services" class="flex justify-center items-center w-full pt-16 pb-20">
     <div class="container space-y-12 px-4 md:px-6">
       <div class="flex flex-col items-center justify-center space-y-4 text-center">
         <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Services</h2>
-        <p class="mx-auto max-w-[800px] text-gray-500 md:text-xl text-center">
+        <p class="mx-auto max-w-[800px] text-gray-500 text-xl text-center">
           SAFESEC Formation propose plusieurs programmes éducatifs, spécialement conçus pour offrir des connaissances
           pratiques immédiatement applicables à vos équipes.
         </p>
@@ -134,7 +135,7 @@
     <div class="container space-y-12 px-4 md:px-6">
       <div class="flex flex-col items-center justify-center space-y-4 text-center mx-auto">
         <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Votre formateur</h2>
-        <p class="max-w-[800px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+        <p class="max-w-[800px] text-gray-500 text-xl">
           Retrouvez ici toutes les informations me concernant, et découvrez pourquoi je vous propose mon
           expertise aujourd'hui.
         </p>
@@ -184,11 +185,11 @@
       <div class="space-y-4 text-center mx-auto">
         <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Catalogue de formations</h2>
         <p
-          class="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-center mb-12">
+          class="mx-auto max-w-[700px] text-xl text-gray-500 text-center mb-12">
           Choisissez la formation qui correspond aux besoins de votre équipe.
         </p>
       </div>
-      <div class="grid gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-3 w-full mt-6 justify-items-center">
+      <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 md2:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 w-full mt-6 justify-items-center">
         <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
           <div class="flex flex-col space-y-1.5 p-6 text-center">
             <h3 class="text-2xl font-semibold leading-none tracking-tight">Attentat et agression collective avec arme
@@ -212,9 +213,9 @@
             </ul>
           </div>
           <div class="flex items-center p-6">
-            <button (click)="chooseTrainingPlan($event)"
+            <button (click)="chooseTraining($event)"
               class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-              le plan</button>
+              cette formation</button>
           </div>
         </div>
         <div
@@ -243,9 +244,9 @@
               </li>
             </ul>
           </div>
-          <div class="flex items-center p-6"><button (click)="chooseTrainingPlan($event)"
+          <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
               class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-              le plan</button></div>
+              cette formation</button></div>
         </div>
         <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
           <div class="flex flex-col space-y-1.5 p-6 text-center">
@@ -271,9 +272,9 @@
               </li>
             </ul>
           </div>
-          <div class="flex items-center p-6"><button (click)="chooseTrainingPlan($event)"
+          <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
               class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-              le plan</button></div>
+              cette formation</button></div>
         </div>
         <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
           <div class="flex flex-col space-y-1.5 p-6 text-center">
@@ -299,9 +300,9 @@
               </li>
             </ul>
           </div>
-          <div class="flex items-center p-6"><button (click)="chooseTrainingPlan($event)"
+          <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
               class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-              le plan</button></div>
+              cette formation</button></div>
         </div>
         <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
           <div class="flex flex-col space-y-1.5 p-6 text-center">
@@ -323,9 +324,9 @@
               </li>
             </ul>
           </div>
-          <div class="flex items-center p-6"><button (click)="chooseTrainingPlan($event)"
+          <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
               class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-              le plan</button>
+              cette formation</button>
           </div>
         </div>
         <div
@@ -353,9 +354,9 @@
               </li>
             </ul>
           </div>
-          <div class="flex items-center p-6"><button (click)="chooseTrainingPlan($event)"
+          <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
               class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-              le plan</button></div>
+              cette formation</button></div>
         </div>
         <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
           <div class="flex flex-col space-y-1.5 p-6 text-center">
@@ -379,9 +380,9 @@
               </li>
             </ul>
           </div>
-          <div class="flex items-center p-6"><button (click)="chooseTrainingPlan($event)"
+          <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
               class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-              le plan</button></div>
+              cette formation</button></div>
         </div>
         <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
           <div class="flex flex-col space-y-1.5 p-6 text-center">
@@ -399,9 +400,9 @@
               </li>
             </ul>
           </div>
-          <div class="flex items-center p-6"><button (click)="chooseTrainingPlan($event)"
+          <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
               class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-              le plan</button></div>
+              cette formation</button></div>
         </div>
         <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
           <div class="flex flex-col space-y-1.5 p-6 text-center">
@@ -415,9 +416,9 @@
               </li>
             </ul>
           </div>
-          <div class="flex items-center p-6"><button (click)="chooseTrainingPlan($event)"
+          <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
               class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-              le plan</button></div>
+              cette formation</button></div>
         </div>
       </div>
     </div>
@@ -429,7 +430,7 @@
       <div class="flex flex-col items-center justify-center space-y-4 text-center">
         <div class="space-y-2">
           <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Contactez-nous</h2>
-          <p class="max-w-[800px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+          <p class="max-w-[800px] text-gray-500 text-xl">
             Vous avez des questions ? Vous voulez en savoir plus ? Contactez nous et nous vous répondrons dans les plus
             bref délais.
           </p>

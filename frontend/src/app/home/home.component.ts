@@ -117,7 +117,7 @@ export class HomeComponent {
   *
   * @param {MouseEvent} event - L'événement de clic qui a déclenché l'appel de la méthode.
   */
-  chooseTrainingPlan(event: MouseEvent) {
+  chooseTraining(event: MouseEvent) {
     const target = event.target as HTMLElement;
     const trainingName = target.closest('.rounded-lg')?.querySelector('h3')?.textContent?.trim();
     if (trainingName) {
