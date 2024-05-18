@@ -91,7 +91,7 @@ export class HomeComponent {
   }
 
   /**
-  * Sert à ouvrir ou fermer le menu burger en inversant l'état actuel du menu chaque fois qu'elle est appelée. 
+  * Sert à ouvrir ou fermer le menu burger en inversant l'état actuel du menu. 
   * Elle arrête également la propagation de l'événement de clic pour éviter des interactions indésirables avec d'autres éléments de l'interface utilisateur.
   * 
   * @param {MouseEvent} event - L'événement de clic qui a déclenché l'appel de la méthode. Utilisé pour arrêter la propagation de l'événement.
