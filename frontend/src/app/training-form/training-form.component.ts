@@ -159,8 +159,6 @@ export class TrainingFormComponent implements OnInit {
   * le label associé en utilisant son attribut 'id'. Si un label est trouvé pour une valeur de champ, la méthode les mappent dans `inputLabelMap`.
   */
   private getDataIntoDictionary() {
-    console.log(this.inputFields);
-
     this.inputFields.forEach(input => {
       const label = document.querySelector(`label[for="${input.nativeElement.id}"]`);
       if (label) {

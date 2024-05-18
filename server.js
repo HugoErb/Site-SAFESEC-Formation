@@ -1,7 +1,7 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
-const { body, validationResult } = require('express-validator');
 const cors = require('cors');
+const PORT = process.env.PORT || 3000;
 const optionsCors = {
   maxHttpBufferSize: 1e9,
   credentials: true,
@@ -10,8 +10,13 @@ const optionsCors = {
 
 if (process.env.NODE_ENV === 'dev') {
   optionsCors.cors = {
-      origin: 'http://localhost:4200/',
-      methods: ["GET", "POST"]
+    origin: 'http://localhost:4200/',
+    methods: ["GET", "POST"]
+  }
+} else if (process.env.NODE_ENV === 'prd') {
+  optionsCors.cors = {
+    origin: 'http://localhost:4200/',
+    methods: ["GET", "POST"]
   }
 }
 
@@ -29,7 +34,6 @@ const transporter = nodemailer.createTransport({
 });
 
 app.post('/sendmail', (req, res) => {
-  
 
   const { name, email, phoneNumber, message } = req.body;
 
@@ -50,5 +54,4 @@ app.post('/sendmail', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
