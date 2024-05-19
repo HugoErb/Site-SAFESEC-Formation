@@ -107,6 +107,12 @@ export class CommonService {
 
     for (const [label, value] of inputLabelMap.entries()) {
       const trimmedValue = value.trim();
+      const lowerCaseLabel = label.toLowerCase();
+
+      // Exclusion du champ optionnel "Informations complémentaires"
+      if (lowerCaseLabel === "informations complémentaires") {
+        continue;
+      }
 
       // Vérification des champs obligatoires
       if (!trimmedValue) {
@@ -115,7 +121,6 @@ export class CommonService {
       }
 
       // Vérification pour l'email
-      const lowerCaseLabel = label.toLowerCase();
       if (lowerCaseLabel.includes('email')) {
         if (!emailRegex.test(trimmedValue)) {
           this.showValidationError('Le format de l\'adresse email est invalide.');
