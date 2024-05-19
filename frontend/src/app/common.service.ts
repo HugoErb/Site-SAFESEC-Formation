@@ -96,10 +96,10 @@ export class CommonService {
 
 
   /**
-  * Vérifie que les champs remplis par l'utilisateur pour l'envoi dans le mail sont dans un format correct.
-  * 
-  * @returns {Promise<boolean>} Retourne une promesse avec `true` si toutes les validations sont passées, sinon `false`.
-  */
+ * Vérifie que les champs remplis par l'utilisateur pour l'envoi dans le mail sont dans un format correct.
+ * 
+ * @returns {Promise<boolean>} Retourne une promesse avec `true` si toutes les validations sont passées, sinon `false`.
+ */
   async validateInputs(inputLabelMap: Map<string, string>): Promise<boolean> {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     const phoneNumberRegex = /^(0[1-9]) (\d{2}) (\d{2}) (\d{2}) (\d{2})$/;
@@ -110,80 +110,64 @@ export class CommonService {
 
       // Vérification des champs obligatoires
       if (!trimmedValue) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Erreur de saisie',
-          text: `Le champ "${label}" est obligatoire.`,
-          confirmButtonColor: "#3B82F6"
-        })
+        this.showValidationError(`Le champ "${label}" est obligatoire.`);
         return false;
       }
 
       // Vérification pour l'email
-      if (label.toLowerCase().includes('email')) {
+      const lowerCaseLabel = label.toLowerCase();
+      if (lowerCaseLabel.includes('email')) {
         if (!emailRegex.test(trimmedValue)) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Erreur de saisie',
-            text: 'Le format de l\'adresse email est invalide.',
-            confirmButtonColor: "#3B82F6"
-          })
+          this.showValidationError('Le format de l\'adresse email est invalide.');
           return false;
         } else {
           const isEmailValid = await this.checkEmailValidity(trimmedValue);
           if (!isEmailValid) {
-            Swal.fire({
-              icon: 'error',
-              title: 'Erreur',
-              text: 'Le domaine de l\'adresse email n\'est pas accepté.',
-              confirmButtonColor: "#3B82F6"
-            })
+            this.showValidationError('Le domaine de l\'adresse email n\'est pas accepté.');
             return false;
           }
         }
       }
-
       // Vérification pour le numéro de téléphone
-      if (label.toLowerCase().includes('téléphone') && !phoneNumberRegex.test(trimmedValue)) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Erreur de saisie',
-          text: 'Le format du numéro de téléphone est invalide.',
-          confirmButtonColor: "#3B82F6"
-        })
-        return false;
-      }
-
-      // Vérification pour le code postal
-      if (label.toLowerCase().includes('code postal')) {
-        const postalCodeValue = parseInt(trimmedValue, 10);
-        if (!postalCodeRegex.test(trimmedValue) || postalCodeValue < 1000 || postalCodeValue > 98890) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Erreur de saisie',
-            text: 'Le format du code postal est invalide.',
-            confirmButtonColor: "#3B82F6"
-          });
+      else if (lowerCaseLabel.includes('téléphone')) {
+        if (!phoneNumberRegex.test(trimmedValue)) {
+          this.showValidationError('Le format du numéro de téléphone est invalide.');
           return false;
         }
       }
-
+      // Vérification pour le code postal
+      else if (lowerCaseLabel.includes('code postal')) {
+        const postalCodeValue = parseInt(trimmedValue, 10);
+        if (!postalCodeRegex.test(trimmedValue) || postalCodeValue < 1000 || postalCodeValue > 98890) {
+          this.showValidationError('Le code postal est invalide.');
+          return false;
+        }
+      }
       // Vérification pour le nombre de personnes
-      if (label.toLowerCase().includes('nombre de personnes')) {
+      else if (lowerCaseLabel.includes('nombre de personnes')) {
         const numberOfPeople = parseInt(trimmedValue, 10);
         if (isNaN(numberOfPeople) || numberOfPeople < 6 || numberOfPeople > 12) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Erreur de saisie',
-            text: 'Le nombre de personnes doit être entre 6 et 12.',
-            confirmButtonColor: "#3B82F6"
-          });
+          this.showValidationError('Le nombre de personnes doit être un entier entre 6 et 12.');
           return false;
         }
       }
     }
 
     return true;
+  }
+
+  /**
+  * Affiche une erreur de validation avec un message spécifique.
+  * 
+  * @param message Le message à afficher dans l'alerte.
+  */
+  private showValidationError(message: string): void {
+    Swal.fire({
+      icon: 'error',
+      title: 'Erreur de saisie',
+      text: message,
+      confirmButtonColor: "#3B82F6"
+    });
   }
 
   /**
