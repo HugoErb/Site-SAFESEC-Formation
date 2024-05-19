@@ -17,52 +17,82 @@ export class CommonService {
   constructor(private mailService: MailService) { }
 
   /**
+  * Filtre et formate la saisie d'un numéro de téléphone dans un champ de saisie HTML.
+  * Seules les valeurs numériques sont conservées, et un espace est ajouté tous les deux chiffres.
+  * Limite la saisie à un maximum de 10 chiffres.
+  * 
+  * @param event L'événement d'entrée déclenché lors de la saisie dans le champ de saisie.
+  *              L'événement doit être de type `Event`.
+  */
+  formatAndRestrictPhoneInput(event: Event): string {
+    let input = event.target as HTMLInputElement;
+    let value = input.value;
+    let formattedValue = '';
+
+    // Supprimer tout caractère non numérique et appliquer le formatage
+    let numbers = value.replace(/\D/g, '');
+
+    // Limiter à 10 chiffres
+    numbers = numbers.slice(0, 10);
+
+    // Ajouter des espaces tous les deux chiffres
+    for (let i = 0; i < numbers.length; i++) {
+      if (i !== 0 && i % 2 === 0) {
+        formattedValue += ' ';
+      }
+      formattedValue += numbers[i];
+    }
+
+    // Mettre à jour la valeur du modèle et de l'input
+    input.value = formattedValue;
+    return formattedValue;
+  }
+
+  /**
  * Prépare et envoie un email à l'aide d'un service de messagerie. 
  * Avant l'envoi, on vérifie les entrées pour s'assurer qu'elles sont valides en utilisant la méthode `validateInputs`. 
  * Si les validations échouent, l'envoi est interrompu. Si les validations réussissent, les données sont envoyées au service de messagerie. 
  * Les réactions aux réponses du service de messagerie, qu'elles soient réussies ou en erreur, sont gérées via des alertes à l'utilisateur.
  */
-async sendMail(inputLabelMap: Map<string, string>): Promise<boolean> {
+  async sendMail(inputLabelMap: Map<string, string>): Promise<boolean> {
 
-  // On vérifie les données
-  const areInputsValid = await this.validateInputs(inputLabelMap);
-  if (!areInputsValid) {
-    return false;
-  }
+    // On vérifie les données
+    const areInputsValid = await this.validateInputs(inputLabelMap);
+    if (!areInputsValid) {
+      return false;
+    }
 
-  const mailData = this.createMailData(inputLabelMap);
+    const mailData = this.createMailData(inputLabelMap);
 
-  return new Promise((resolve, reject) => {
-    this.mailService.sendMail(mailData).subscribe({
-      next: (response) => {
-        Swal.fire({
-          position: 'top-end',
-          toast: true,
-          icon: 'success',
-          html: '<span class="font-medium text-xl">Message envoyé !</span>',
-          showConfirmButton: false,
-          width: 'auto',
-          timer: 3500
-        });
-        resolve(true);
-      },
-      error: (error) => {
-        Swal.fire({
-          position: 'top-end',
-          toast: true,
-          icon: 'error',
-          html: '<span class="font-medium text-xl">Erreur lors de l\'envoi du message.</span>',
-          showConfirmButton: false,
-          width: 'auto',
-          timer: 3500
-        });
-        reject(false);
-      }
+    return new Promise((resolve, reject) => {
+      this.mailService.sendMail(mailData).subscribe({
+        next: (response) => {
+          Swal.fire({
+            position: 'top-end',
+            toast: true,
+            icon: 'success',
+            html: '<span class="font-medium text-xl">Message envoyé !</span>',
+            showConfirmButton: false,
+            width: 'auto',
+            timer: 3500
+          });
+          resolve(true);
+        },
+        error: (error) => {
+          Swal.fire({
+            position: 'top-end',
+            toast: true,
+            icon: 'error',
+            html: '<span class="font-medium text-xl">Erreur lors de l\'envoi du message.</span>',
+            showConfirmButton: false,
+            width: 'auto',
+            timer: 3500
+          });
+          reject(false);
+        }
+      });
     });
-  });
-}
-
-
+  }
 
 
   /**

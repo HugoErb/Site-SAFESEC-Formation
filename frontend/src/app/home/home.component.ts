@@ -114,7 +114,7 @@ export class HomeComponent {
     if (trainingName) {
       this.router.navigate(['/training-form', { chosenTrainingName: trainingName }]).then(() => {
         window.scrollTo(0, 0);
-      });;
+      });
     } else {
       console.error('Impossible de trouver le nom de la formation.');
     }
@@ -129,27 +129,7 @@ export class HomeComponent {
   *              L'événement doit être de type `Event`.
   */
   formatAndRestrictPhoneInput(event: Event): void {
-    let input = event.target as HTMLInputElement;
-    let value = input.value;
-    let formattedValue = '';
-
-    // Supprimer tout caractère non numérique et appliquer le formatage
-    let numbers = value.replace(/\D/g, '');
-
-    // Limiter à 10 chiffres
-    numbers = numbers.slice(0, 10);
-
-    // Ajouter des espaces tous les deux chiffres
-    for (let i = 0; i < numbers.length; i++) {
-      if (i !== 0 && i % 2 === 0) {
-        formattedValue += ' ';
-      }
-      formattedValue += numbers[i];
-    }
-
-    // Mettre à jour la valeur du modèle et de l'input
-    this.phoneNumberMail = formattedValue;
-    input.value = formattedValue;
+    this.phoneNumberMail = this.commonService.formatAndRestrictPhoneInput(event);
   }
 
   /**
