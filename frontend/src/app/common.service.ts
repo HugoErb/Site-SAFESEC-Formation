@@ -103,6 +103,7 @@ export class CommonService {
   async validateInputs(inputLabelMap: Map<string, string>): Promise<boolean> {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     const phoneNumberRegex = /^(0[1-9]) (\d{2}) (\d{2}) (\d{2}) (\d{2})$/;
+    const postalCodeRegex = /^\d{5}$/;
 
     for (const [label, value] of inputLabelMap.entries()) {
       const trimmedValue = value.trim();
@@ -151,6 +152,21 @@ export class CommonService {
           confirmButtonColor: "#3B82F6"
         })
         return false;
+      }
+
+
+      // Vérification pour le code postal
+      if (label.toLowerCase().includes('code postal')) {
+        const postalCodeValue = parseInt(trimmedValue, 10);
+        if (!postalCodeRegex.test(trimmedValue) || postalCodeValue < 1000 || postalCodeValue > 98890) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Erreur de saisie',
+            text: 'Le format du code postal est invalide.',
+            confirmButtonColor: "#3B82F6"
+          });
+          return false;
+        }
       }
     }
 
