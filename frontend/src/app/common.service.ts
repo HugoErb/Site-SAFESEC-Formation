@@ -154,7 +154,6 @@ export class CommonService {
         return false;
       }
 
-
       // Vérification pour le code postal
       if (label.toLowerCase().includes('code postal')) {
         const postalCodeValue = parseInt(trimmedValue, 10);
@@ -163,6 +162,20 @@ export class CommonService {
             icon: 'error',
             title: 'Erreur de saisie',
             text: 'Le format du code postal est invalide.',
+            confirmButtonColor: "#3B82F6"
+          });
+          return false;
+        }
+      }
+
+      // Vérification pour le nombre de personnes
+      if (label.toLowerCase().includes('nombre de personnes')) {
+        const numberOfPeople = parseInt(trimmedValue, 10);
+        if (isNaN(numberOfPeople) || numberOfPeople < 6 || numberOfPeople > 12) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Erreur de saisie',
+            text: 'Le nombre de personnes doit être entre 6 et 12.',
             confirmButtonColor: "#3B82F6"
           });
           return false;

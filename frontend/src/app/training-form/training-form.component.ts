@@ -113,6 +113,34 @@ export class TrainingFormComponent implements OnInit {
   }
 
   /**
+  * Filtre et formate la saisie d'un code postal dans un champ de saisie HTML.
+  * Seules les valeurs numériques sont conservées.
+  * Limite la saisie à un maximum de 5 chiffres et s'assure que la valeur ne dépasse pas 98890.
+  * 
+  * @param event L'événement d'entrée déclenché lors de la saisie dans le champ de saisie.
+  *              L'événement doit être de type `Event`.
+  */
+  formatAndRestrictPersonNumberInput(event: Event): void {
+    let input = event.target as HTMLInputElement;
+    let value = input.value;
+
+    // Supprimer tout caractère non numérique
+    let numbers = value.replace(/\D/g, '');
+
+    // Limiter à 2 chiffres
+    numbers = numbers.slice(0, 2);
+
+    // S'assurer que la valeur ne dépasse pas 12
+    if (parseInt(numbers) > 12) {
+      numbers = '12';
+    }
+
+    // Mettre à jour la valeur du modèle et de l'input
+    this.personNumberMail = numbers;
+    input.value = numbers;
+  }
+
+  /**
   * Prépare et envoie un email en utilisant le service commun.
   * Si l'envoi de l'email réussit, on réinitialise les champs de saisie.
   *
