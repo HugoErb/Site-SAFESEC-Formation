@@ -8,6 +8,8 @@ import { CommonService } from '../common.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-training-form',
@@ -19,7 +21,7 @@ export class TrainingFormComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private commonService: CommonService) {
     this.todayDate = new Date();
   }
-  icons = { faCircleArrowLeft, faBars };
+  icons = { faCircleArrowLeft, faBars, faChevronRight, faChevronLeft };
   burgerMenuOpened: boolean = false;
   todayDate: Date;
 
@@ -46,6 +48,11 @@ export class TrainingFormComponent implements OnInit {
     if (this.activatedRoute.snapshot.params.hasOwnProperty('chosenTrainingName')) {
       this.chosenTrainingName = this.activatedRoute.snapshot.params['chosenTrainingName'];
     }
+
+    // Gestion du calendrier
+    this.today = this.getCurrentYear() + this.getCurrentMonth() + ("0" + this.getCurrentDay()).slice(-2);
+    this.activeDate = this.getCurrentYear() + this.getCurrentMonth();
+    this.populateCalendar(parseInt(this.activeDate.slice(0, 4)), this.activeDate.slice(4, 6));
   }
 
   /**
@@ -193,4 +200,193 @@ export class TrainingFormComponent implements OnInit {
       }
     });
   }
+  date = '';
+  activeDate: string = '';  // Spécifiez explicitement que activeDate est une chaîne
+  activeDay = '';
+  active = false;
+  days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+  monthes: { [key: string]: string } = {  // Définissez explicitement le type des clés de l'objet
+    '01': 'Janvier',
+    '02': 'Février',
+    '03': 'Mars',
+    '04': 'Avril',
+    '05': 'Mai',
+    '06': 'Juin',
+    '07': 'Juillet',
+    '08': 'Août',
+    '09': 'Septembre',
+    '10': 'Octobre',
+    '11': 'Novembre',
+    '12': 'Décembre'
+  };
+  calendarDays: any[] = [];
+  cellHeight = '';
+  swipeLeft = false;
+  swipeRight = false;
+  today: string = '';
+
+  get monthYearFormatted() {
+    const month = this.activeDate.slice(4, 6);
+    return this.monthes[month] + ' ' + this.activeDate.slice(0, 4);
+  }
+
+  get cellHeightUnit() {
+    return this.cellHeight + 'px';
+  }
+
+  focus() {
+    this.active = true;
+    const input = document.querySelector('input');
+    if (input) {
+      this.cellHeight = (input.offsetWidth) / 7 + 'px';
+    }
+  }
+
+  blur() {
+    this.active = false;
+  }
+
+  prevent(event: MouseEvent) {
+    event.preventDefault();
+  }
+
+  getCurrentDate() {
+    return new Date().toJSON().slice(0, 10).replace(/-/g, '/');
+  }
+
+  getCurrentDay() {
+    return new Date().getDate();
+  }
+
+  getCurrentMonth() {
+    return ("0" + (new Date().getMonth() + 1)).slice(-2);
+  }
+
+  getPreviousMonth(month: string) {
+    return month === '01' ? '12' : ("0" + (parseInt(month) - 1)).slice(-2);
+  }
+
+  getNextMonth(month: string) {
+    return month === '12' ? '01' : ("0" + (parseInt(month) + 1)).slice(-2);
+  }
+
+  getCurrentYear() {
+    return new Date().getFullYear().toString();
+  }
+
+  getNumberOfDaysInMonth(year: number, month: number) {
+    return new Date(year, month, 0).getDate();
+  }
+
+  getNumberOfDaysInPreviousMonth(year: number, month: string) {
+    if (month === '01') {
+      return new Date(year - 1, parseInt(this.getPreviousMonth(month)), 0).getDate();
+    } else {
+      return new Date(year, parseInt(this.getPreviousMonth(month)), 0).getDate();
+    }
+  }
+
+  getFirstDayOfMonth(year: number, month: number) {
+    return (new Date(year, month - 1, 1).getDay() - 1 + 7) % 7;
+  }
+
+  populateCalendar(year: number, month: number | string) {
+    this.calendarDays = [];
+    const firstDayOfMonth = this.getFirstDayOfMonth(year, parseInt(month as string));
+    const numberOfDaysInMonth = this.getNumberOfDaysInMonth(year, parseInt(month as string));
+    let dayNumber = 1;
+    const numberOfRows = Math.ceil((firstDayOfMonth + numberOfDaysInMonth) / 7);
+    for (let x = 0; x < numberOfRows; x++) {
+      const row = [];
+      for (let y = 0; y < 7; y++) {
+        if (x === 0 && y < firstDayOfMonth) {
+          row.push({ 
+            day: this.getNumberOfDaysInPreviousMonth(year, month as string) - (firstDayOfMonth - y - 1), 
+            month: this.getPreviousMonth(month as string), 
+            year: year - (month === '01' ? 1 : 0) 
+          });
+        } else if (dayNumber <= numberOfDaysInMonth) {
+          row.push({ day: dayNumber++, month: month, year: year });
+        } else {
+          row.push({ 
+            day: dayNumber++ - numberOfDaysInMonth, 
+            month: this.getNextMonth(month as string), 
+            year: year + (month === '12' ? 1 : 0) 
+          });
+        }
+      }
+      this.calendarDays.push(row);
+    }
+  }
+
+  setPreviousMonth() {
+    if (!this.isCurrentMonth()) {
+      let activeYear = parseInt(this.activeDate.slice(0, 4));
+      let activeMonth = this.activeDate.slice(4, 6);
+      if (activeMonth === '01') {
+        activeYear -= 1;
+        activeMonth = '12';
+      } else {
+        activeMonth = ('0' + (parseInt(activeMonth) - 1)).slice(-2);
+      }
+      this.activeDate = activeYear + activeMonth;
+      this.populateCalendar(activeYear, activeMonth);
+      this.animeSwipeRight();
+    }
+  }
+
+  setNextMonth() {
+    let activeYear = parseInt(this.activeDate.slice(0, 4));
+    let activeMonth = this.activeDate.slice(4, 6);
+    if (activeMonth === '12') {
+      activeYear += 1;
+      activeMonth = '01';
+    } else {
+      activeMonth = ('0' + (parseInt(activeMonth) + 1)).slice(-2);
+    }
+    this.activeDate = activeYear + activeMonth;
+    this.populateCalendar(activeYear, activeMonth);
+    this.animeSwipeLeft();
+  }
+
+  selectDay(cell: any) {
+    if (!this.isInPast(cell) && (cell.month === this.activeDate.slice(4, 6))) {
+      this.activeDay = ("0" + cell.day).slice(-2) + cell.month + cell.year;
+      this.date = ("0" + cell.day).slice(-2) + '/' + cell.month + '/' + cell.year;
+      this.active = false;  // Fermer le calendrier après la sélection
+    }
+  }
+
+  isSelected(cell: any) {
+    return ("0" + cell.day).slice(-2) + cell.month + cell.year === this.activeDay;
+  }
+
+  isDisabled(cell: any) {
+    const cellDate = cell.year + cell.month + ("0" + cell.day).slice(-2);
+    return cellDate < this.today || cell.month !== this.activeDate.slice(4, 6);
+  }
+
+  isInPast(cell: any) {
+    const cellDate = cell.year + cell.month + ("0" + cell.day).slice(-2);
+    return cellDate < this.today;
+  }
+
+  isCurrentMonth() {
+    return this.activeDate === this.getCurrentYear() + this.getCurrentMonth();
+  }
+
+  animeSwipeLeft() {
+    this.swipeLeft = true;
+    setTimeout(() => {
+      this.swipeLeft = false;
+    }, 300);
+  }
+
+  animeSwipeRight() {
+    this.swipeRight = true;
+    setTimeout(() => {
+      this.swipeRight = false;
+    }, 300);
+  }
 }
+

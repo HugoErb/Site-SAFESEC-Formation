@@ -24,7 +24,8 @@
   <button class="lg:hidden ml-auto mr-3" (click)="toggleBurgerMenu($event)">
     <fa-icon class="text-3xl text-gray-700" [icon]="icons.faBars"></fa-icon>
   </button>
-  <div #menuBurger class="lg:hidden absolute top-full left-0 w-full bg-white shadow-md" *ngIf="burgerMenuOpened">
+  <div #menuBurger class="lg:hidden absolute top-full left-0 w-full bg-white shadow-md animate-appear"
+    *ngIf="burgerMenuOpened">
     <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
       (click)="scrollToSection('services')">Services</div>
     <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
@@ -130,8 +131,7 @@
     </div>
   </section>
 
-  <section id="formateur"
-    class="flex justify-center items-center w-full pt-16 pb-20 bg-gray-100">
+  <section id="formateur" class="flex justify-center items-center w-full pt-16 pb-20 bg-gray-100">
     <div class="container space-y-12 px-4 md:px-6">
       <div class="flex flex-col items-center justify-center space-y-4 text-center mx-auto">
         <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Votre formateur</h2>
@@ -184,12 +184,12 @@
     <div class="container grid items-center justify-center gap-6 px-4 md:px-6">
       <div class="space-y-4 text-center mx-auto">
         <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Catalogue de formations</h2>
-        <p
-          class="mx-auto max-w-[700px] text-xl text-gray-500 text-center mb-12">
+        <p class="mx-auto max-w-[700px] text-xl text-gray-500 text-center mb-12">
           Choisissez la formation qui correspond aux besoins de votre équipe.
         </p>
       </div>
-      <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 md2:grid-cols-3 xl:grid-cols-3 w-full mt-6 justify-items-center">
+      <div
+        class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 md2:grid-cols-3 xl:grid-cols-3 w-full mt-6 justify-items-center">
         <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
           <div class="flex flex-col space-y-1.5 p-6 text-center">
             <h3 class="text-2xl font-semibold leading-none tracking-tight">Attentat et agression collective avec arme
@@ -424,8 +424,7 @@
     </div>
   </section>
 
-  <section id="contact"
-    class="flex justify-center items-center w-full pt-16 pb-20 bg-gray-100">
+  <section id="contact" class="flex justify-center items-center w-full pt-16 pb-20 bg-gray-100">
     <div class="container space-y-12 px-4 md:px-6">
       <div class="flex flex-col items-center justify-center space-y-4 text-center">
         <div class="space-y-2">
