@@ -33,8 +33,8 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-app.post('/sendmail', async (req, res) => {
-  // Extraire les valeurs en fonction de l'ordre attendu
+app.post('/send-mail', async (req, res) => {
+  // On extrait les valeurs en fonction de l'ordre attendu
   const [name, email, phoneNumber, message] = Object.values(req.body);
 
   // Vérification que les valeurs nécessaires sont présentes
@@ -83,62 +83,53 @@ app.post('/sendmail', async (req, res) => {
 });
 
 
-app.post('/sendmail-training', async (req, res) => {
-  const data = req.body;
+app.post('/send-mail-training-request', async (req, res) => {
+  let [city, postalCode, country, trainingAddress, referentName, email, phoneNumber, companyName, chosenTraining, personNumber, workTrained, trainingDate, moreInformation] = Object.values(req.body);
 
-  // Fonction pour obtenir la valeur d'une clé dans un tableau d'objets
-  const getValueByKey = (key, array) => {
-    const item = array.find(obj => Object.keys(obj)[0] === key);
-    return item ? item[key] : null;
-  };
-
-  // Extraire les valeurs nécessaires
-  const ville = getValueByKey('Ville', data);
-  const codePostal = getValueByKey('Code postal', data);
-  const pays = getValueByKey('Pays', data);
-  const adresseFormation = getValueByKey('Adresse de la formation', data);
-  const nom = getValueByKey('Nom', data);
-  const email = getValueByKey('Email', data);
-  const telephone = getValueByKey('Téléphone', data);
-  const entreprise = getValueByKey('Entreprise', data);
-  const formationChoisie = getValueByKey('Formation choisie', data);
-  const nombrePersonnes = getValueByKey('Nombre de personnes', data);
-  const metierForme = getValueByKey('Métier formé', data);
-  const datesSouhaitees = getValueByKey('Date(s) souhaitée(s) de la formation', data);
-  const informationsComplementaires = getValueByKey('Informations complémentaires', data);
-
-  // Vérification que les valeurs nécessaires sont présentes
-  if (!ville || !codePostal || !pays || !adresseFormation || !nom || !email || !telephone || !entreprise || !formationChoisie || !nombrePersonnes || !metierForme || !datesSouhaitees) {
+  // On vérifie que les valeurs nécessaires sont bien présentes
+  if (!city || !postalCode || !country || !trainingAddress || !referentName || !email || !phoneNumber || !companyName || !chosenTraining || !personNumber || !workTrained || !trainingDate) {
     return res.status(400).json({ error: 'Certaines valeurs nécessaires sont manquantes.' });
   }
+
+  // On met une valeur pour les Informations complémentaires si l'utilisateur n'a rien mis
+  if (!moreInformation || moreInformation == '') {
+    moreInformation = 'Aucune';
+  }
+
+  // On onvertit la date en format français (DD/MM/YYYY)
+  const convertDateToFrenchFormat = (date) => {
+    const [year, month, day] = date.split('-');
+    return `${day}/${month}/${year}`;
+  };
+  trainingDate = convertDateToFrenchFormat(trainingDate);
 
   // Préparer les emails
   const mailOptionsSSF = {
     from: email,
     to: 'safesecformation@gmail.com',
-    subject: `Nouvelle demande de formation de ${nom}`,
+    subject: `Nouvelle demande de formation de ${referentName}`,
     text: `
-      Ville : ${ville}
-      Code postal : ${codePostal}
-      Pays : ${pays}
-      Adresse de la formation : ${adresseFormation}
-      Nom : ${nom}
+      Ville : ${city}
+      Code postal : ${postalCode}
+      Pays : ${country}
+      Adresse de la formation : ${trainingAddress}
+      Nom du référent : ${referentName}
       Email : ${email}
-      Téléphone : ${telephone}
-      Entreprise : ${entreprise}
-      Formation choisie : ${formationChoisie}
-      Nombre de personnes : ${nombrePersonnes}
-      Métier formé : ${metierForme}
-      Date(s) souhaitée(s) de la formation : ${datesSouhaitees}
-      Informations complémentaires : ${informationsComplementaires}
+      Téléphone : ${phoneNumber}
+      Entreprise : ${companyName}
+      Formation choisie : ${chosenTraining}
+      Nombre de personnes : ${personNumber}
+      Métier formé : ${workTrained}
+      Date souhaitée de la formation : ${trainingDate}
+      Informations complémentaires : ${moreInformation}
     `
   };
 
   const mailOptionsConfirmation = {
     from: 'safesecformation@gmail.com',
     to: email,
-    subject: `SAFESEC Formation - Confirmation de votre demande de formation`,
-    text: `Bonjour ${nom} !\n\nNous avons bien reçu votre demande de formation "${formationChoisie}". Nous allons examiner votre demande et vous répondrons dans les plus brefs délais.\n\nMerci pour votre confiance ! \n\nSAFESEC Formation`
+    subject: `SAFESEC Formation - Votre demande de formation`,
+    text: `Bonjour ${referentName} !\n\nNous avons bien reçu votre demande pour la formation "${chosenTraining}". Nous allons examiner votre demande et vous répondrons dans les plus brefs délais.\n\nMerci pour votre confiance ! \n\nSAFESEC Formation`
   };
 
   try {

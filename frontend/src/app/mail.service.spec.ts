@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { MailService } from './mail.service';
 
 describe('MailService', () => {

@@ -163,7 +163,7 @@ export class TrainingFormComponent implements OnInit {
   */
   async sendMail(): Promise<void> {
     this.getDataIntoDictionary();
-    if (await this.commonService.sendMail(this.inputLabelMap)) {
+    if (await this.commonService.sendMail(this.inputLabelMap, true)) {
       this.resetInputFields();
     }
   }

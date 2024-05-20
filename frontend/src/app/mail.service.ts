@@ -6,11 +6,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MailService {
-  private apiUrl = 'http://localhost:3000/sendmail';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  sendMail(data: any): Observable<any> {
-    return this.http.post(this.apiUrl, data);
+  sendMail(data: any, trainingRequest: boolean): Observable<any> {
+    let apiUrl = 'http://localhost:3000/send-mail'
+    if (trainingRequest) {
+      apiUrl = 'http://localhost:3000/send-mail-training-request'
+    }
+    
+    return this.http.post(apiUrl, data);
   }
 }

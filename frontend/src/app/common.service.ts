@@ -54,7 +54,7 @@ export class CommonService {
  * Si les validations échouent, l'envoi est interrompu. Si les validations réussissent, les données sont envoyées au service de messagerie. 
  * Les réactions aux réponses du service de messagerie, qu'elles soient réussies ou en erreur, sont gérées via des alertes à l'utilisateur.
  */
-  async sendMail(inputLabelMap: Map<string, string>): Promise<boolean> {
+  async sendMail(inputLabelMap: Map<string, string>, trainingRequest: boolean): Promise<boolean> {
 
     // On vérifie les données
     const areInputsValid = await this.validateInputs(inputLabelMap);
@@ -65,7 +65,7 @@ export class CommonService {
     const mailData = this.createMailData(inputLabelMap);
 
     return new Promise((resolve, reject) => {
-      this.mailService.sendMail(mailData).subscribe({
+      this.mailService.sendMail(mailData, trainingRequest).subscribe({
         next: (response) => {
           Swal.fire({
             position: 'top-end',
