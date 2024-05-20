@@ -19,11 +19,9 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 })
 export class TrainingFormComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private commonService: CommonService) {
-    this.todayDate = new Date();
   }
   icons = { faCircleArrowLeft, faBars, faChevronRight, faChevronLeft };
   burgerMenuOpened: boolean = false;
-  todayDate: Date;
 
   // Variables pour le mail
   @ViewChildren('inputField') inputFields!: QueryList<ElementRef>;
@@ -202,13 +200,12 @@ export class TrainingFormComponent implements OnInit {
     });
   }
 
-  // Calendrier
-  date = '';
-  activeDate: string = '';  // Spécifiez explicitement que activeDate est une chaîne
-  activeDay = '';
-  active = false;
-  days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
-  monthes: { [key: string]: string } = {  // Définissez explicitement le type des clés de l'objet
+  // Gestion du calendrier à partir d'ici
+  activeDate: string = '';
+  activeDay: string = '';
+  active: boolean = false;
+  days: string[] = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+  monthes: { [key: string]: string } = {
     '01': 'Janvier',
     '02': 'Février',
     '03': 'Mars',
@@ -223,9 +220,9 @@ export class TrainingFormComponent implements OnInit {
     '12': 'Décembre'
   };
   calendarDays: any[] = [];
-  cellHeight = '';
-  swipeLeft = false;
-  swipeRight = false;
+  cellHeight: string = '';
+  swipeLeft: boolean = false;
+  swipeRight: boolean = false;
   today: string = '';
 
   get monthYearFormatted() {
@@ -303,18 +300,18 @@ export class TrainingFormComponent implements OnInit {
       const row = [];
       for (let y = 0; y < 7; y++) {
         if (x === 0 && y < firstDayOfMonth) {
-          row.push({ 
-            day: this.getNumberOfDaysInPreviousMonth(year, month as string) - (firstDayOfMonth - y - 1), 
-            month: this.getPreviousMonth(month as string), 
-            year: year - (month === '01' ? 1 : 0) 
+          row.push({
+            day: this.getNumberOfDaysInPreviousMonth(year, month as string) - (firstDayOfMonth - y - 1),
+            month: this.getPreviousMonth(month as string),
+            year: year - (month === '01' ? 1 : 0)
           });
         } else if (dayNumber <= numberOfDaysInMonth) {
           row.push({ day: dayNumber++, month: month, year: year });
         } else {
-          row.push({ 
-            day: dayNumber++ - numberOfDaysInMonth, 
-            month: this.getNextMonth(month as string), 
-            year: year + (month === '12' ? 1 : 0) 
+          row.push({
+            day: dayNumber++ - numberOfDaysInMonth,
+            month: this.getNextMonth(month as string),
+            year: year + (month === '12' ? 1 : 0)
           });
         }
       }
@@ -355,8 +352,8 @@ export class TrainingFormComponent implements OnInit {
   selectDay(cell: any) {
     if (!this.isInPast(cell) && (cell.month === this.activeDate.slice(4, 6))) {
       this.activeDay = ("0" + cell.day).slice(-2) + cell.month + cell.year;
-      this.date = ("0" + cell.day).slice(-2) + '/' + cell.month + '/' + cell.year;
-      this.active = false;  // Fermer le calendrier après la sélection
+      this.trainingDateMail = ("0" + cell.day).slice(-2) + '/' + cell.month + '/' + cell.year;
+      this.active = false;
     }
   }
 

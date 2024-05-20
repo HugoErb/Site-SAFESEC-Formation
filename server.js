@@ -96,13 +96,6 @@ app.post('/send-mail-training-request', async (req, res) => {
     moreInformation = 'Aucune';
   }
 
-  // On onvertit la date en format français (DD/MM/YYYY)
-  const convertDateToFrenchFormat = (date) => {
-    const [year, month, day] = date.split('-');
-    return `${day}/${month}/${year}`;
-  };
-  trainingDate = convertDateToFrenchFormat(trainingDate);
-
   // Préparer les emails
   const mailOptionsSSF = {
     from: email,
