@@ -170,6 +170,7 @@ export class TrainingFormComponent implements OnInit {
   */
   async sendMail(): Promise<void> {
     this.getDataIntoDictionary();
+    console.log(this.inputLabelMap)
     if (await this.commonService.sendMail(this.inputLabelMap, true)) {
       this.resetInputFields();
     }
@@ -200,6 +201,8 @@ export class TrainingFormComponent implements OnInit {
       }
     });
   }
+
+  // Calendrier
   date = '';
   activeDate: string = '';  // Spécifiez explicitement que activeDate est une chaîne
   activeDay = '';
