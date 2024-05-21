@@ -14,7 +14,7 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-training-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, FontAwesomeModule,],
+  imports: [CommonModule, FormsModule, FontAwesomeModule],
   templateUrl: './training-form.component.html'
 })
 export class TrainingFormComponent implements OnInit {

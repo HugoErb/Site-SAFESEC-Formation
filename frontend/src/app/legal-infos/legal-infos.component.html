@@ -1,0 +1,129 @@
+<header class="px-4 lg:px-6 h-16 flex items-center fixed w-full bg-white z-50 shadow-sm border-b border-gray-200">
+    <div class="flex items-center justify-center mb-0.5 cursor-pointer" (click)="navigateToHome('landing')">
+        <img src="../../assets/imgs/logo.png" alt="Logo" class="w-14">
+        <span class="text-xl font-semibold ml-4">SAFESEC Formation</span>
+    </div>
+
+    <!-- Navigation principale pour les grands écrans -->
+    <nav class="hidden lg:flex ml-auto gap-4 sm:gap-6 items-center">
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
+            (click)="navigateToHome('services')">
+            Services</div>
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
+            (click)="navigateToHome('formateur')">
+            Formateur</div>
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
+            (click)="navigateToHome('catalogue')">
+            Catalogue</div>
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
+            (click)="navigateToHome('contact')">
+            Contact
+        </div>
+    </nav>
+
+    <!-- Menu burger pour les petits écrans -->
+    <button class="lg:hidden ml-auto mr-3" (click)="toggleBurgerMenu($event)">
+        <fa-icon class="text-3xl text-gray-700" [icon]="icons.faBars"></fa-icon>
+    </button>
+    <div #menuBurger class="lg:hidden absolute top-full left-0 w-full bg-white shadow-md animate-appear"
+        *ngIf="burgerMenuOpened">
+        <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
+            (click)="navigateToHome('services')">Services</div>
+        <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
+            (click)="navigateToHome('formateur')">Formateur</div>
+        <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
+            (click)="navigateToHome('catalogue')">Catalogue</div>
+        <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
+            (click)="navigateToHome('contact')">Contact</div>
+    </div>
+</header>
+
+<div class="collapse collapse-arrow bg-base-200">
+    <input type="radio" name="my-accordion-2" checked="checked" />
+    <div class="collapse-title text-xl font-medium">
+        Définitions
+    </div>
+    <div class="collapse-content">
+        <p>Client : tout professionnel ou personne physique capable au sens des articles 1123 et suivants du Code civil,
+            ou
+            personne morale, qui visite le Site objet des présentes conditions générales.
+            Prestations et Services : http://localhost:4200/home;redirectionSection=landing met à disposition des
+            Clients :
+
+            Contenu : Ensemble des éléments constituants l’information présente sur le Site, notamment textes – images –
+            vidéos.
+
+            Informations clients : Ci après dénommé « Information (s) » qui correspondent à l’ensemble des données
+            personnelles
+            susceptibles d’être détenues par http://localhost:4200/home;redirectionSection=landing pour la gestion de
+            votre compte,
+            de la gestion de la relation client et à des fins d’analyses et de statistiques.
+
+            Utilisateur : Internaute se connectant, utilisant le site susnommé.
+
+            Informations personnelles : « Les informations qui permettent, sous quelque forme que ce soit, directement
+            ou non,
+            l'identification des personnes physiques auxquelles elles s'appliquent » (article 4 de la loi n° 78-17 du 6
+            janvier
+            1978).
+
+            Les termes « données à caractère personnel », « personne concernée », « sous traitant » et « données
+            sensibles » ont le
+            sens défini par le Règlement Général sur la Protection des Données (RGPD : n° 2016-679)</p>
+    </div>
+</div>
+<div class="collapse collapse-arrow bg-base-200">
+    <input type="radio" name="my-accordion-2" />
+    <div class="collapse-title text-xl font-medium">
+        1. Présentation du site internet
+    </div>
+    <div class="collapse-content">
+        <p>En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, il
+            est
+            précisé aux utilisateurs du site internet http://localhost:4200/home;redirectionSection=landing l'identité
+            des
+            différents intervenants dans le cadre de sa réalisation et de son suivi:
+
+            Propriétaire : SAS Test Capital social de 0€ Numéro de TVA: 154215646 – Tonnay-Charente 17300
+            Tonnay-Charente
+            Responsable publication : Christophe Wotsberg – Christophe.wotsberg@gmail.com
+            Le responsable publication est une personne physique ou une personne morale.
+            Webmaster : Charles Wotsberg – charles.wotsberg@gmail.com
+            Hébergeur : jsp – jsp jsp jsp 0654875415
+            Délégué à la protection des données : Christophe – Christophe@salut.com
+            Ces mentions légales RGPD sont issues du générateur gratuit offert par Orson.io</p>
+    </div>
+</div>
+<div class="collapse collapse-arrow bg-base-200">
+    <input type="radio" name="my-accordion-2" />
+    <div class="collapse-title text-xl font-medium">
+        2. Conditions générales d’utilisation du site et des services proposés
+    </div>
+    <div class="collapse-content">
+        <p>Le Site constitue une œuvre de l’esprit protégée par les dispositions du Code de la Propriété Intellectuelle
+            et des
+            Réglementations Internationales applicables. Le Client ne peut en aucune manière réutiliser, céder ou
+            exploiter pour son
+            propre compte tout ou partie des éléments ou travaux du Site.
+
+            L’utilisation du site http://localhost:4200/home;redirectionSection=landing implique l’acceptation pleine et
+            entière des
+            conditions générales d’utilisation ci-après décrites. Ces conditions d’utilisation sont susceptibles d’être
+            modifiées ou
+            complétées à tout moment, les utilisateurs du site http://localhost:4200/home;redirectionSection=landing
+            sont donc
+            invités à les consulter de manière régulière.
+
+            Ce site internet est normalement accessible à tout moment aux utilisateurs. Une interruption pour raison de
+            maintenance
+            technique peut être toutefois décidée par http://localhost:4200/home;redirectionSection=landing, qui
+            s’efforcera alors
+            de communiquer préalablement aux utilisateurs les dates et heures de l’intervention. Le site web
+            http://localhost:4200/home;redirectionSection=landing est mis à jour régulièrement par
+            http://localhost:4200/home;redirectionSection=landing responsable. De la même façon, les mentions légales
+            peuvent être
+            modifiées à tout moment : elles s’imposent néanmoins à l’utilisateur qui est invité à s’y référer le plus
+            souvent
+            possible afin d’en prendre connaissance.</p>
+    </div>
+</div>
