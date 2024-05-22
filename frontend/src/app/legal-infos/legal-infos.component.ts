@@ -39,6 +39,19 @@ export class LegalInfosComponent {
   }
 
   /**
+  * Navigue vers un composant spécifié et, optionnellement, fait défiler vers une section au sein de ce composant.
+  *
+  * @param {string} composant - Le nom du composant vers lequel naviguer. Cela doit être le chemin ou
+  *                             la route associée au composant cible dans la configuration de routage Angular.
+  * @param {string} section - La section au sein du composant cible vers laquelle l'utilisateur doit être redirigé.
+  *                           Ce paramètre est optionnel et est utilisé pour indiquer une section ou
+  *                           un fragment spécifique au sein du composant.
+  */
+  navigateTo(component: string, section: string) {
+    this.router.navigate([component, { redirectionSection: section }]);
+  }
+
+  /**
   * Navigue vers la route d'accueil et inclut une section de redirection dans les paramètres de la route.
   * 
   * @param {string} section - La section de la route d'accueil vers laquelle naviguer. Cette valeur sera incluse en tant que paramètre dans la navigation.

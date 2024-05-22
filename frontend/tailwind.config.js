@@ -1,3 +1,4 @@
+import { prefix } from "@fortawesome/free-brands-svg-icons"
 import daisyui from "daisyui"
 
 module.exports = {
@@ -47,5 +48,6 @@ module.exports = {
   plugins: [daisyui],
   daisyui: {
     themes: ["light"],
+    prefix: "dui-",
   },
 }

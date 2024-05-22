@@ -38,35 +38,32 @@
 </header>
 
 <main class="flex-1">
-  <section id="landing" class="w-full h-screen pt-20 md:pt-24 lg:pt-32 border-y px-2 md:px-0">
-    <div class="px-4 md:px-6 space-y-10 xl:space-y-16 flex items-center justify-center h-full"
-      style="margin-top: -5rem;">
-      <div class="grid max-w-[1300px] mx-auto gap-4 px-4 sm:px-6 md:px-10 md:grid-cols-2 md:gap-16">
-        <h1
-          class="lg:leading-tighter text-3xl tracking-tighter mt-40 md:mt-28 sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem]">
-          <span class="text-blue-600 font-bold">SAFESEC Formation</span>
-          L'expertise au service de vos équipes.
-        </h1>
-        <div class="flex flex-col space-y-4">
-          <div class="flex justify-center items-center w-full">
-            <img src="../../assets/imgs/logo.png" alt="Logo" class="w-40 md:w-60">
-          </div>
-          <p class="mx-auto max-w-[700px] text-gray-500 md:text-xl">
-            SAFESEC Formation vous propose des apprentissages délivrés par un professionnel ayant pour objectif de
-            sensibiliser vos
-            équipes à la prévention et à la gestion des risques au quotidien ou au sein de votre coeur de métier.
-          </p>
-          <div class="space-x-4">
-            <div
-              class="inline-flex cursor-pointer h-9 items-center justify-center rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-900"
-              (click)="scrollToSection('services')">
-              Commencer
+  <section id="landing" class="relative w-full h-screen pt-20 md:pt-24 lg:pt-32 border-y px-2 md:px-0">
+    <div class="px-4 md:px-6 space-y-10 xl:space-y-16 flex items-center justify-center h-full" style="margin-top: -5rem;">
+        <div class="grid max-w-[1300px] mx-auto gap-4 px-4 sm:px-6 md:px-10 md:grid-cols-2 md:gap-16">
+            <h1 class="lg:leading-tighter text-3xl tracking-tighter mt-40 md:mt-28 sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem]">
+                <span class="text-blue-600 font-bold">SAFESEC Formation</span>
+                L'expertise au service de vos équipes.
+            </h1>
+            <div class="flex flex-col space-y-4">
+                <div class="flex justify-center items-center w-full">
+                    <img src="../../assets/imgs/logo.png" alt="Logo" class="w-40 md:w-60">
+                </div>
+                <p class="mx-auto max-w-[700px] text-gray-500 md:text-xl">
+                    SAFESEC Formation vous propose des apprentissages délivrés par un professionnel ayant pour objectif de sensibiliser vos équipes à la prévention et à la gestion des risques au quotidien ou au sein de votre coeur de métier.
+                </p>
+                <div class="space-x-4">
+                    <div class="inline-flex cursor-pointer h-9 items-center justify-center rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-900" (click)="scrollToSection('services')">
+                        Commencer
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </section>
+    <div class="absolute top-0 right-[-5%] w-80 h-80 bg-gradient-to-bl from-blue-400 to-transparent rounded-full opacity-50"></div>
+    <div class="absolute bottom-0 left-[-5%] w-80 h-80 bg-gradient-to-tl from-blue-400 to-transparent rounded-full opacity-50"></div>
+</section>
+
 
   <section id="services" class="flex justify-center items-center w-full pt-16 pb-20">
     <div class="container space-y-12 px-4 md:px-6">
@@ -479,3 +476,12 @@
     </div>
   </section>
 </main>
+
+<footer class="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
+  <p class="text-sm text-gray-600">© SAFESEC Formation. Tous droits réservés.</p>
+  <nav class="sm:ml-auto flex gap-4 sm:gap-6 ">
+    <p class="text-sm hover:text-blue-600 cursor-pointer" (click)="navigateTo('legal-information','d')">
+      Mentions légales
+    </p>
+  </nav>
+</footer>
