@@ -81,7 +81,9 @@ export class TrainingFormComponent implements OnInit {
   *                           un fragment spécifique au sein du composant.
   */
   navigateTo(component: string, section: string) {
-    this.router.navigate([component, { redirectionSection: section }]);
+    this.router.navigate([component, { redirectionSection: section }]).then(() => {
+      window.scrollTo(0, 0);
+    });
   }
 
   /**
