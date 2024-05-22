@@ -154,8 +154,8 @@
                                     </label>
                                     <input
                                         class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:cursor-not-allowed disabled:opacity-50"
-                                        id="chosenTrainingName" name="chosenTrainingName"
-                                        [value]="chosenTrainingName" [disabled]="true" #inputField />
+                                        id="chosenTrainingName" name="chosenTrainingName" [value]="chosenTrainingName"
+                                        [disabled]="true" #inputField />
                                 </div>
                                 <div class="space-y-2">
                                     <label class="text-sm font-medium leading-none" for="personNumberMail">
@@ -180,42 +180,53 @@
                                 </div>
                                 <div class="space-y-2 relative">
                                     <label class="text-sm font-medium leading-none" for="trainingDateMail">
-                                      Date souhaitée de la formation
+                                        Date souhaitée de la formation
                                     </label>
-                                    <input type="text" #inputField id="trainingDateMail" [(ngModel)]="trainingDateMail" (focus)="focus()" (blur)="blur()" placeholder="Sélectionnez une date" name="trainingDateMail" readonly
-                                      class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-                                    <div class="absolute z-10 w-full flex flex-col animate-appear" *ngIf="active" (mousedown)="prevent($event)">
-                                      <div class="bg-blue-500 text-white pb-3 pt-1 flex flex-col items-center">
-                                        <div class="flex justify-between items-center w-full h-10 px-4">
-                                          <fa-icon (click)="!isCurrentMonth() && setPreviousMonth()" [icon]="icons.faChevronLeft" [ngClass]="{ 'text-gray-400 cursor-not-allowed': isCurrentMonth(), 'cursor-pointer': !isCurrentMonth() }" class="text-lg"></fa-icon>
-                                          <div class="text-lg">
-                                            {{ monthYearFormatted }}
-                                          </div>
-                                          <fa-icon class="cursor-pointer text-lg" (click)="setNextMonth()" [icon]="icons.faChevronRight"></fa-icon>
+                                    <input type="text" #inputField id="trainingDateMail" [(ngModel)]="trainingDateMail"
+                                        (focus)="focus()" (blur)="blur()" placeholder="Sélectionnez une date"
+                                        name="trainingDateMail" readonly
+                                        class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                                    <div class="absolute z-10 w-full flex flex-col animate-appear" *ngIf="active"
+                                        (mousedown)="prevent($event)">
+                                        <div class="bg-blue-500 text-white pb-3 pt-1 flex flex-col items-center">
+                                            <div class="flex justify-between items-center w-full h-10 px-4">
+                                                <fa-icon (click)="!isCurrentMonth() && setPreviousMonth()"
+                                                    [icon]="icons.faChevronLeft"
+                                                    [ngClass]="{ 'text-gray-400 cursor-not-allowed': isCurrentMonth(), 'cursor-pointer': !isCurrentMonth() }"
+                                                    class="text-lg"></fa-icon>
+                                                <div class="text-lg">
+                                                    {{ monthYearFormatted }}
+                                                </div>
+                                                <fa-icon class="cursor-pointer text-lg" (click)="setNextMonth()"
+                                                    [icon]="icons.faChevronRight"></fa-icon>
+                                            </div>
+                                            <div class="flex justify-between w-full text-sm">
+                                                <div class="flex-1 text-center" *ngFor="let day of days">
+                                                    {{ day | slice:0:3 }}
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="flex justify-between w-full text-sm">
-                                          <div class="flex-1 text-center" *ngFor="let day of days">
-                                            {{ day | slice:0:3 }}
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="flex flex-col bg-white">
-                                        <div class="flex transition-all duration-150" [ngClass]="{ 'animate-swipeLeft': swipeLeft, 'animate-swipeRight': swipeRight }" *ngFor="let row of calendarDays">
-                                          <div *ngFor="let cell of row" class="flex justify-center items-center border p-2 transition-all duration-300 flex-1 max-w-1/7 relative group"
-                                            [ngClass]="{
+                                        <div class="flex flex-col bg-white">
+                                            <div class="flex transition-all duration-150"
+                                                [ngClass]="{ 'animate-swipeLeft': swipeLeft, 'animate-swipeRight': swipeRight }"
+                                                *ngFor="let row of calendarDays">
+                                                <div *ngFor="let cell of row"
+                                                    class="flex justify-center items-center border p-2 transition-all duration-300 flex-1 max-w-1/7 relative group"
+                                                    [ngClass]="{
                                               'cursor-pointer hover:text-blue-600': !isDisabled(cell),
                                               'bg-gray-200 text-gray-400 cursor-not-allowed': isDisabled(cell),
                                               'text-blue-500': isSelected(cell)
-                                            }"
-                                            [style.height]="cellHeightUnit"
-                                            (click)="!isDisabled(cell) && selectDay(cell)">
-                                            {{ cell.day }}
-                                            <div *ngIf="!isDisabled(cell)" class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full h-1 bg-blue-500 transition-transform duration-300 scale-x-0 group-hover:scale-x-100 origin-center"></div>
-                                          </div>
+                                            }" [style.height]="cellHeightUnit"
+                                                    (click)="!isDisabled(cell) && selectDay(cell)">
+                                                    {{ cell.day }}
+                                                    <div *ngIf="!isDisabled(cell)"
+                                                        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full h-1 bg-blue-500 transition-transform duration-300 scale-x-0 group-hover:scale-x-100 origin-center">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                      </div>
                                     </div>
-                                  </div>
+                                </div>
                             </div>
                         </div>
                         <div class="space-y-2">
@@ -229,7 +240,7 @@
                                 [(ngModel)]="moreInformationMail" #inputField></textarea>
                         </div>
                         <button
-                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full bg-blue-500 text-white hover:bg-blue-600"
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full bg-blue-500 text-white hover:bg-blue-600"
                             (click)="sendMail()">
                             Envoyer la demande de formation
                         </button>

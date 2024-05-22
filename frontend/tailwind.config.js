@@ -1,4 +1,5 @@
 import daisyui from "daisyui"
+
 module.exports = {
   content: [
     "./src/**/*.{html,ts,scss}",
@@ -44,4 +45,7 @@ module.exports = {
     },
   },
   plugins: [daisyui],
+  daisyui: {
+    themes: ["light"],
+  },
 }

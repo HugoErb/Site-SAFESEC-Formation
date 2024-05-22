@@ -6,6 +6,7 @@ import { CommonService } from '../common.service';
 // Font Awesome Icons
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-legal-infos',
@@ -14,9 +15,9 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './legal-infos.component.html'
 })
 export class LegalInfosComponent {
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private commonService: CommonService) {
+  constructor(private router: Router) {
   }
-  icons = {faBars};
+  icons = {faBars, faCircleArrowLeft};
   burgerMenuOpened: boolean = false;
 
   /**
