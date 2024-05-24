@@ -52,15 +52,6 @@ export class LegalInfosComponent {
   }
 
   /**
-  * Navigue vers la route d'accueil et inclut une section de redirection dans les paramètres de la route.
-  * 
-  * @param {string} section - La section de la route d'accueil vers laquelle naviguer. Cette valeur sera incluse en tant que paramètre dans la navigation.
-  */
-  navigateToHome(section: string) {
-    this.router.navigate(['home', { redirectionSection: section }]);
-  }
-
-  /**
   * Sert à ouvrir ou fermer le menu burger en inversant l'état actuel du menu. 
   * Elle arrête également la propagation de l'événement de clic pour éviter des interactions indésirables avec d'autres éléments de l'interface utilisateur.
   * 
