@@ -10,9 +10,9 @@ export class MailService {
   constructor(private http: HttpClient) { }
 
   sendMail(data: any, trainingRequest: boolean): Observable<any> {
-    let apiUrl = 'http://localhost:3000/send-mail'
+    let apiUrl = '/send-mail'
     if (trainingRequest) {
-      apiUrl = 'http://localhost:3000/send-mail-training-request'
+      apiUrl = '/send-mail-training-request'
     }
     
     return this.http.post(apiUrl, data);
