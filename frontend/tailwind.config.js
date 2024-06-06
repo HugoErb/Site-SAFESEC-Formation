@@ -1,4 +1,3 @@
-import { prefix } from "@fortawesome/free-brands-svg-icons"
 import daisyui from "daisyui"
 
 module.exports = {
