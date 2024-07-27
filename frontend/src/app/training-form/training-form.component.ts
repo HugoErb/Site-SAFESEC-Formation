@@ -18,7 +18,7 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './training-form.component.html'
 })
 export class TrainingFormComponent implements OnInit {
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private commonService: CommonService) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, protected commonService: CommonService) {
   }
   icons = { faCircleArrowLeft, faBars, faChevronRight, faChevronLeft };
   burgerMenuOpened: boolean = false;
@@ -95,18 +95,6 @@ export class TrainingFormComponent implements OnInit {
   toggleBurgerMenu(event: MouseEvent): void {
     event.stopPropagation();
     this.burgerMenuOpened = !this.burgerMenuOpened;
-  }
-
-  /**
-  * Filtre et formate la saisie d'un numéro de téléphone dans un champ de saisie HTML.
-  * Seules les valeurs numériques sont conservées, et un espace est ajouté tous les deux chiffres.
-  * Limite la saisie à un maximum de 10 chiffres.
-  * 
-  * @param event L'événement d'entrée déclenché lors de la saisie dans le champ de saisie.
-  *              L'événement doit être de type `Event`.
-  */
-  formatAndRestrictPhoneInput(event: Event): void {
-    this.phoneNumberMail = this.commonService.formatAndRestrictPhoneInput(event);
   }
 
   /**
