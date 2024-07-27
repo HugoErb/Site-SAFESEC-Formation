@@ -4,28 +4,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonService } from '../common.service';
 
-// Font Awesome Icons
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { faWheelchair } from '@fortawesome/free-solid-svg-icons';
-import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons';
-import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
-import { faUsers } from '@fortawesome/free-solid-svg-icons';
-import { faBookOpen } from '@fortawesome/free-solid-svg-icons';
-import { faPersonWalkingArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
   constructor(private router: Router, private activatedRoute: ActivatedRoute, protected commonService: CommonService) { }
-  icons = { faLinkedin, faEnvelope, faWheelchair, faCalendarCheck, faGraduationCap, faUsers, faBookOpen, faPersonWalkingArrowRight, faCheck, faBars };
   burgerMenuOpened: boolean = false;
 
   // Variables concernants la page de formulaire de demande de formation

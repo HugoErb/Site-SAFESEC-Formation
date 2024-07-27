@@ -22,7 +22,7 @@
 
   <!-- Menu burger pour les petits écrans -->
   <button class="lg:hidden ml-auto mr-3" (click)="toggleBurgerMenu($event)">
-    <fa-icon class="text-2xl text-gray-700" [icon]="icons.faBars"></fa-icon>
+    <i class="fa-solid fa-bars text-2xl text-gray-700"></i>
   </button>
   <div #menuBurger class="lg:hidden absolute top-full left-0 w-full bg-white shadow-md animate-appear mt-[-5px]"
     *ngIf="burgerMenuOpened">
@@ -82,7 +82,7 @@
       <div
         class="mx-auto grid items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-6xl lg:grid-cols-3 justify-items-center">
         <div class="grid gap-1 text-center">
-          <fa-icon class="text-4xl mb-2 text-gray-800" [icon]="icons.faBookOpen"></fa-icon>
+          <i class=" fa-solid fa-book-open text-4xl mb-2 text-gray-800"></i>
           <h3 class="text-lg font-bold">Catalogue complet de formations</h3>
           <p class="text-sm text-gray-500">
             Notre gamme de formations, élaborées à partir d'expériences opérationnelles, est conçue pour
@@ -91,14 +91,13 @@
         </div>
         <div class="grid gap-1 text-center">
           <i class="fa-solid fa-check text-4xl mb-2 text-gray-800"></i>
-          <!-- <fa-icon class="text-4xl mb-2 text-gray-800" [icon]="icons.faCalendarCheck"></fa-icon> -->
           <h3 class="text-lg font-bold text-gray-800">Flexibilité et adaptabilité</h3>
           <p class="text-sm text-gray-500">Nous offrons une flexibilité d'horaires et de lieux de formation pour
             s'adapter au mieux aux besoins
             des entreprises et des collaborateurs.</p>
         </div>
         <div class="grid gap-1 text-center">
-          <fa-icon class="text-4xl mb-2" [icon]="icons.faWheelchair"></fa-icon>
+          <i class=" fa-solid fas fa-wheelchair text-4xl mb-2"></i>
           <h3 class="text-lg font-bold text-gray-800">Adapté aux personnes handicapées</h3>
           <p class="text-sm text-gray-500">
             Nos formations sont adaptées pour garantir l'accessibilité aux participants handicapés, pour un
@@ -106,7 +105,7 @@
           </p>
         </div>
         <div class="grid gap-1 text-center">
-          <fa-icon class="text-4xl mb-2 text-gray-800" [icon]="icons.faGraduationCap"></fa-icon>
+          <i class="fa-solid fas fa-graduation-cap text-4xl mb-2 text-gray-800"></i>
           <h3 class="text-lg font-bold text-gray-800">Certification des acquis</h3>
           <p class="text-sm text-gray-500">
             À la conclusion de certaines formations, obtenez la certification qui atteste de
@@ -114,7 +113,7 @@
           </p>
         </div>
         <div class="grid gap-1 text-center">
-          <fa-icon class="text-4xl mb-2 text-gray-800" [icon]="icons.faPersonWalkingArrowRight"></fa-icon>
+          <i class="fa-solid fa-person-walking-arrow-right text-4xl mb-2 text-gray-800"></i>
           <h3 class="text-lg font-bold text-gray-800">Mises en situation réalistes</h3>
           <p class="text-sm text-gray-500">
             Nos formations alternent apprentissages théoriques et scénarios pratiques pour permettre une application
@@ -122,7 +121,7 @@
           </p>
         </div>
         <div class="grid gap-1 text-center">
-          <fa-icon class="text-4xl mb-2 text-gray-800" [icon]="icons.faUsers"></fa-icon>
+          <i class="fa-solid fa-users text-4xl mb-2 text-gray-800"></i>
           <h3 class="text-lg font-bold text-gray-800">Travail de groupe</h3>
           <p class="text-sm text-gray-500">
             Nous proposons des ateliers d'apprentissage collectifs conçus pour favoriser et stimuler l'échange d'idées
@@ -166,7 +165,8 @@
             <div class="mt-4 text-gray-500">
               Retrouvez moi également sur
               <a href="https://sdcs-formation.fr/" target="_blank"
-                class="relative text-blue-500 font-semibold before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-blue-500 before:scale-x-0 before:transition-transform before:duration-200 hover:before:scale-x-100"> le site de la SDCS.</a>
+                class="relative text-blue-500 font-semibold before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-blue-500 before:scale-x-0 before:transition-transform before:duration-200 hover:before:scale-x-100">
+                le site de la SDCS.</a>
             </div>
             <a class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 text-sm inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white"
               href="../../assets/pdf/CV.pdf" target="_blank">
@@ -176,11 +176,11 @@
           <div class="flex justify-center gap-6 mt-4">
             <div (click)="scrollToSection('contact')"
               class="text-gray-500 hover:text-blue-600 cursor-pointer text-3xl transition-colors">
-              <fa-icon [icon]="icons.faEnvelope"></fa-icon>
+              <i class="fa-solid fa-envelope"></i>
             </div>
             <a href="https://www.linkedin.com/in/christophe-e-7a6813167/" target="_blank"
               class="text-gray-500 hover:text-blue-600 text-3xl transition-colors">
-              <fa-icon [icon]="icons.faLinkedin"></fa-icon>
+              <i class="fa-brands fa-linkedin"></i>
             </a>
           </div>
         </div>
@@ -206,16 +206,16 @@
           <div class="p-6 flex-grow">
             <ul class="space-y-2">
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Sensibilisation sur les conduites à tenir en cas d'agression collective avec arme et/ou d'attaque
                 terroriste
               </li>
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Prise en charge initiale des victimes, en attente des secours spécialisés
               </li>
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 SAFE MARCHE RYAN
               </li>
             </ul>
@@ -239,15 +239,15 @@
           <div class="p-6 flex-grow">
             <ul class="space-y-2">
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Sensibilisation à la gestion des agressions verbales et/ou physiques
               </li>
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Sensibilisation aux techniques de protection et de défense
               </li>
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Lutte contre les violences intrafamiliales
               </li>
             </ul>
@@ -263,19 +263,19 @@
           <div class="p-6 flex-grow">
             <ul class="space-y-2">
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Initiation à la journée ou sur un week-end
               </li>
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Formation à la semaine
               </li>
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Information des élus
               </li>
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Information au titre d'une profession
               </li>
             </ul>
@@ -291,19 +291,19 @@
           <div class="p-6 flex-grow">
             <ul class="space-y-2">
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Audit de sûreté
               </li>
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Conseil et accompagnement
               </li>
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Vérification et actualisation des mesures mises en place
               </li>
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Mises en situation
               </li>
             </ul>
@@ -319,15 +319,15 @@
           <div class="p-6 flex-grow">
             <ul class="space-y-2">
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Formation initiale ou continue aux armes de catégorie B et D
               </li>
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Maniement, emploi sécurisé et usage raisonné des armes à feu
               </li>
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Pratique opérationnelle du bâton de défense
               </li>
             </ul>
@@ -349,15 +349,15 @@
           <div class="p-6 flex-grow">
             <ul class="space-y-2">
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Formation initiale
               </li>
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Maintien et actualisation des compétences (MAC)
               </li>
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Délivrance du certificat de Sauveteur Secouriste du Travail
               </li>
             </ul>
@@ -375,15 +375,15 @@
           <div class="p-6 flex-grow">
             <ul class="space-y-2">
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Formation initiale
               </li>
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Formation continue
               </li>
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Délivrance du certificat de compétences PSC1
               </li>
             </ul>
@@ -399,11 +399,11 @@
           <div class="p-6 flex-grow">
             <ul class="space-y-2">
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Programme standard ou personnalisé
               </li>
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Délivrance d'une attestation de participation
               </li>
             </ul>
@@ -419,7 +419,7 @@
           <div class="p-6 flex-grow">
             <ul class="space-y-2">
               <li>
-                <fa-icon class="text-sm text-gray-700 mr-1" [icon]="icons.faCheck"></fa-icon>
+                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
                 Programme sur mesure, conçu selon vos besoins spécifiques
               </li>
             </ul>

@@ -23,7 +23,7 @@
 
     <!-- Menu burger pour les petits écrans -->
     <button class="lg:hidden ml-auto mr-3" (click)="toggleBurgerMenu($event)">
-        <fa-icon class="text-2xl text-gray-700" [icon]="icons.faBars"></fa-icon>
+        <i class="fa-solid fa-bars text-2xl text-gray-700"></i>
     </button>
     <div #menuBurger class="lg:hidden absolute top-full left-0 w-full bg-white shadow-md animate-appear mt-[-5px]"
         *ngIf="burgerMenuOpened">
@@ -41,8 +41,7 @@
 <main class="flex-1 container mx-auto pt-16">
     <div class="fixed top-16 left-4 p-4 lg:block hidden">
         <button (click)="navigateTo('home','contact')" class="focus:outline-none cursor-pointer">
-            <fa-icon class="text-5xl mb-2 text-blue-500 hover:text-blue-600 transition-colors"
-                [icon]="icons.faCircleArrowLeft"></fa-icon>
+            <i class="fa-solid fa-circle-arrow-left text-5xl mb-2 text-blue-500 hover:text-blue-600 transition-colors"></i>
         </button>
     </div>
     <section class="animate-appear mx-4">

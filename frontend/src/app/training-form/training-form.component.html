@@ -23,7 +23,7 @@
 
     <!-- Menu burger pour les petits écrans -->
     <button class="lg:hidden ml-auto mr-3" (click)="toggleBurgerMenu($event)">
-        <fa-icon class="text-2xl text-gray-700" [icon]="icons.faBars"></fa-icon>
+        <i class="fa-solid fa-bars text-2xl text-gray-700"></i>
     </button>
     <div #menuBurger class="lg:hidden absolute top-full left-0 w-full bg-white shadow-md animate-appear mt-[-5px]"
         *ngIf="burgerMenuOpened">
@@ -41,8 +41,8 @@
 <main class="flex-1 container mx-auto">
     <div class="fixed top-16 left-4 p-4 lg:block hidden">
         <button (click)="navigateTo('home','catalogue')" class="focus:outline-none cursor-pointer">
-            <fa-icon class="text-5xl mb-2 text-blue-500 hover:text-blue-600 transition-colors"
-                [icon]="icons.faCircleArrowLeft"></fa-icon>
+            <i
+                class="fa-solid fa-circle-arrow-left text-5xl mb-2 text-blue-500 hover:text-blue-600 transition-colors"></i>
         </button>
     </div>
     <section class="w-full pt-24 md:pb-20 lg:pb-20 md:pt-32 lg:pt-32 pb-10 animate-appear">
@@ -190,15 +190,14 @@
                                         (mousedown)="prevent($event)">
                                         <div class="bg-blue-500 text-white pb-3 pt-1 flex flex-col items-center">
                                             <div class="flex justify-between items-center w-full h-10 px-4">
-                                                <fa-icon (click)="!isCurrentMonth() && setPreviousMonth()"
-                                                    [icon]="icons.faChevronLeft"
+                                                <i (click)="!isCurrentMonth() && setPreviousMonth()"
                                                     [ngClass]="{ 'text-gray-400 cursor-not-allowed': isCurrentMonth(), 'cursor-pointer': !isCurrentMonth() }"
-                                                    class="text-lg"></fa-icon>
+                                                    class="fa-solid fa-chevron-left text-lg"></i>
                                                 <div class="text-lg">
                                                     {{ monthYearFormatted }}
                                                 </div>
-                                                <fa-icon class="cursor-pointer text-lg" (click)="setNextMonth()"
-                                                    [icon]="icons.faChevronRight"></fa-icon>
+                                                <i class="fa-solid fa-chevron-left cursor-pointer text-lg"
+                                                    (click)="setNextMonth()"></i>
                                             </div>
                                             <div class="flex justify-between w-full text-sm">
                                                 <div class="flex-1 text-center" *ngFor="let day of days">

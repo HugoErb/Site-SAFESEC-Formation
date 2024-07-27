@@ -4,23 +4,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonService } from '../common.service';
 
-// Font Awesome Icons
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-
 @Component({
   selector: 'app-training-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, FontAwesomeModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './training-form.component.html'
 })
 export class TrainingFormComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute, protected commonService: CommonService) {
   }
-  icons = { faCircleArrowLeft, faBars, faChevronRight, faChevronLeft };
   burgerMenuOpened: boolean = false;
 
   // Variables pour le mail
