@@ -62,7 +62,7 @@ app.post('/send-mail', async (req, res) => {
     'safesecformation@gmail.com',
     email,
     `SAFESEC Formation - Réception de votre message`,
-    `Bonjour !\n\nNous avons bien reçu votre message. Nous allons l'examiner et nous y répondrons dans les plus brefs délais.\nEn attendant, vous pouvez visiter notre site internet ou mon Linkedin. Merci pour votre confiance !\n\nSAFESEC Formation`
+    `Bonjour !\n\nNous avons bien reçu votre message. Nous allons l'examiner et nous y répondrons dans les plus brefs délais.\nEn attendant, vous pouvez visiter le site internet ou mon Linkedin. Merci pour votre confiance !\n\nChristophe ERIBON via SAFESEC Formation`
   );
 
   try {
@@ -122,7 +122,7 @@ app.post('/send-mail-training-request', async (req, res) => {
     from: 'safesecformation@gmail.com',
     to: email,
     subject: `SAFESEC Formation - Votre demande de formation`,
-    text: `Bonjour ${referentName} !\n\nNous avons bien reçu votre demande pour la formation "${chosenTraining}". Nous allons examiner votre demande et vous répondrons dans les plus brefs délais.\n\nMerci pour votre confiance ! \n\nSAFESEC Formation`
+    text: `Bonjour ${referentName} !\n\nNous avons bien reçu votre demande pour la formation "${chosenTraining}". Nous allons examiner votre demande et vous répondrons dans les plus brefs délais.\n\nMerci pour votre confiance ! \n\nChristophe ERIBON via SAFESEC Formation`
   };
 
   try {
