@@ -1,7 +1,6 @@
-import { Component, ElementRef, HostListener, ViewChild} from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { CommonService } from '../common.service';
 
 // Font Awesome Icons
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -17,7 +16,7 @@ import { faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons';
 export class LegalInfosComponent {
   constructor(private router: Router) {
   }
-  icons = {faBars, faCircleArrowLeft};
+  icons = { faBars, faCircleArrowLeft };
   burgerMenuOpened: boolean = false;
 
   /**
