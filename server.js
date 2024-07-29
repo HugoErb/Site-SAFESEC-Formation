@@ -138,4 +138,12 @@ app.post('/send-mail-training-request', async (req, res) => {
   }
 });
 
+if (process.env.NODE_ENV !== 'dev') {
+  var distDir = __dirname + "/dist/";
+  app.use(express.static(distDir));
+
+  app.get('*', (req, res) => {
+    res.sendFile(__dirname + '/dist/index.html');
+  });
+}
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

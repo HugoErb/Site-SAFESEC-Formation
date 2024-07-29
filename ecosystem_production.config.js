@@ -1,12 +1,12 @@
 module.exports = {
     apps: [
         {
-            name: "production",
+            name: "production_safesec_formation",
             script: "./server.js",
             watch: true,
             env: {
                 "NODE_ENV": "production",
-                "PORT": 3003
+                "PORT": 3000
             }
         }
     ]
