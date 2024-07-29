@@ -14,11 +14,6 @@ if (process.env.NODE_ENV === 'dev') {
     origin: 'http://localhost:4200/',
     methods: ["GET", "POST"]
   }
-} else if (process.env.NODE_ENV === 'prd') {
-  optionsCors.cors = {
-    origin: 'http://localhost:4200/',
-    methods: ["GET", "POST"]
-  }
 }
 
 const app = express();
