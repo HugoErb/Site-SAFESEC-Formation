@@ -1,4 +1,4 @@
-import { ElementRef, Injectable, QueryList } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { MailService } from './mail.service';
 import Swal from 'sweetalert2';
 import axios from 'axios';
