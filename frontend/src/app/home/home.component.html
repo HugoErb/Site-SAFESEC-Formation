@@ -207,7 +207,7 @@
             <ul class="space-y-2">
               <li>
                 <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Sensibilisation sur les conduites à tenir en cas d'agression collective avec arme et/ou d'attaque
+                Formation sur les conduites à tenir en cas d'agression collective avec arme et/ou d'attaque
                 terroriste
               </li>
               <li>
@@ -216,7 +216,8 @@
               </li>
               <li>
                 <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                SAFE MARCHE RYAN
+                <a href="https://www.defense.gouv.fr/sante/actualites/safe-marche-ryan-bons-gestes-sauver-vie" target="_blank"
+                    class="relative text-blue-500 font-semibold before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-blue-500 before:scale-x-0 before:transition-transform before:duration-200 hover:before:scale-x-100">SAFE MARCHE RYAN</a>
               </li>
             </ul>
           </div>
@@ -233,18 +234,17 @@
             Populaire
           </div>
           <div class="flex flex-col space-y-1.5 p-6 text-center">
-            <h3 class="text-2xl font-semibold leading-none tracking-tight">Gestion des comportements agressifs et/ou
-              violents</h3>
+            <h3 class="text-2xl font-semibold leading-none tracking-tight">Gestion des incivilités et des agressions</h3>
           </div>
           <div class="p-6 flex-grow">
             <ul class="space-y-2">
               <li>
                 <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Sensibilisation à la gestion des agressions verbales et/ou physiques
+                Formation à la gestion des agressions verbales et/ou physiques
               </li>
               <li>
                 <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Sensibilisation aux techniques de protection et de défense
+                Formation aux techniques de protection et de défense
               </li>
               <li>
                 <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
@@ -284,37 +284,40 @@
               class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
               cette formation</button></div>
         </div>
-        <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
-          <div class="flex flex-col space-y-1.5 p-6 text-center">
-            <h3 class="text-2xl font-semibold leading-none tracking-tight">Sécurisation de site</h3>
-          </div>
-          <div class="p-6 flex-grow">
-            <ul class="space-y-2">
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Audit de sûreté
-              </li>
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Conseil et accompagnement
-              </li>
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Vérification et actualisation des mesures mises en place
-              </li>
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Mises en situation
-              </li>
-            </ul>
-          </div>
-          <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
-              class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-              cette formation</button></div>
+        <div
+            class="rounded-lg bg-card text-card-foreground shadow-sm w-[340px] bg-white border-2 border-blue-500 relative flex flex-col">
+            <div
+                class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white px-2 py-1 rounded-md">
+                Populaire
+            </div>
+            <div class="flex flex-col space-y-1.5 p-6 text-center">
+                <h3 class="text-2xl font-semibold leading-none tracking-tight">Premiers secours citoyen
+                    (PSC)
+                </h3>
+            </div>
+            <div class="p-6 flex-grow">
+                <ul class="space-y-2">
+                    <li>
+                        <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                        Formation initiale
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                        Formation continue
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                        Délivrance du certificat de compétences PSC (sous habilitation <a href="https://www.anims-secourisme.fr/" target="_blank" class="relative text-blue-500 font-semibold before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-blue-500 before:scale-x-0 before:transition-transform before:duration-200 hover:before:scale-x-100">"ANIMS"</a>)
+                    </li>
+                </ul>
+            </div>
+            <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
+                    class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
+                    cette formation</button></div>
         </div>
         <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
           <div class="flex flex-col space-y-1.5 p-6 text-center">
-            <h3 class="text-2xl font-semibold leading-none tracking-tight">Agent de sécurité armé</h3>
+            <h3 class="text-2xl font-semibold leading-none tracking-tight">Agent de sécurité renforcé armé</h3>
           </div>
           <div class="p-6 flex-grow">
             <ul class="space-y-2">
@@ -367,34 +370,36 @@
               cette formation</button></div>
         </div>
         <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
-          <div class="flex flex-col space-y-1.5 p-6 text-center">
-            <h3 class="text-2xl font-semibold leading-none tracking-tight">Premiers secours citoyen
-              (PSC)
-            </h3>
-          </div>
-          <div class="p-6 flex-grow">
-            <ul class="space-y-2">
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Formation initiale
-              </li>
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Formation continue
-              </li>
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Délivrance du certificat de compétences PSC
-              </li>
-            </ul>
-          </div>
-          <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
-              class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-              cette formation</button></div>
+            <div class="flex flex-col space-y-1.5 p-6 text-center">
+                <h3 class="text-2xl font-semibold leading-none tracking-tight">Sécurisation de site</h3>
+            </div>
+            <div class="p-6 flex-grow">
+                <ul class="space-y-2">
+                    <li>
+                        <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                        Audit de sûreté
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                        Conseil et accompagnement
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                        Vérification et actualisation des mesures mises en place
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                        Mises en situation
+                    </li>
+                </ul>
+            </div>
+            <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
+                    class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
+                    cette formation</button></div>
         </div>
         <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
           <div class="flex flex-col space-y-1.5 p-6 text-center">
-            <h3 class="text-2xl font-semibold leading-none tracking-tight">Sauvetage opérationnel (Sensibilisation)</h3>
+            <h3 class="text-2xl font-semibold leading-none tracking-tight">Sauvetage opérationnel</h3>
           </div>
           <div class="p-6 flex-grow">
             <ul class="space-y-2">
