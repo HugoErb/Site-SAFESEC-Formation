@@ -1,24 +1,30 @@
 #!/bin/bash
 
-# Définissez vos chemins
-dossierCourant=$(pwd)
-root="$dossierCourant"  # La racine de votre site est le dossier courant
-distFolder="$dossierCourant/frontend/dist"
+# Définir les chemins nécessaires
+dossierRacine=$(pwd)  # Le dossier racine du site est le dossier courant
+dossierDistFrontend="$dossierRacine/frontend/dist"
+dossierDistRacine="$dossierRacine/dist"
 
-# Supprimez le dossier dist dans frontend
-rm -rf $distFolder
+# Supprimer le dossier dist à la racine
+rm -rf $dossierDistRacine
 
-# Changez le répertoire courant dans le dossier frontend
+# Mettre à jour le dépôt avec git
+git pull origin
+
+# Se déplacer dans le dossier frontend pour le build
 cd frontend/
 
-# Générez le build du frontend
+# Gérer le build du frontend
 npm run build
 
-# Revenez dans le dossier courant
-cd $dossierCourant
+# Attendre la fin du processus de build
+wait
 
-# Supprimez le dossier dist dans la racine du site
-rm -rf $root/dist
+# Revenir au dossier racine
+cd $dossierRacine
 
-# Copiez le dossier dist dans la racine du site
-cp -r $distFolder $root/dist
+# Copier le dossier frontend/dist vers la racine et le renommer dist
+cp -r $dossierDistFrontend $dossierDistRacine
+
+# Redémarrer l'application avec PM2 (id 0 dans cet exemple)
+pm2 restart 0
