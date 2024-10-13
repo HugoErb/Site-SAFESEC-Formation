@@ -26,6 +26,7 @@ export class TrainingFormComponent implements OnInit {
   emailMail: string = "";
   phoneNumberMail: string = "";
   companyMail: string = "";
+  companySiretMail: string = "";
   chosenTrainingName = "";
   personNumberMail: string = "";
   jobTrainedMail: string = "";
@@ -118,9 +119,9 @@ export class TrainingFormComponent implements OnInit {
   }
 
   /**
-  * Filtre et formate la saisie d'un code postal dans un champ de saisie HTML.
+  * Filtre et formate la saisie d'un nombre de personnes dans un champ de saisie HTML.
   * Seules les valeurs numériques sont conservées.
-  * Limite la saisie à un maximum de 5 chiffres et s'assure que la valeur ne dépasse pas 98890.
+  * Limite la saisie à un maximum de 2 chiffres et s'assure que la valeur ne dépasse pas 12.
   * 
   * @param event L'événement d'entrée déclenché lors de la saisie dans le champ de saisie.
   *              L'événement doit être de type `Event`.
@@ -144,6 +145,29 @@ export class TrainingFormComponent implements OnInit {
     this.personNumberMail = numbers;
     input.value = numbers;
   }
+
+    /**
+    * Filtre et formate la saisie d'un numéro de SIRET dans un champ de saisie HTML.
+    * Seules les valeurs numériques sont conservées.
+    * Limite la saisie à un maximum de 14 chiffres.
+    * 
+    * @param event L'événement d'entrée déclenché lors de la saisie dans le champ de saisie.
+    *              L'événement doit être de type `Event`.
+    */
+    formatAndRestrictCompanySiretInput(event: Event): void {
+        let input = event.target as HTMLInputElement;
+        let value = input.value;
+
+        // Supprimer tout caractère non numérique
+        let numbers = value.replace(/\D/g, '');
+
+        // Limiter à 14 chiffres
+        numbers = numbers.slice(0, 14);
+
+        // Mettre à jour la valeur du modèle et de l'input
+        this.companySiretMail = numbers;
+        input.value = numbers;
+    }
 
   /**
   * Prépare et envoie un email en utilisant le service commun.
