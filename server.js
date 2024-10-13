@@ -80,10 +80,10 @@ app.post('/send-mail', async (req, res) => {
 
 
 app.post('/send-mail-training-request', async (req, res) => {
-  let [city, postalCode, country, trainingAddress, referentName, email, phoneNumber, companyName, chosenTraining, personNumber, workTrained, trainingDate, moreInformation] = Object.values(req.body);
+    let [city, postalCode, country, trainingAddress, referentName, email, phoneNumber, companyName, companySiret, chosenTraining, personNumber, workTrained, trainingDate, moreInformation] = Object.values(req.body);
 
   // On vérifie que les valeurs nécessaires sont bien présentes
-  if (!city || !postalCode || !country || !trainingAddress || !referentName || !email || !phoneNumber || !companyName || !chosenTraining || !personNumber || !workTrained || !trainingDate) {
+    if (!city || !postalCode || !country || !trainingAddress || !referentName || !email || !phoneNumber || !companyName || !companySiret || !chosenTraining || !personNumber || !workTrained || !trainingDate) {
     return res.status(400).json({ error: 'Certaines valeurs nécessaires sont manquantes.' });
   }
 
@@ -101,11 +101,12 @@ app.post('/send-mail-training-request', async (req, res) => {
       Ville : ${city}
       Code postal : ${postalCode}
       Pays : ${country}
-      Adresse de la formation : ${trainingAddress}
+      Adresse de la formation : ${trainingAddress}\n
       Nom du référent : ${referentName}
       Email : ${email}
       Téléphone : ${phoneNumber}
       Entreprise : ${companyName}
+      SIRET : ${companySiret}\n
       Formation choisie : ${chosenTraining}
       Nombre de personnes : ${personNumber}
       Métier formé : ${workTrained}
