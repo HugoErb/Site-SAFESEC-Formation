@@ -106,7 +106,6 @@ export class CommonService {
         const postalCodeRegex = /^\d{5}$/;
 
         for (const [label, value] of inputLabelMap.entries()) {
-            console.log(label);
             
             const trimmedValue = value.trim();
             const lowerCaseLabel = label.toLowerCase();
