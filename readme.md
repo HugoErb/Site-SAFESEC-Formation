@@ -28,20 +28,4 @@ Le site est composé de plusieurs sections principales pour faciliter la navigat
 
 4. **Formulaire de demande de formation** :
    - Un formulaire permettant aux utilisateurs de faire une demande de formation pour une formation spécifique.
-   - Ce formulaire inclut des champs pour les informations de localisation, de contact, et de formation souhaitée (nombre de participants, métier formé, date, etc.).  
-
-
-
-## Détails techniques
-
-Le projet est basé sur deux technologies principales :
-
-- **Frontend** : Développé avec Angular, le frontend est conçu pour être réactif, fluide, et interactif. Il inclut un menu de navigation et un formulaire détaillé.
-- **Backend** : Utilisé pour la gestion des requêtes et la configuration du serveur.
-
-### Structure du projet
-
-- `src/` : Dossier principal contenant le code Angular pour les composants, services et styles du site.
-- `assets/` : Images, icônes et logos utilisés dans les différentes sections du site.
-- `styles/` : Styles personnalisés pour l’apparence des différentes pages.
-- `server.js` : Point d'entrée du serveur Node.js pour gérer les requêtes et servir les fichiers Angular.
+   - Ce formulaire inclut des champs pour les informations de localisation, de contact, et de formation souhaitée (nombre de participants, métier formé, date, etc.).
