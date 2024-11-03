@@ -4,6 +4,9 @@
 dossierRacine=$(pwd)  # Le dossier racine du site est le dossier courant
 dossierDistRacine="$dossierRacine/dist"  # Dossier de destination à la racine
 
+# Nom de l'application PM2 (défini dans ecosystem.config.js)
+nomApplication="Safesec Formation"
+
 # Mettre à jour le dépôt avec git en premier
 git pull origin
 
@@ -34,5 +37,10 @@ else
     exit 1
 fi
 
-# Redémarrer l'application avec PM2 (id 0 dans cet exemple)
-pm2 restart 0
+# Redémarrer l'application avec PM2 en utilisant le nom de l'application
+if pm2 describe "$nomApplication" > /dev/null; then
+    pm2 restart "$nomApplication"
+else
+    echo "Erreur : Application '$nomApplication' non trouvée dans PM2."
+    exit 1
+fi
