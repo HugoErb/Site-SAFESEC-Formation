@@ -137,23 +137,23 @@ app.post('/send-mail-training-request', async (req, res) => {
         to: 'safesecformation@gmail.com',
         subject: `Nouvelle demande de formation de ${referentName}`,
         html: `
-        <div style="white-space: pre-line; font-family: Arial, sans-serif;">
-        Ville : ${city}<br>
-        Code postal : ${postalCode}<br>
-        Pays : ${country}<br>
-        Adresse de la formation : ${trainingAddress}<br>
-        <a href="${viaMichelinUrl}" target="_blank">Voir l'itinéraire et le coût du trajet</a><br><br>
-        Nom du référent : ${referentName}<br>
-        Email : ${email}<br>
-        Téléphone : ${phoneNumber}<br>
-        Entreprise : ${companyName}<br>
-        SIRET : ${companySiret}<br><br>
-        Formation choisie : ${chosenTraining}<br>
-        Nombre de personnes : ${personNumber}<br>
-        Métier formé : ${workTrained}<br>
-        Date souhaitée de la formation : ${trainingDate}<br>
-        Informations complémentaires : ${moreInformation}<br>
-        </div>
+            Ville : ${city}<br>
+            Code postal : ${postalCode}<br>
+            Pays : ${country}<br>
+            Adresse de la formation : ${trainingAddress}<br>
+            <a href="${viaMichelinUrl}" target="_blank">Voir l'itinéraire et le coût du trajet</a><br><br>
+
+            Nom du référent : ${referentName}<br>
+            Email : ${email}<br>
+            Téléphone : ${phoneNumber}<br>
+            Entreprise : ${companyName}<br>
+            SIRET : ${companySiret}<br><br>
+
+            Formation choisie : ${chosenTraining}<br>
+            Nombre de personnes : ${personNumber}<br>
+            Métier formé : ${workTrained}<br>
+            Date souhaitée de la formation : ${trainingDate}<br>
+            Informations complémentaires : ${moreInformation}<br>
         `
     };
 
