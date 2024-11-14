@@ -1,3 +1,4 @@
+const axios = require('axios');
 require('dotenv').config();
 const express = require('express');
 const nodemailer = require('nodemailer');
@@ -40,6 +41,7 @@ async function getCoordinates(city) {
             }
         });
         if (response.data && response.data.length > 0) {
+            console.log(response.data[0])
             const { lat, lon } = response.data[0];
             return { lat: parseFloat(lat), lng: parseFloat(lon) };
         } else {
@@ -116,16 +118,11 @@ app.post('/send-mail-training-request', async (req, res) => {
     // Essayer de récupérer les coordonnées pour le lien d'itinéraire
     let viaMichelinUrl;
     const coordinates = await getCoordinates(city);
+    console.log(coordinates)
 
     if (coordinates) {
         const { lat, lng } = coordinates;
-        const startingPoint = 'Annezay';
-        const destination = `${trainingAddress}, ${postalCode} ${city}`;
-        viaMichelinUrl = `https://www.viamichelin.fr/itineraires/resultats?arrival=${encodeURIComponent(
-            destination
-        )}&car=29074~Clio+V+-+Essence~true~false~GASOLINE&currency=eur&departure=${encodeURIComponent(
-            startingPoint
-        )}&distanceSystem=METRIC&energyPrice=1.9009&from=Annezay&itinerary=%7B%22t%22%3A2%2C%22l%22%3A%22Annezay%22%2C%22c%22%3A%7B%22lng%22%3A-0.714026%2C%22lat%22%3A46.009306%7D%7D~%7B%22t%22%3A2%2C%22l%22%3A%22${encodeURIComponent(
+        viaMichelinUrl = `https://www.viamichelin.fr/itineraires/resultats?car=29074~Clio+V+-+Essence~true~false~GASOLINE&currency=eur&distanceSystem=METRIC&energyPrice=1.9009&from=Annezay&itinerary=%7B%22t%22%3A2%2C%22l%22%3A%22Annezay%22%2C%22c%22%3A%7B%22lng%22%3A-0.714026%2C%22lat%22%3A46.009306%7D%7D~%7B%22t%22%3A2%2C%22l%22%3A%22${encodeURIComponent(
             city
         )}%22%2C%22c%22%3A%7B%22lng%22%3A${lng}%2C%22lat%22%3A${lat}%7D%2C%22isArrival%22%3Atrue%7D&selectedRoute=0&showPolandModal=false&to=${encodeURIComponent(
             city
@@ -143,8 +140,8 @@ app.post('/send-mail-training-request', async (req, res) => {
         Ville : ${city}
         Code postal : ${postalCode}
         Pays : ${country}
-        Adresse de la formation : ${trainingAddress}\n
-        Lien de l'itinéraire : ${viaMichelinUrl}
+        Adresse de la formation : ${trainingAddress}
+        Lien de l'itinéraire : ${viaMichelinUrl}\n
         Nom du référent : ${referentName}
         Email : ${email}
         Téléphone : ${phoneNumber}
