@@ -30,7 +30,6 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// Fonction pour obtenir les coordonnées de Nominatim
 async function getCoordinates(city) {
     try {
         const response = await axios.get('https://nominatim.openstreetmap.org/search', {
@@ -38,6 +37,9 @@ async function getCoordinates(city) {
                 q: city,
                 format: 'json',
                 limit: 1
+            },
+            headers: {
+                'User-Agent': 'SAFESEC Formation'
             }
         });
         if (response.data && response.data.length > 0) {
