@@ -43,7 +43,6 @@ async function getCoordinates(city) {
             }
         });
         if (response.data && response.data.length > 0) {
-            console.log(response.data[0])
             const { lat, lon } = response.data[0];
             return { lat: parseFloat(lat), lng: parseFloat(lon) };
         } else {
@@ -120,7 +119,6 @@ app.post('/send-mail-training-request', async (req, res) => {
     // Essayer de récupérer les coordonnées pour le lien d'itinéraire
     let viaMichelinUrl;
     const coordinates = await getCoordinates(city);
-    console.log(coordinates)
 
     if (coordinates) {
         const { lat, lng } = coordinates;
@@ -138,22 +136,24 @@ app.post('/send-mail-training-request', async (req, res) => {
         from: email,
         to: 'safesecformation@gmail.com',
         subject: `Nouvelle demande de formation de ${referentName}`,
-        text: `
-        Ville : ${city}
-        Code postal : ${postalCode}
-        Pays : ${country}
-        Adresse de la formation : ${trainingAddress}
-        Lien de l'itinéraire : ${viaMichelinUrl}\n
-        Nom du référent : ${referentName}
-        Email : ${email}
-        Téléphone : ${phoneNumber}
-        Entreprise : ${companyName}
-        SIRET : ${companySiret}\n
-        Formation choisie : ${chosenTraining}
-        Nombre de personnes : ${personNumber}
-        Métier formé : ${workTrained}
-        Date souhaitée de la formation : ${trainingDate}
-        Informations complémentaires : ${moreInformation}\n
+        html: `
+        <div style="white-space: pre-line; font-family: Arial, sans-serif;">
+        Ville : ${city}<br>
+        Code postal : ${postalCode}<br>
+        Pays : ${country}<br>
+        Adresse de la formation : ${trainingAddress}<br>
+        <a href="${viaMichelinUrl}" target="_blank">Voir l'itinéraire et le coût du trajet</a><br><br>
+        Nom du référent : ${referentName}<br>
+        Email : ${email}<br>
+        Téléphone : ${phoneNumber}<br>
+        Entreprise : ${companyName}<br>
+        SIRET : ${companySiret}<br><br>
+        Formation choisie : ${chosenTraining}<br>
+        Nombre de personnes : ${personNumber}<br>
+        Métier formé : ${workTrained}<br>
+        Date souhaitée de la formation : ${trainingDate}<br>
+        Informations complémentaires : ${moreInformation}<br>
+        </div>
         `
     };
 
