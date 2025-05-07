@@ -1,503 +1,455 @@
 <header class="px-4 lg:px-6 h-16 flex items-center fixed w-full bg-white z-50 shadow-sm border-b border-gray-200">
-  <div class="flex items-center justify-center mb-0.5 cursor-pointer" (click)="scrollToSection('landing')">
-    <img src="../../assets/imgs/logo.webp" alt="Logo" class="w-14">
-    <span class="text-xl font-semibold ml-4">SAFESEC Formation</span>
-  </div>
-
-  <!-- Navigation principale pour les grands écrans -->
-  <nav class="hidden lg:flex ml-auto gap-4 sm:gap-6 items-center">
-    <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
-      (click)="scrollToSection('services')">
-      Services</div>
-    <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
-      (click)="scrollToSection('formateur')">
-      Formateur</div>
-    <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
-      (click)="scrollToSection('catalogue')">
-      Catalogue</div>
-    <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
-      (click)="scrollToSection('contact')">Contact
+    <div class="flex items-center justify-center mb-0.5 cursor-pointer" (click)="scrollToSection('landing')">
+        <img src="../../assets/imgs/logo.webp" alt="Logo" class="w-14">
+        <span class="text-xl font-semibold ml-4">SAFESEC Formation</span>
     </div>
-  </nav>
 
-  <!-- Menu burger pour les petits écrans -->
-  <button class="lg:hidden ml-auto mr-3" (click)="toggleBurgerMenu($event)">
-    <i class="fa-solid fa-bars text-2xl text-gray-700"></i>
-  </button>
-  <div #menuBurger class="lg:hidden absolute top-full left-0 w-full bg-white shadow-md animate-appear mt-[-5px]"
-    *ngIf="burgerMenuOpened">
-    <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
-      (click)="scrollToSection('services')">Services</div>
-    <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
-      (click)="scrollToSection('formateur')">Formateur</div>
-    <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
-      (click)="scrollToSection('catalogue')">Catalogue</div>
-    <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
-      (click)="scrollToSection('contact')">Contact</div>
-  </div>
+    <!-- Navigation principale pour les grands écrans -->
+    <nav class="hidden lg:flex ml-auto gap-4 sm:gap-6 items-center">
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
+            (click)="scrollToSection('services')">
+            Services</div>
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
+            (click)="scrollToSection('formateur')">
+            Formateur</div>
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
+            (click)="scrollToSection('catalogue')">
+            Catalogue</div>
+        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
+            (click)="scrollToSection('contact')">Contact
+        </div>
+    </nav>
+
+    <!-- Menu burger pour les petits écrans -->
+    <button class="lg:hidden ml-auto mr-3" (click)="toggleBurgerMenu($event)">
+        <i class="fa-solid fa-bars text-2xl text-gray-700"></i>
+    </button>
+    <div #menuBurger class="lg:hidden absolute top-full left-0 w-full bg-white shadow-md animate-appear mt-[-5px]"
+        *ngIf="burgerMenuOpened">
+        <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
+            (click)="scrollToSection('services')">Services</div>
+        <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
+            (click)="scrollToSection('formateur')">Formateur</div>
+        <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
+            (click)="scrollToSection('catalogue')">Catalogue</div>
+        <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
+            (click)="scrollToSection('contact')">Contact</div>
+    </div>
 </header>
 
 <main class="flex-1">
-  <section id="landing" class="relative w-full h-screen md:pt-24 lg:pt-32 border-y px-2 md:px-0 animate-appear">
-    <div class="px-4 md:px-6 space-y-10 xl:space-y-16 flex items-center justify-center h-full"
-      style="margin-top: -5rem;">
-      <div class="grid max-w-[1300px] mx-auto gap-4 px-4 sm:px-6 md:px-10 md:grid-cols-2 md:gap-16">
-        <h1
-          class="lg:leading-tighter text-3xl tracking-tighter mt-40 md:mt-28 sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem]">
-          <span class="text-blue-600 font-bold">SAFESEC Formation</span>
-          L'expertise au service de vos équipes.
-        </h1>
-        <div class="flex flex-col space-y-4">
-          <div class="flex justify-center items-center w-full">
-            <img src="../../assets/imgs/logo.webp" alt="Logo" class="w-40 md:w-60">
-          </div>
-          <p class="mx-auto max-w-[700px] text-gray-500 md:text-xl">
-            SAFESEC Formation vous propose des apprentissages délivrés par un professionnel ayant pour objectif de
-            sensibiliser vos équipes à la prévention et à la gestion des risques au quotidien ou au sein de votre coeur
-            de métier.
-          </p>
-          <div class="space-x-4">
+    <section id="landing" class="relative w-full h-screen md:pt-24 lg:pt-32 border-y px-2 md:px-0 animate-appear">
+        <div class="px-4 md:px-6 space-y-10 xl:space-y-16 flex items-center justify-center h-full"
+            style="margin-top: -5rem;">
+            <div class="grid max-w-[1300px] mx-auto gap-4 px-4 sm:px-6 md:px-10 md:grid-cols-2 md:gap-16">
+                <h1
+                    class="lg:leading-tighter text-3xl tracking-tighter mt-40 md:mt-28 sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem]">
+                    <span class="text-blue-600 font-bold">SAFESEC Formation</span>
+                    L'expertise au service de vos équipes.
+                </h1>
+                <div class="flex flex-col space-y-4">
+                    <div class="flex justify-center items-center w-full">
+                        <img src="../../assets/imgs/logo.webp" alt="Logo" class="w-40 md:w-60">
+                    </div>
+                    <p class="mx-auto max-w-[700px] text-gray-500 md:text-xl">
+                        SAFESEC Formation vous propose des apprentissages délivrés par un professionnel ayant pour
+                        objectif de
+                        sensibiliser vos équipes à la prévention et à la gestion des risques au quotidien ou au sein de
+                        votre coeur
+                        de métier.
+                    </p>
+                    <div class="space-x-4">
+                        <div class="inline-flex cursor-pointer h-9 items-center justify-center rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-900"
+                            (click)="scrollToSection('services')">
+                            Commencer
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="services" class="flex justify-center items-center w-full pt-16 pb-20 mt-1">
+        <div class="container space-y-12 px-4 md:px-6">
+            <div class="flex flex-col items-center justify-center space-y-4 text-center">
+                <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Services</h2>
+                <p class="mx-auto max-w-[800px] text-gray-500 text-xl text-center">
+                    SAFESEC Formation propose plusieurs programmes éducatifs, en accord avec la législation en vigueur,
+                    spécialement conçus pour offrir des connaissances
+                    pratiques immédiatement applicables à vos équipes.
+                </p>
+            </div>
             <div
-              class="inline-flex cursor-pointer h-9 items-center justify-center rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-900"
-              (click)="scrollToSection('services')">
-              Commencer
+                class="mx-auto grid items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-6xl lg:grid-cols-3 justify-items-center">
+                <div class="grid gap-1 text-center">
+                    <i class=" fa-solid fa-book-open text-4xl mb-2 text-gray-800"></i>
+                    <h3 class="text-lg font-bold">Catalogue complet de formations</h3>
+                    <p class="text-sm text-gray-500">
+                        Notre gamme de formations, élaborées à partir d'expériences opérationnelles, est conçue pour
+                        satisfaire les besoins de toutes les entreprises.
+                    </p>
+                </div>
+                <div class="grid gap-1 text-center">
+                    <i class="fa-solid fa-check text-4xl mb-2 text-gray-800"></i>
+                    <h3 class="text-lg font-bold text-gray-800">Flexibilité et adaptabilité</h3>
+                    <p class="text-sm text-gray-500">Nous offrons une flexibilité d'horaires et de lieux de formation
+                        pour
+                        s'adapter au mieux aux besoins
+                        des entreprises et des collaborateurs.</p>
+                </div>
+                <div class="grid gap-1 text-center">
+                    <i class=" fa-solid fas fa-wheelchair text-4xl mb-2"></i>
+                    <h3 class="text-lg font-bold text-gray-800">Adapté aux personnes handicapées</h3>
+                    <p class="text-sm text-gray-500">
+                        Nos formations sont adaptées pour garantir l'accessibilité aux participants handicapés, pour un
+                        apprentissage inclusif et équitable.
+                    </p>
+                </div>
+                <div class="grid gap-1 text-center">
+                    <i class="fa-solid fas fa-graduation-cap text-4xl mb-2 text-gray-800"></i>
+                    <h3 class="text-lg font-bold text-gray-800">Certification des acquis</h3>
+                    <p class="text-sm text-gray-500">
+                        À la conclusion de certaines formations, obtenez la certification qui atteste de
+                        vos compétences et des connaissances acquises, sous réserve de satisfaire les critères de
+                        réussite.
+                    </p>
+                </div>
+                <div class="grid gap-1 text-center">
+                    <i class="fa-solid fa-person-walking-arrow-right text-4xl mb-2 text-gray-800"></i>
+                    <h3 class="text-lg font-bold text-gray-800">Mises en situation réalistes</h3>
+                    <p class="text-sm text-gray-500">
+                        Nos formations alternent apprentissages théoriques et scénarios pratiques pour permettre une
+                        application
+                        concrète des savoirs en cours d'acquisition.
+                    </p>
+                </div>
+                <div class="grid gap-1 text-center">
+                    <i class="fa-solid fa-users text-4xl mb-2 text-gray-800"></i>
+                    <h3 class="text-lg font-bold text-gray-800">Travail de groupe</h3>
+                    <p class="text-sm text-gray-500">
+                        Nous proposons des ateliers d'apprentissage collectifs conçus pour favoriser et stimuler
+                        l'échange d'idées
+                        et la collaboration, en groupe
+                        de 6 à 12 personnes.
+                    </p>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-
-  <section id="services" class="flex justify-center items-center w-full pt-16 pb-20 mt-1">
-    <div class="container space-y-12 px-4 md:px-6">
-      <div class="flex flex-col items-center justify-center space-y-4 text-center">
-        <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Services</h2>
-        <p class="mx-auto max-w-[800px] text-gray-500 text-xl text-center">
-          SAFESEC Formation propose plusieurs programmes éducatifs, en accord avec la législation en vigueur,
-          spécialement conçus pour offrir des connaissances
-          pratiques immédiatement applicables à vos équipes.
-        </p>
-      </div>
-      <div
-        class="mx-auto grid items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-6xl lg:grid-cols-3 justify-items-center">
-        <div class="grid gap-1 text-center">
-          <i class=" fa-solid fa-book-open text-4xl mb-2 text-gray-800"></i>
-          <h3 class="text-lg font-bold">Catalogue complet de formations</h3>
-          <p class="text-sm text-gray-500">
-            Notre gamme de formations, élaborées à partir d'expériences opérationnelles, est conçue pour
-            satisfaire les besoins de toutes les entreprises.
-          </p>
-        </div>
-        <div class="grid gap-1 text-center">
-          <i class="fa-solid fa-check text-4xl mb-2 text-gray-800"></i>
-          <h3 class="text-lg font-bold text-gray-800">Flexibilité et adaptabilité</h3>
-          <p class="text-sm text-gray-500">Nous offrons une flexibilité d'horaires et de lieux de formation pour
-            s'adapter au mieux aux besoins
-            des entreprises et des collaborateurs.</p>
-        </div>
-        <div class="grid gap-1 text-center">
-          <i class=" fa-solid fas fa-wheelchair text-4xl mb-2"></i>
-          <h3 class="text-lg font-bold text-gray-800">Adapté aux personnes handicapées</h3>
-          <p class="text-sm text-gray-500">
-            Nos formations sont adaptées pour garantir l'accessibilité aux participants handicapés, pour un
-            apprentissage inclusif et équitable.
-          </p>
-        </div>
-        <div class="grid gap-1 text-center">
-          <i class="fa-solid fas fa-graduation-cap text-4xl mb-2 text-gray-800"></i>
-          <h3 class="text-lg font-bold text-gray-800">Certification des acquis</h3>
-          <p class="text-sm text-gray-500">
-            À la conclusion de certaines formations, obtenez la certification qui atteste de
-            vos compétences et des connaissances acquises, sous réserve de satisfaire les critères de réussite.
-          </p>
-        </div>
-        <div class="grid gap-1 text-center">
-          <i class="fa-solid fa-person-walking-arrow-right text-4xl mb-2 text-gray-800"></i>
-          <h3 class="text-lg font-bold text-gray-800">Mises en situation réalistes</h3>
-          <p class="text-sm text-gray-500">
-            Nos formations alternent apprentissages théoriques et scénarios pratiques pour permettre une application
-            concrète des savoirs en cours d'acquisition.
-          </p>
-        </div>
-        <div class="grid gap-1 text-center">
-          <i class="fa-solid fa-users text-4xl mb-2 text-gray-800"></i>
-          <h3 class="text-lg font-bold text-gray-800">Travail de groupe</h3>
-          <p class="text-sm text-gray-500">
-            Nous proposons des ateliers d'apprentissage collectifs conçus pour favoriser et stimuler l'échange d'idées
-            et la collaboration, en groupe
-            de 6 à 12 personnes.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="formateur" class="flex justify-center items-center w-full pt-16 pb-20 bg-gray-100">
-    <div class="container space-y-12 px-4 md:px-6">
-      <div class="flex flex-col items-center justify-center space-y-4 text-center mx-auto">
-        <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Votre formateur</h2>
-        <p class="max-w-[800px] text-gray-500 text-xl">
-          Retrouvez ici toutes les informations me concernant, et découvrez pourquoi je vous propose mon
-          expertise aujourd'hui.
-        </p>
-      </div>
-      <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-10 lg:gap-16">
-        <div class="flex flex-col items-center justify-center w-full max-w-[400px] p-4 md:p-8">
-          <img src="../../assets/imgs/tof.webp" alt="Photo"
-            class="rounded-full object-cover object-center border-4 border-blue-500 aspect-square" />
-          <div class="text-lg font-semibold mt-4">Christophe Eribon</div>
-        </div>
-        <div class="flex flex-col w-full max-w-[700px] items-center justify-center p-4 md:p-8">
-          <div class="space-y-4 text-center">
-            <p class="text-gray-500 italic"> Ayant rejoint les rangs de la gendarmerie nationale en 1992, j'ai consacré
-              de nombreuses années à des missions opérationnelles ainsi qu'à la formation dans les domaines de
-              l'intervention professionnelle et des premiers secours.
-              Aujourd’hui, nouvelle vie, nouveau public, mais toujours le même bonheur de pouvoir partager mes
-              connaissances.</p>
-            <p class="text-gray-500 italic">Si, vous souhaitez monter en compétences sur des sujets tels que la gestion
-              des
-              comportements agressifs, la sécurisation de site, les premiers secours (filières sécurité civile, SST,
-              sauvetage tactique ou au combat), les réactions face à une situation d'attentat ou d'agression collective
-              avec arme, les sports de combat et la self défense, ou encore le port, l’emploi et l’usage des armes de
-              catégories B et D (professionnels armés), je vous invite à explorer nos programmes de formation dédiés.
-            </p>
-            <div class="mt-4 text-gray-500">
-              Retrouvez moi également sur
-              <a href="https://sdcs-formation.fr/" target="_blank"
-                class="relative text-blue-500 font-semibold before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-blue-500 before:scale-x-0 before:transition-transform before:duration-200 hover:before:scale-x-100">
-                le site de la SDCS.</a>
+    <section id="formateur" class="flex justify-center items-center w-full pt-16 pb-20 bg-gray-100">
+        <div class="container space-y-12 px-4 md:px-6">
+            <div class="flex flex-col items-center justify-center space-y-4 text-center mx-auto">
+                <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Votre formateur</h2>
+                <p class="max-w-[800px] text-gray-500 text-xl">
+                    Retrouvez ici toutes les informations me concernant, et découvrez pourquoi je vous propose mon
+                    expertise aujourd'hui.
+                </p>
             </div>
-            <a class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 text-sm inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white"
-              href="../../assets/pdf/CV.pdf" target="_blank">
-              Consulter mon CV
-            </a>
-          </div>
-          <div class="flex justify-center gap-6 mt-4">
-            <div (click)="scrollToSection('contact')"
-              class="text-gray-500 hover:text-blue-600 cursor-pointer text-3xl transition-colors">
-              <i class="fa-solid fa-envelope"></i>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-10 lg:gap-16">
+                <div class="flex flex-col items-center justify-center w-full max-w-[400px] p-4 md:p-8">
+                    <img src="../../assets/imgs/tof.webp" alt="Photo"
+                        class="rounded-full object-cover object-center border-4 border-blue-500 aspect-square" />
+                    <div class="text-lg font-semibold mt-4">Christophe Eribon</div>
+                </div>
+                <div class="flex flex-col w-full max-w-[700px] items-center justify-center p-4 md:p-8">
+                    <div class="space-y-4 text-center">
+                        <p class="text-gray-500 italic"> Ayant rejoint les rangs de la gendarmerie nationale en 1992,
+                            j'ai consacré
+                            de nombreuses années à des missions opérationnelles ainsi qu'à la formation dans les
+                            domaines de
+                            l'intervention professionnelle et des premiers secours.
+                            Aujourd’hui, nouvelle vie, nouveau public, mais toujours le même bonheur de pouvoir partager
+                            mes
+                            connaissances.</p>
+                        <p class="text-gray-500 italic">Si, vous souhaitez monter en compétences sur des sujets tels que
+                            la gestion
+                            des
+                            comportements agressifs, la sécurisation de site, les premiers secours (filières sécurité
+                            civile, SST,
+                            sauvetage tactique ou au combat), les réactions face à une situation d'attentat ou
+                            d'agression collective
+                            avec arme, les sports de combat et la self défense, ou encore le port, l’emploi et l’usage
+                            des armes de
+                            catégories B et D (professionnels armés), je vous invite à explorer nos programmes de
+                            formation dédiés.
+                        </p>
+                        <div class="mt-4 text-gray-500">
+                            Retrouvez moi également sur
+                            <a href="https://sdcs-formation.fr/" target="_blank"
+                                class="relative text-blue-500 font-semibold before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-blue-500 before:scale-x-0 before:transition-transform before:duration-200 hover:before:scale-x-100">
+                                le site de la SDCS.</a>
+                        </div>
+                        <a class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 text-sm inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white"
+                            href="../../assets/pdf/CV.pdf" target="_blank">
+                            Consulter mon CV
+                        </a>
+                    </div>
+                    <div class="flex justify-center gap-6 mt-4">
+                        <div (click)="scrollToSection('contact')"
+                            class="text-gray-500 hover:text-blue-600 cursor-pointer text-3xl transition-colors">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <a href="https://www.linkedin.com/in/christophe-e-7a6813167/" target="_blank"
+                            class="text-gray-500 hover:text-blue-600 text-3xl transition-colors">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <a href="https://www.linkedin.com/in/christophe-e-7a6813167/" target="_blank"
-              class="text-gray-500 hover:text-blue-600 text-3xl transition-colors">
-              <i class="fa-brands fa-linkedin"></i>
-            </a>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="catalogue" class="flex justify-center items-center w-full pt-16 pb-20">
-    <div class="container grid items-center justify-center gap-6 px-4 md:px-6">
-      <div class="space-y-4 text-center mx-auto">
-        <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Catalogue de formations</h2>
-        <p class="mx-auto max-w-[700px] text-xl text-gray-500 text-center mb-12">
-          Choisissez la formation qui correspond aux besoins de votre équipe.
-        </p>
-      </div>
-      <div
-        class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 md2:grid-cols-3 xl:grid-cols-3 w-full mt-6 justify-items-center">
-        <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
-          <div class="flex flex-col space-y-1.5 p-6 text-center">
-            <h3 class="text-2xl font-semibold leading-none tracking-tight">Attentat et agression collective avec arme
-            </h3>
-          </div>
-          <div class="p-6 flex-grow">
-            <ul class="space-y-2">
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Formation sur les conduites à tenir en cas d'agression collective avec arme et/ou d'attaque
-                terroriste
-              </li>
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Prise en charge initiale des victimes, en attente des secours spécialisés
-              </li>
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                <a href="https://www.defense.gouv.fr/sante/actualites/safe-marche-ryan-bons-gestes-sauver-vie" target="_blank"
-                    class="relative text-blue-500 font-semibold before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-blue-500 before:scale-x-0 before:transition-transform before:duration-200 hover:before:scale-x-100">SAFE MARCHE RYAN</a>
-              </li>
-            </ul>
-          </div>
-          <div class="flex items-center p-6">
-            <button (click)="chooseTraining($event)"
-              class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-              cette formation</button>
-          </div>
-        </div>
-        <div
-          class="rounded-lg bg-card text-card-foreground shadow-sm w-[340px] bg-white border-2 border-blue-500 relative flex flex-col">
-          <div
-            class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white px-2 py-1 rounded-md">
-            Populaire
-          </div>
-          <div class="flex flex-col space-y-1.5 p-6 text-center">
-            <h3 class="text-2xl font-semibold leading-none tracking-tight">Gestion des incivilités et des agressions</h3>
-          </div>
-          <div class="p-6 flex-grow">
-            <ul class="space-y-2">
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Formation à la gestion des agressions verbales et/ou physiques
-              </li>
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Formation aux techniques de protection et de défense
-              </li>
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Lutte contre les violences intrafamiliales
-              </li>
-            </ul>
-          </div>
-          <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
-              class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-              cette formation</button></div>
-        </div>
-        <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
-          <div class="flex flex-col space-y-1.5 p-6 text-center">
-            <h3 class="text-2xl font-semibold leading-none tracking-tight">Self défense et sports de combat</h3>
-          </div>
-          <div class="p-6 flex-grow">
-            <ul class="space-y-2">
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Initiation à la journée ou sur un week-end
-              </li>
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Formation à la semaine
-              </li>
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Information des élus
-              </li>
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Information au titre d'une profession
-              </li>
-            </ul>
-          </div>
-          <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
-              class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-              cette formation</button></div>
-        </div>
-        <div
-            class="rounded-lg bg-card text-card-foreground shadow-sm w-[340px] bg-white border-2 border-blue-500 relative flex flex-col">
+    <section id="catalogue" class="flex justify-center items-center w-full pt-16 pb-20">
+        <div class="container grid items-center justify-center gap-6 px-4 md:px-6">
+            <div class="space-y-4 text-center mx-auto">
+                <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Catalogue de formations</h2>
+                <p class="mx-auto max-w-[700px] text-xl text-gray-500 text-center mb-12">
+                    Choisissez la formation qui correspond aux besoins de votre équipe.
+                </p>
+            </div>
             <div
-                class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white px-2 py-1 rounded-md">
-                Populaire
+                class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 md2:grid-cols-3 xl:grid-cols-3 w-full mt-6 justify-items-center">
+                <div
+                    class="rounded-lg bg-card text-card-foreground shadow-sm w-[340px] bg-white border-2 border-blue-500 relative flex flex-col">
+                    <div
+                        class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white px-2 py-1 rounded-md">
+                        Populaire
+                    </div>
+                    <div class="flex flex-col space-y-1.5 p-6 text-center">
+                        <h3 class="text-2xl font-semibold leading-none tracking-tight">Gestion des incivilités et des
+                            agressions</h3>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <ul class="space-y-2">
+                            <li>
+                                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                                Comprendre les comportements à risque et les facteurs déclencheurs
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                                Utiliser des techniques de communication pour réduire les tensions
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                                Mettre en œuvre des pratiques de sécurité pour soi et les autres
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
+                            cette formation</button></div>
+                </div>
+                <div
+                    class="rounded-lg bg-card text-card-foreground shadow-sm w-[340px] bg-white border-2 border-blue-500 relative flex flex-col">
+                    <div
+                        class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white px-2 py-1 rounded-md">
+                        Populaire
+                    </div>
+                    <div class="flex flex-col space-y-1.5 p-6 text-center">
+                        <h3 class="text-2xl font-semibold leading-none tracking-tight">Self défense en milieu
+                            professionnel</h3>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <ul class="space-y-2">
+                            <li>
+                                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                                Détection de la montée en agressivité
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                                Apprentissage de techniques défensives individuelles
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                                Coordination défensive en équipe
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                                Fondamentaux juridique de la légitime défense
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
+                            cette formation</button></div>
+                </div>
+                <div
+                    class="rounded-lg bg-card text-card-foreground shadow-sm w-[340px] bg-white border-2 border-blue-500 relative flex flex-col">
+                    <div
+                        class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white px-2 py-1 rounded-md">
+                        Populaire
+                    </div>
+                    <div class="flex flex-col space-y-1.5 p-6 text-center">
+                        <h3 class="text-2xl font-semibold leading-none tracking-tight">Sauvetage Secourisme du Travail
+                            (SST)</h3>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <ul class="space-y-2">
+                            <li>
+                                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                                Formation initiale
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                                Maintien et actualisation des compétences (MAC)
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                                Délivrance du certificat de Sauveteur Secouriste du Travail
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
+                            cette formation</button></div>
+                </div>
+                <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
+                    <div class="flex flex-col space-y-1.5 p-6 text-center">
+                        <h3 class="text-2xl font-semibold leading-none tracking-tight">Attentat et agression collective
+                            avec arme
+                        </h3>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <ul class="space-y-2">
+                            <li>
+                                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                                Formation sur les conduites à tenir en cas d'agression collective avec arme et/ou
+                                d'attaque
+                                terroriste
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                                Prise en charge initiale des victimes, en attente des secours spécialisés
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                                <a href="https://www.defense.gouv.fr/sante/actualites/safe-marche-ryan-bons-gestes-sauver-vie"
+                                    target="_blank"
+                                    class="relative text-blue-500 font-semibold before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-blue-500 before:scale-x-0 before:transition-transform before:duration-200 hover:before:scale-x-100">SAFE
+                                    MARCHE RYAN</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center p-6">
+                        <button (click)="chooseTraining($event)"
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
+                            cette formation</button>
+                    </div>
+                </div>
+                <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
+                    <div class="flex flex-col space-y-1.5 p-6 text-center">
+                        <h3 class="text-2xl font-semibold leading-none tracking-tight">Sécurisation de site</h3>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <ul class="space-y-2">
+                            <li>
+                                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                                Audit de sûreté
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                                Conseil et accompagnement
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                                Vérification et actualisation des mesures mises en place
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                                Mises en situation
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
+                            cette formation</button></div>
+                </div>
+                <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
+                    <div class="flex flex-col space-y-1.5 p-6 text-center">
+                        <h3 class="text-2xl font-semibold leading-none tracking-tight">Plan de formation personnalisé
+                        </h3>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <ul class="space-y-2">
+                            <li>
+                                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
+                                Programme sur mesure, conçu selon vos besoins spécifiques
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
+                            cette formation</button></div>
+                </div>
             </div>
-            <div class="flex flex-col space-y-1.5 p-6 text-center">
-                <h3 class="text-2xl font-semibold leading-none tracking-tight">Premiers secours citoyen
-                    (PSC)
-                </h3>
-            </div>
-            <div class="p-6 flex-grow">
-                <ul class="space-y-2">
-                    <li>
-                        <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                        Formation initiale
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                        Formation continue
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                        Délivrance du certificat de compétences PSC (sous habilitation <a href="https://www.anims-secourisme.fr/" target="_blank" class="relative text-blue-500 font-semibold before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-blue-500 before:scale-x-0 before:transition-transform before:duration-200 hover:before:scale-x-100">"ANIMS"</a>)
-                    </li>
-                </ul>
-            </div>
-            <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
-                    class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-                    cette formation</button></div>
         </div>
-        <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
-          <div class="flex flex-col space-y-1.5 p-6 text-center">
-            <h3 class="text-2xl font-semibold leading-none tracking-tight">Agent de sécurité renforcé armé</h3>
-          </div>
-          <div class="p-6 flex-grow">
-            <ul class="space-y-2">
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Formation initiale ou continue aux armes de catégorie B et D
-              </li>
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Maniement, emploi sécurisé et usage raisonné des armes à feu
-              </li>
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Pratique opérationnelle du bâton de défense
-              </li>
-            </ul>
-          </div>
-          <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
-              class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-              cette formation</button>
-          </div>
-        </div>
-        <div
-          class="rounded-lg bg-card text-card-foreground shadow-sm w-[340px] bg-white border-2 border-blue-500 relative flex flex-col">
-          <div
-            class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white px-2 py-1 rounded-md">
-            Populaire
-          </div>
-          <div class="flex flex-col space-y-1.5 p-6 text-center">
-            <h3 class="text-2xl font-semibold leading-none tracking-tight">Sauvetage Secourisme du Travail (SST)</h3>
-          </div>
-          <div class="p-6 flex-grow">
-            <ul class="space-y-2">
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Formation initiale
-              </li>
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Maintien et actualisation des compétences (MAC)
-              </li>
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Délivrance du certificat de Sauveteur Secouriste du Travail
-              </li>
-            </ul>
-          </div>
-          <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
-              class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-              cette formation</button></div>
-        </div>
-        <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
-            <div class="flex flex-col space-y-1.5 p-6 text-center">
-                <h3 class="text-2xl font-semibold leading-none tracking-tight">Sécurisation de site</h3>
-            </div>
-            <div class="p-6 flex-grow">
-                <ul class="space-y-2">
-                    <li>
-                        <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                        Audit de sûreté
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                        Conseil et accompagnement
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                        Vérification et actualisation des mesures mises en place
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                        Mises en situation
-                    </li>
-                </ul>
-            </div>
-            <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
-                    class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-                    cette formation</button></div>
-        </div>
-        <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
-          <div class="flex flex-col space-y-1.5 p-6 text-center">
-            <h3 class="text-2xl font-semibold leading-none tracking-tight">Sauvetage opérationnel</h3>
-          </div>
-          <div class="p-6 flex-grow">
-            <ul class="space-y-2">
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Programme standard ou personnalisé
-              </li>
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Délivrance d'une attestation de participation
-              </li>
-            </ul>
-          </div>
-          <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
-              class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-              cette formation</button></div>
-        </div>
-        <div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
-          <div class="flex flex-col space-y-1.5 p-6 text-center">
-            <h3 class="text-2xl font-semibold leading-none tracking-tight">Plan de formation personnalisé</h3>
-          </div>
-          <div class="p-6 flex-grow">
-            <ul class="space-y-2">
-              <li>
-                <i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
-                Programme sur mesure, conçu selon vos besoins spécifiques
-              </li>
-            </ul>
-          </div>
-          <div class="flex items-center p-6"><button (click)="chooseTraining($event)"
-              class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full">Choisir
-              cette formation</button></div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="contact" class="flex justify-center items-center w-full pt-16 pb-20 bg-gray-100">
-    <div class="container space-y-12 px-4 md:px-6">
-      <div class="flex flex-col items-center justify-center space-y-4 text-center">
-        <div class="space-y-2">
-          <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Contactez-nous</h2>
-          <p class="max-w-[800px] text-gray-500 text-xl">
-            Vous avez des questions ? Vous voulez en savoir plus ? Contactez nous et nous vous répondrons dans les plus
-            bref délais.
-          </p>
-        </div>
-      </div>
-      <div class="flex flex-col items-center justify-center cursor-default">
-        <div class="inline-flex flex-col space-y-4 w-full max-w-md">
-          <div class="space-y-2">
-            <label class="text-sm font-medium leading-none" for="name">Nom et prénom
-            </label>
-            <input
-              class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-              id="name" #inputField [(ngModel)]="nameMail" placeholder="Entrez votre nom et votre prénom">
-          </div>
-          <div class="space-y-2">
-            <label class="text-sm font-medium leading-none" for="email">Adresse email
-            </label>
-            <input
-              class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-              id="email" #inputField [(ngModel)]="emailMail" placeholder="Entrez votre adresse email" type="email">
-          </div>
-          <div class="space-y-2">
-            <label class="text-sm font-medium leading-none" for="phoneNumber">Téléphone
-            </label>
-            <input
-              class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-              id="phoneNumber" #inputField placeholder="Entrez votre numéro de téléphone" type="tel"
-              [(ngModel)]="phoneNumberMail" (input)="commonService.formatAndRestrictPhoneInput($event)">
-          </div>
-          <div class="space-y-2">
-            <label class="text-sm font-medium leading-none" for="message">Message
-            </label>
-            <textarea
-              class="flex w-full transition-all duration-100 ease-out rounded-md border border-input resize-none bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-h-[125px]"
-              id="message" #inputField [(ngModel)]="messageMail" placeholder="Entrez votre message">
+    <section id="contact" class="flex justify-center items-center w-full pt-16 pb-20 bg-gray-100">
+        <div class="container space-y-12 px-4 md:px-6">
+            <div class="flex flex-col items-center justify-center space-y-4 text-center">
+                <div class="space-y-2">
+                    <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Contactez-nous</h2>
+                    <p class="max-w-[800px] text-gray-500 text-xl">
+                        Vous avez des questions ? Vous voulez en savoir plus ? Contactez nous et nous vous répondrons
+                        dans les plus
+                        bref délais.
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-col items-center justify-center cursor-default">
+                <div class="inline-flex flex-col space-y-4 w-full max-w-md">
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium leading-none" for="name">Nom et prénom
+                        </label>
+                        <input
+                            class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                            id="name" #inputField [(ngModel)]="nameMail" placeholder="Entrez votre nom et votre prénom">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium leading-none" for="email">Adresse email
+                        </label>
+                        <input
+                            class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                            id="email" #inputField [(ngModel)]="emailMail" placeholder="Entrez votre adresse email"
+                            type="email">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium leading-none" for="phoneNumber">Téléphone
+                        </label>
+                        <input
+                            class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                            id="phoneNumber" #inputField placeholder="Entrez votre numéro de téléphone" type="tel"
+                            [(ngModel)]="phoneNumberMail" (input)="commonService.formatAndRestrictPhoneInput($event)">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium leading-none" for="message">Message
+                        </label>
+                        <textarea
+                            class="flex w-full transition-all duration-100 ease-out rounded-md border border-input resize-none bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-h-[125px]"
+                            id="message" #inputField [(ngModel)]="messageMail" placeholder="Entrez votre message">
             </textarea>
-          </div>
-          <button (click)="sendMail()"
-            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600">Envoyer
-            le message
-          </button>
-          <p class="text-gray-500 text-sm text-center mt-2">
-            Tous les champs sont obligatoires. <br>Vos données ne seront pas enregistrées.
-          </p>
+                    </div>
+                    <button (click)="sendMail()"
+                        class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600">Envoyer
+                        le message
+                    </button>
+                    <p class="text-gray-500 text-sm text-center mt-2">
+                        Tous les champs sont obligatoires. <br>Vos données ne seront pas enregistrées.
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 </main>
 
 <footer class="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-  <p class="text-sm text-gray-600">© SAFESEC Formation. Tous droits réservés.</p>
-  <nav class="sm:ml-auto flex gap-4 sm:gap-6 ">
-    <p class="text-sm hover:text-blue-600 cursor-pointer" (click)="navigateTo('legal-information')">
-      Mentions légales
-    </p>
-  </nav>
+    <p class="text-sm text-gray-600">© SAFESEC Formation. Tous droits réservés.</p>
+    <nav class="sm:ml-auto flex gap-4 sm:gap-6 ">
+        <p class="text-sm hover:text-blue-600 cursor-pointer" (click)="navigateTo('legal-information')">
+            Mentions légales
+        </p>
+    </nav>
 </footer>
