@@ -37,10 +37,19 @@ else
     exit 1
 fi
 
-# Redémarrer l'application avec PM2 en utilisant le nom de l'application
+# Redémarrer ou démarrer l'application avec PM2
 if pm2 describe "$nomApplication" > /dev/null; then
+    echo "Redémarrage de l'application '$nomApplication' avec PM2..."
     pm2 restart "$nomApplication"
 else
-    echo "Erreur : Application '$nomApplication' non trouvée dans PM2."
-    exit 1
+    echo "L'application '$nomApplication' n'est pas en cours. Tentative de démarrage via ecosystem_production.config.js..."
+    pm2 start ecosystem_production.config.js --only "$nomApplication"
+
+    # Vérifier si le démarrage a réussi
+    if pm2 describe "$nomApplication" > /dev/null; then
+        echo "Application '$nomApplication' démarrée avec succès."
+    else
+        echo "Erreur : Impossible de démarrer l'application '$nomApplication'."
+        exit 1
+    fi
 fi
