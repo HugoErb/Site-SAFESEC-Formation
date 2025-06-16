@@ -1,7 +1,7 @@
 module.exports = {
     apps: [
         {
-            name: "Safesec Formation",
+            name: "SafesecFormation",
             script: "./server.js",
             watch: true,
             env: {

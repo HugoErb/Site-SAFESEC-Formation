@@ -5,7 +5,7 @@ dossierRacine=$(pwd)  # Le dossier racine du site est le dossier courant
 dossierDistRacine="$dossierRacine/dist"  # Dossier de destination à la racine
 
 # Nom de l'application PM2 (défini dans ecosystem.config.js)
-nomApplication="Safesec Formation"
+nomApplication="SafesecFormation"
 
 # Mettre à jour le dépôt avec git en premier
 git pull origin
