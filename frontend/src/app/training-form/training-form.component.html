@@ -1,272 +1,320 @@
 <header class="px-4 lg:px-6 h-16 flex items-center fixed w-full bg-white z-50 shadow-sm border-b border-gray-200">
-    <div class="flex items-center justify-center mb-0.5 cursor-pointer" (click)="navigateTo('home','landing')">
-        <img src="../../assets/imgs/logo.webp" alt="Logo" class="w-14">
-        <span class="text-xl font-semibold ml-4">SAFESEC Formation</span>
-    </div>
+	<div class="flex items-center justify-center mb-0.5 cursor-pointer" (click)="navigateTo('home', 'landing')">
+		<img src="../../assets/imgs/logo.webp" alt="Logo" class="w-14" />
+		<span class="text-xl font-semibold ml-4">SAFESEC Formation</span>
+	</div>
 
-    <!-- Navigation principale pour les grands écrans -->
-    <nav class="hidden lg:flex ml-auto gap-4 sm:gap-6 items-center">
-        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
-            (click)="navigateTo('home','services')">
-            Services</div>
-        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
-            (click)="navigateTo('home','formateur')">
-            Formateur</div>
-        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
-            (click)="navigateTo('home','catalogue')">
-            Catalogue</div>
-        <div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors"
-            (click)="navigateTo('home','contact')">
-            Contact
-        </div>
-    </nav>
+	<!-- Navigation principale pour les grands écrans -->
+	<nav class="hidden lg:flex ml-auto gap-4 sm:gap-6 items-center">
+		<div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="navigateTo('home', 'services')">
+			Services
+		</div>
+		<div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="navigateTo('home', 'formateur')">
+			Formateur
+		</div>
+		<div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="navigateTo('home', 'catalogue')">
+			Catalogue
+		</div>
+		<div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="navigateTo('home', 'contact')">Contact</div>
+	</nav>
 
-    <!-- Menu burger pour les petits écrans -->
-    <button class="lg:hidden ml-auto mr-3" (click)="toggleBurgerMenu($event)">
-        <i class="fa-solid fa-bars text-2xl text-gray-700"></i>
-    </button>
-    <div #menuBurger class="lg:hidden absolute top-full left-0 w-full bg-white shadow-md animate-appear mt-[-5px]"
-        *ngIf="burgerMenuOpened">
-        <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
-            (click)="navigateTo('home','services')">Services</div>
-        <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
-            (click)="navigateTo('home','formateur')">Formateur</div>
-        <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
-            (click)="navigateTo('home','catalogue')">Catalogue</div>
-        <div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
-            (click)="navigateTo('home','contact')">Contact</div>
-    </div>
+	<!-- Menu burger pour les petits écrans -->
+	<div class="lg:hidden ml-auto mr-3" (click)="toggleBurgerMenu($event)">
+		<i class="fa-solid fa-bars text-2xl text-gray-700"></i>
+	</div>
+	<div #menuBurger class="lg:hidden absolute top-full left-0 w-full bg-white shadow-md animate-appear mt-[-5px]" *ngIf="burgerMenuOpened">
+		<div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white" (click)="navigateTo('home', 'services')">
+			Services
+		</div>
+		<div
+			class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
+			(click)="navigateTo('home', 'formateur')"
+		>
+			Formateur
+		</div>
+		<div
+			class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
+			(click)="navigateTo('home', 'catalogue')"
+		>
+			Catalogue
+		</div>
+		<div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white" (click)="navigateTo('home', 'contact')">
+			Contact
+		</div>
+	</div>
 </header>
 
 <main class="flex-1 container mx-auto">
-    <div class="fixed top-16 left-4 p-4 lg:block hidden">
-        <button (click)="navigateTo('home','catalogue')" class="focus:outline-none cursor-pointer">
-            <i
-                class="fa-solid fa-circle-arrow-left text-5xl mb-2 text-blue-500 hover:text-blue-600 transition-colors"></i>
-        </button>
-    </div>
-    <section class="w-full pt-24 md:pb-20 lg:pb-20 md:pt-32 lg:pt-32 pb-10 animate-appear">
-        <div class="container px-4 md:px-6">
-            <div class="mx-auto max-w-3xl space-y-8">
-                <div class="space-y-4 text-center">
-                    <h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Demande de formation</h2>
-                    <p class="text-gray-500 md:text-xl/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                        Remplissez le formulaire ci-dessous pour faire une demande de formation. Cette demande sera
-                        étudiée et nous reviendrons vers vous dès que possible.
-                    </p>
-                </div>
-                <form class="space-y-6">
-                    <div class="space-y-4">
-                        <h3 class="text-2xl font-bold">Localisation de la formation</h3>
-                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                            <div class="space-y-2">
-                                <label class="text-sm font-medium leading-none" for="cityMail">
-                                    Ville
-                                </label>
-                                <input
-                                    class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                                    id="cityMail" name="cityMail" [(ngModel)]="cityMail"
-                                    placeholder="Entrez votre ville" #inputField />
-                            </div>
-                            <div class="space-y-2">
-                                <label class="text-sm font-medium leading-none" for="postalCodeMail">
-                                    Code postal
-                                </label>
-                                <input
-                                    class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                                    id="postalCodeMail" name="postalCodeMail" [(ngModel)]="postalCodeMail"
-                                    (input)="formatAndRestrictPostalCodeInput($event)"
-                                    placeholder="Entrez votre code postal" #inputField />
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                            <div class="space-y-2">
-                                <label class="text-sm font-medium leading-none" for="countryMail">
-                                    Pays
-                                </label>
-                                <input
-                                    class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                                    id="countryMail" name="countryMail" [(ngModel)]="countryMail"
-                                    placeholder="Entrez votre pays" #inputField />
-                            </div>
-                            <div class="space-y-2">
-                                <label class="text-sm font-medium leading-none" for="addressMail">
-                                    Adresse de la formation
-                                </label>
-                                <input
-                                    class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                                    id="addressMail" name="addressMail" [(ngModel)]="addressMail"
-                                    placeholder="Entrez l'adresse de la formation" #inputField />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="space-y-8">
-                        <div class="space-y-4">
-                            <h3 class="text-2xl font-bold">Informations du contact de référence</h3>
-                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                <div class="space-y-2">
-                                    <label class="text-sm font-medium leading-none" for="nameMail">
-                                        Nom
-                                    </label>
-                                    <input
-                                        class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                                        id="nameMail" name="nameMail" [(ngModel)]="nameMail"
-                                        placeholder="Entrez votre nom" #inputField />
-                                </div>
-                                <div class="space-y-2">
-                                    <label class="text-sm font-medium leading-none" for="emailMail">
-                                        Email
-                                    </label>
-                                    <input
-                                        class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                                        id="emailMail" name="emailMail" [(ngModel)]="emailMail"
-                                        placeholder="Entrez votre email" type="email" #inputField />
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                <div class="space-y-2">
-                                    <label class="text-sm font-medium leading-none" for="phoneNumberMail">
-                                        Téléphone
-                                    </label>
-                                    <input
-                                        class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                                        id="phoneNumberMail" placeholder="Entrez votre numéro de téléphone" type="tel"
-                                        name="phoneNumberMail" [(ngModel)]="phoneNumberMail"
-                                        (input)="commonService.formatAndRestrictPhoneInput($event)" #inputField />
-                                </div>
-                                <div class="space-y-2">
-                                    <label class="text-sm font-medium leading-none" for="companyMail">
-                                        Entreprise
-                                    </label>
-                                    <input
-                                        class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                                        id="companyMail" name="companyMail" [(ngModel)]="companyMail"
-                                        placeholder="Entrez le nom de votre entreprise" #inputField />
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                <div class="space-y-2">
-                                    <label class="text-sm font-medium leading-none" for="companySiretMail">
-                                        Numéro SIRET
-                                    </label>
-                                    <input
-                                        class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                                        id="companySiretMail" name="companySiretMail" [(ngModel)]="companySiretMail"
-                                        placeholder="Entrez le SIRET de votre entreprise" #inputField
-                                        (input)="formatAndRestrictCompanySiretInput($event)" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="space-y-4">
-                            <h3 class="text-2xl font-bold">Informations sur la formation</h3>
-                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                <div class="space-y-2">
-                                    <label class="text-sm font-medium leading-none" for="chosenTrainingName">
-                                        Formation choisie
-                                    </label>
-                                    <input
-                                        class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:cursor-not-allowed disabled:opacity-50"
-                                        id="chosenTrainingName" name="chosenTrainingName" [value]="chosenTrainingName"
-                                        [disabled]="true" #inputField />
-                                </div>
-                                <div class="space-y-2">
-                                    <label class="text-sm font-medium leading-none" for="personNumberMail">
-                                        Nombre de personnes
-                                    </label>
-                                    <input
-                                        class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                                        id="personNumberMail" name="personNumberMail" [(ngModel)]="personNumberMail"
-                                        (input)="formatAndRestrictPersonNumberInput($event)"
-                                        placeholder="Entrez le nombre de personnes" type="text" #inputField />
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                <div class="space-y-2">
-                                    <label class="text-sm font-medium leading-none" for="jobTrainedMail">
-                                        Métier formé
-                                    </label>
-                                    <input
-                                        class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                                        id="jobTrainedMail" name="jobTrainedMail" [(ngModel)]="jobTrainedMail"
-                                        placeholder="Entrez le métier de la population formée" #inputField />
-                                </div>
-                                <div class="space-y-2 relative">
-                                    <label class="text-sm font-medium leading-none" for="trainingDateMail">
-                                        Date souhaitée de la formation
-                                    </label>
-                                    <input type="text" #inputField id="trainingDateMail" [(ngModel)]="trainingDateMail"
-                                        (focus)="focus()" (blur)="blur()" placeholder="Sélectionnez une date"
-                                        name="trainingDateMail" readonly
-                                        class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-                                    <div class="absolute z-10 w-full flex flex-col animate-appear" *ngIf="active"
-                                        (mousedown)="prevent($event)">
-                                        <div class="bg-blue-500 text-white pb-3 pt-1 flex flex-col items-center">
-                                            <div class="flex justify-between items-center w-full h-10 px-4">
-                                                <i (click)="!isCurrentMonth() && setPreviousMonth()"
-                                                    [ngClass]="{ 'text-gray-400 cursor-not-allowed': isCurrentMonth(), 'cursor-pointer': !isCurrentMonth() }"
-                                                    class="fa-solid fa-chevron-left text-lg"></i>
-                                                <div class="text-lg">
-                                                    {{ monthYearFormatted }}
-                                                </div>
-                                                <i class="fa-solid fa-chevron-right cursor-pointer text-lg"
-                                                    (click)="setNextMonth()"></i>
-                                            </div>
-                                            <div class="flex justify-between w-full text-sm">
-                                                <div class="flex-1 text-center" *ngFor="let day of days">
-                                                    {{ day | slice:0:3 }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="flex flex-col bg-white">
-                                            <div class="flex transition-all duration-150"
-                                                [ngClass]="{ 'animate-swipeLeft': swipeLeft, 'animate-swipeRight': swipeRight }"
-                                                *ngFor="let row of calendarDays">
-                                                <div *ngFor="let cell of row"
-                                                    class="flex justify-center items-center border p-2 transition-all duration-300 flex-1 max-w-1/7 relative group"
-                                                    [ngClass]="{
-                                              'cursor-pointer hover:text-blue-600': !isDisabled(cell),
-                                              'bg-gray-200 text-gray-400 cursor-not-allowed': isDisabled(cell),
-                                              'text-blue-500': isSelected(cell)
-                                            }" [style.height]="cellHeightUnit"
-                                                    (click)="!isDisabled(cell) && selectDay(cell)">
-                                                    {{ cell.day }}
-                                                    <div *ngIf="!isDisabled(cell)"
-                                                        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full h-1 bg-blue-500 transition-transform duration-300 scale-x-0 group-hover:scale-x-100 origin-center">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="space-y-2">
-                            <label class="text-sm font-medium leading-none" for="moreInformationMail">
-                                Informations complémentaires
-                            </label>
-                            <textarea
-                                class="flex w-full transition-all duration-100 ease-out rounded-md border border-input bg-background resize-none px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-h-[100px]"
-                                id="moreInformationMail" name="moreInformationMail" autocomplete="off"
-                                placeholder="Entrez vos informations complémentaires, si vous en avez à nous soumettre"
-                                [(ngModel)]="moreInformationMail" #inputField></textarea>
-                        </div>
-                        <button
-                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 text-primary-foreground h-10 px-4 py-2 w-full bg-blue-500 text-white hover:bg-blue-600"
-                            (click)="sendMail()">
-                            Envoyer la demande de formation
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
+	<div class="fixed top-16 left-4 p-4 lg:block hidden">
+		<div (click)="navigateTo('home', 'catalogue')" class="focus:outline-none cursor-pointer">
+			<i class="fa-solid fa-circle-arrow-left text-5xl mb-2 text-blue-500 hover:text-blue-600 transition-colors"></i>
+		</div>
+	</div>
+	<section class="w-full pt-24 md:pb-20 lg:pb-20 md:pt-32 lg:pt-32 pb-10 animate-appear">
+		<div class="container px-4 md:px-6">
+			<div class="mx-auto max-w-3xl space-y-8">
+				<div class="space-y-4 text-center">
+					<h2 class="text-4xl font-bold tracking-tighter sm:text-5xl">Demande de formation</h2>
+					<p class="text-gray-500 md:text-xl/relaxed xl:text-xl/relaxed dark:text-gray-400">
+						Remplissez le formulaire ci-dessous pour faire une demande de formation. Cette demande sera étudiée et nous reviendrons vers
+						vous dès que possible.
+					</p>
+				</div>
+				<form class="space-y-6">
+					<div class="space-y-4">
+						<h3 class="text-2xl font-bold">Localisation de la formation</h3>
+						<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+							<div class="space-y-2">
+								<label class="text-sm font-medium leading-none" for="cityMail">Ville</label>
+								<input
+									class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+									id="cityMail"
+									name="cityMail"
+									[(ngModel)]="cityMail"
+									placeholder="Entrez votre ville"
+									#inputField
+								/>
+							</div>
+							<div class="space-y-2">
+								<label class="text-sm font-medium leading-none" for="postalCodeMail">Code postal</label>
+								<input
+									class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+									id="postalCodeMail"
+									name="postalCodeMail"
+									[(ngModel)]="postalCodeMail"
+									(input)="formatAndRestrictPostalCodeInput($event)"
+									placeholder="Entrez votre code postal"
+									#inputField
+								/>
+							</div>
+						</div>
+						<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+							<div class="space-y-2">
+								<label class="text-sm font-medium leading-none" for="countryMail">Pays</label>
+								<input
+									class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+									id="countryMail"
+									name="countryMail"
+									[(ngModel)]="countryMail"
+									placeholder="Entrez votre pays"
+									#inputField
+								/>
+							</div>
+							<div class="space-y-2">
+								<label class="text-sm font-medium leading-none" for="addressMail">Adresse de la formation</label>
+								<input
+									class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+									id="addressMail"
+									name="addressMail"
+									[(ngModel)]="addressMail"
+									placeholder="Entrez l'adresse de la formation"
+									#inputField
+								/>
+							</div>
+						</div>
+					</div>
+					<div class="space-y-8">
+						<div class="space-y-4">
+							<h3 class="text-2xl font-bold">Informations du contact de référence</h3>
+							<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+								<div class="space-y-2">
+									<label class="text-sm font-medium leading-none" for="nameMail">Nom</label>
+									<input
+										class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+										id="nameMail"
+										name="nameMail"
+										[(ngModel)]="nameMail"
+										placeholder="Entrez votre nom"
+										#inputField
+									/>
+								</div>
+								<div class="space-y-2">
+									<label class="text-sm font-medium leading-none" for="emailMail">Email</label>
+									<input
+										class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+										id="emailMail"
+										name="emailMail"
+										[(ngModel)]="emailMail"
+										placeholder="Entrez votre email"
+										type="email"
+										#inputField
+									/>
+								</div>
+							</div>
+							<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+								<div class="space-y-2">
+									<label class="text-sm font-medium leading-none" for="phoneNumberMail">Téléphone</label>
+									<input
+										class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+										id="phoneNumberMail"
+										placeholder="Entrez votre numéro de téléphone"
+										type="tel"
+										name="phoneNumberMail"
+										[(ngModel)]="phoneNumberMail"
+										(input)="commonService.formatAndRestrictPhoneInput($event)"
+										#inputField
+									/>
+								</div>
+								<div class="space-y-2">
+									<label class="text-sm font-medium leading-none" for="companyMail">Entreprise</label>
+									<input
+										class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+										id="companyMail"
+										name="companyMail"
+										[(ngModel)]="companyMail"
+										placeholder="Entrez le nom de votre entreprise"
+										#inputField
+									/>
+								</div>
+							</div>
+							<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+								<div class="space-y-2">
+									<label class="text-sm font-medium leading-none" for="companySiretMail">Numéro SIRET</label>
+									<input
+										class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+										id="companySiretMail"
+										name="companySiretMail"
+										[(ngModel)]="companySiretMail"
+										placeholder="Entrez le SIRET de votre entreprise"
+										#inputField
+										(input)="formatAndRestrictCompanySiretInput($event)"
+									/>
+								</div>
+							</div>
+						</div>
+						<div class="space-y-4">
+							<h3 class="text-2xl font-bold">Informations sur la formation</h3>
+							<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+								<div class="space-y-2">
+									<label class="text-sm font-medium leading-none" for="chosenTrainingName">Formation choisie</label>
+									<input
+										class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:cursor-not-allowed disabled:opacity-50"
+										id="chosenTrainingName"
+										name="chosenTrainingName"
+										[value]="chosenTrainingName"
+										[disabled]="true"
+										#inputField
+									/>
+								</div>
+								<div class="space-y-2">
+									<label class="text-sm font-medium leading-none" for="personNumberMail">Nombre de personnes</label>
+									<input
+										class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+										id="personNumberMail"
+										name="personNumberMail"
+										[(ngModel)]="personNumberMail"
+										(input)="formatAndRestrictPersonNumberInput($event)"
+										placeholder="Entrez le nombre de personnes"
+										type="text"
+										#inputField
+									/>
+								</div>
+							</div>
+							<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+								<div class="space-y-2">
+									<label class="text-sm font-medium leading-none" for="jobTrainedMail">Métier formé</label>
+									<input
+										class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+										id="jobTrainedMail"
+										name="jobTrainedMail"
+										[(ngModel)]="jobTrainedMail"
+										placeholder="Entrez le métier de la population formée"
+										#inputField
+									/>
+								</div>
+								<div class="space-y-2 relative">
+									<label class="text-sm font-medium leading-none" for="trainingDateMail">Date souhaitée de la formation</label>
+									<input
+										type="text"
+										#inputField
+										id="trainingDateMail"
+										[(ngModel)]="trainingDateMail"
+										(focus)="focus()"
+										(blur)="blur()"
+										placeholder="Sélectionnez une date"
+										name="trainingDateMail"
+										readonly
+										class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+									/>
+									<div class="absolute z-10 w-full flex flex-col animate-appear" *ngIf="active" (mousedown)="prevent($event)">
+										<div class="bg-blue-500 text-white pb-3 pt-1 flex flex-col items-center">
+											<div class="flex justify-between items-center w-full h-10 px-4">
+												<i
+													(click)="!isCurrentMonth() && setPreviousMonth()"
+													[ngClass]="{
+														'text-gray-400 cursor-not-allowed': isCurrentMonth(),
+														'cursor-pointer': !isCurrentMonth()
+													}"
+													class="fa-solid fa-chevron-left text-lg"
+												></i>
+												<div class="text-lg">
+													{{ monthYearFormatted }}
+												</div>
+												<i class="fa-solid fa-chevron-right cursor-pointer text-lg" (click)="setNextMonth()"></i>
+											</div>
+											<div class="flex justify-between w-full text-sm">
+												<div class="flex-1 text-center" *ngFor="let day of days">
+													{{ day | slice : 0 : 3 }}
+												</div>
+											</div>
+										</div>
+										<div class="flex flex-col bg-white">
+											<div
+												class="flex transition-all duration-150"
+												[ngClass]="{ 'animate-swipeLeft': swipeLeft, 'animate-swipeRight': swipeRight }"
+												*ngFor="let row of calendarDays"
+											>
+												<div
+													*ngFor="let cell of row"
+													class="flex justify-center items-center border p-2 transition-all duration-300 flex-1 max-w-1/7 relative group"
+													[ngClass]="{
+														'cursor-pointer hover:text-blue-600': !isDisabled(cell),
+														'bg-gray-200 text-gray-400 cursor-not-allowed': isDisabled(cell),
+														'text-blue-500': isSelected(cell)
+													}"
+													[style.height]="cellHeightUnit"
+													(click)="!isDisabled(cell) && selectDay(cell)"
+												>
+													{{ cell.day }}
+													<div
+														*ngIf="!isDisabled(cell)"
+														class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full h-1 bg-blue-500 transition-transform duration-300 scale-x-0 group-hover:scale-x-100 origin-center"
+													></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="space-y-2">
+							<label class="text-sm font-medium leading-none" for="moreInformationMail">Informations complémentaires</label>
+							<textarea
+								class="flex w-full transition-all duration-100 ease-out rounded-md border border-input bg-background resize-none px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-h-[100px]"
+								id="moreInformationMail"
+								name="moreInformationMail"
+								autocomplete="off"
+								placeholder="Entrez vos informations complémentaires, si vous en avez à nous soumettre"
+								[(ngModel)]="moreInformationMail"
+								#inputField
+							></textarea>
+						</div>
+						<div
+							class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 text-primary-foreground h-10 px-4 py-2 w-full bg-blue-500 text-white hover:bg-blue-600"
+							(click)="sendMail()"
+						>
+							Envoyer la demande de formation
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
 </main>
 
 <footer class="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-    <p class="text-sm text-gray-600">© SAFESEC Formation. Tous droits réservés.</p>
-    <nav class="sm:ml-auto flex gap-4 sm:gap-6 ">
-        <p class="text-sm hover:text-blue-600 cursor-pointer" (click)="navigateTo('legal-information','')">
-            Mentions légales
-        </p>
-    </nav>
+	<p class="text-sm text-gray-600">© SAFESEC Formation. Tous droits réservés.</p>
+	<nav class="sm:ml-auto flex gap-4 sm:gap-6">
+		<p class="text-sm hover:text-blue-600 cursor-pointer" (click)="navigateTo('legal-information', '')">Mentions légales</p>
+	</nav>
 </footer>
