@@ -8,8 +8,8 @@ const cors = require('cors');                     // Middleware pour gérer les 
 const rateLimit = require('express-rate-limit');  // Middleware pour limiter le nombre de requêtes
 const axios = require('axios');
 
-// Port d'écoute du serveur (par défaut 3002)
-const PORT = process.env.PORT || 3002;
+// Port d'écoute du serveur (par défaut 3000)
+const PORT = process.env.PORT || 3000;
 
 // Configuration de SendGrid avec la clé API
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -20,13 +20,14 @@ const app = express();
 // Analyse du corps des requêtes au format JSON
 app.use(express.json());
 
-// Limitation du nombre de requêtes sur l'endpoint /send-mail pour prévenir les abus
+// Limitation du nombre de requêtes sur l'endpoint /send-mail et /send-mail-training-request pour prévenir les abus
 const limiter = rateLimit({
     windowMs: 24 * 60 * 60 * 1000, // fenêtre de 24 heures
     max: 5,                       // maximum 5 requêtes par fenêtre par adresse IP
     message: "Trop de requêtes depuis cette IP, veuillez réessayer demain." // réponse en cas de dépassement
 });
 app.use('/send-mail', limiter);
+app.use('/send-mail-training-request', limiter);
 
 // Configuration CORS : n'accepte que les requêtes POST depuis votre frontend
 const corsOptions = {
@@ -70,7 +71,7 @@ async function sendEmails(msgToAdmin, msgToUser, res) {
 
 // Route 1 : formulaire de contact
 app.post('/send-mail', limiter, async (req, res) => {
-  const { name, email, phoneNumber, message } = req.body;
+    const { name, email, phoneNumber, message } = Object.values(req.body);
   if (!name || !email || !phoneNumber || !message) {
     return res.status(400).json({ error: 'Champs manquants.' });
   }
@@ -101,7 +102,7 @@ app.post('/send-mail-training-request', limiter, async (req, res) => {
     companyName, companySiret, chosenTraining,
     personNumber, workTrained, trainingDate,
     moreInformation
-  } = req.body;
+  } = Object.values(req.body);
 
   if (!city || !postalCode || !country || !trainingAddress || !referentName || !email || !phoneNumber || !companyName || !companySiret || !chosenTraining || !personNumber || !workTrained || !trainingDate) {
     return res.status(400).json({ error: 'Champs nécessaires manquants.' });
