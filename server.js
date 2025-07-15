@@ -76,8 +76,8 @@ app.post('/send-mail', limiter, async (req, res) => {
   }
 
   const msgToAdmin = {
-    to: RECEIVER_EMAIL,
-    from: SENDGRID_SENDER,
+    to: process.env.ADMIN_EMAIL,
+    from: process.env.SENDER_EMAIL,
     replyTo: email,
     subject: `Nouveau message de ${name}`,
     text: `Nom : ${name}\nEmail : ${email}\nNuméro de tél : ${phoneNumber}\n\nMessage : ${message}`
@@ -85,7 +85,7 @@ app.post('/send-mail', limiter, async (req, res) => {
 
   const msgToUser = {
     to: email,
-    from: SENDGRID_SENDER,
+    from: process.env.SENDER_EMAIL,
     subject: `SAFESEC Formation - Réception de votre message`,
     text: `Bonjour !\n\nNous avons bien reçu votre message. Nous allons l'examiner et nous y répondrons dans les plus brefs délais.\nEn attendant, vous pouvez visiter le site internet ou mon Linkedin. Merci pour votre confiance !\n\nChristophe ERIBON via SAFESEC Formation`
   };
@@ -114,8 +114,8 @@ app.post('/send-mail-training-request', limiter, async (req, res) => {
     : 'https://www.viamichelin.fr/itineraires/';
 
   const msgToAdmin = {
-    to: RECEIVER_EMAIL,
-    from: SENDGRID_SENDER,
+    to: process.env.ADMIN_EMAIL,
+    from: process.env.SENDER_EMAIL,
     subject: `Nouvelle demande de formation de ${referentName}`,
     html: `
       Ville : ${city}<br>
@@ -140,7 +140,7 @@ app.post('/send-mail-training-request', limiter, async (req, res) => {
 
   const msgToUser = {
     to: email,
-    from: SENDGRID_SENDER,
+    from: process.env.SENDER_EMAIL,
     subject: `SAFESEC Formation - Votre demande de formation`,
     text: `Bonjour ${referentName} !\n\nNous avons bien reçu votre demande pour la formation "${chosenTraining}". Nous allons examiner votre demande et vous répondrons dans les plus brefs délais.\n\nMerci pour votre confiance ! \n\nChristophe ERIBON via SAFESEC Formation`
   };
@@ -149,7 +149,7 @@ app.post('/send-mail-training-request', limiter, async (req, res) => {
 });
 
 // Service des fichiers statiques en production
-if (NODE_ENV !== 'dev') {
+if (process.env.NODE_ENV !== 'dev') {
   const distDir = __dirname + '/dist/';
   app.use(express.static(distDir));
   app.get('*', (req, res) => res.sendFile(distDir + 'index.html'));
