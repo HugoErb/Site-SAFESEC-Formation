@@ -88,10 +88,6 @@ function buildViaMichelinUrl(city, coords) {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     tomorrow.setHours(14, 0, 0, 0);
-    const isoDateTime = tomorrow.toISOString().replace(/:/g, '%3A'); // encodeur minimal
-
-    // Filtre de date d’hébergement (peu utile ici, on supprime si inutile)
-    // const filtersObj = { /* … */ };
 
     // Itinéraire JSON
     const itineraryObj = [
@@ -103,7 +99,6 @@ function buildViaMichelinUrl(city, coords) {
     const selectedAddressObj = {
         address: city,
         entityType: "CITY",
-        countryCode,
         coordinates: { lng, lat },
         boundsSync: true,
         city
