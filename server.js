@@ -69,6 +69,66 @@ async function sendEmails(msgToAdmin, msgToUser, res) {
   }
 }
 
+/**
+ * Génère l’URL ViaMichelin pour un trajet de “Annezay” vers la ville donnée,
+ * en simulant un départ demain à 14h (trafic normal).
+ *
+ * @param {string} city         – Nom de la ville d’arrivée (ex: "Pau")
+ * @param {{lat: number, lng: number}} coords – Coordonnées de la ville d’arrivée
+ * @returns {string}            – URL complète à appeler
+ */
+function buildViaMichelinUrl(city, coords) {
+    if (!coords) {
+        return 'https://www.viamichelin.fr/itineraires/';
+    }
+
+    const { lat, lng } = coords;
+
+    // Date de demain à 14h pour simuler un trafic “normal”
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(14, 0, 0, 0);
+    const isoDateTime = tomorrow.toISOString().replace(/:/g, '%3A'); // encodeur minimal
+
+    // Filtre de date d’hébergement (peu utile ici, on supprime si inutile)
+    // const filtersObj = { /* … */ };
+
+    // Itinéraire JSON
+    const itineraryObj = [
+        { t: 3, l: "Annezay", c: { lng: -0.714026, lat: 46.009306 } },
+        { t: 3, l: city, c: { lng, lat }, isArrival: true }
+    ];
+
+    // Adresse de la formation pour l’affichage
+    const selectedAddressObj = {
+        address: city,
+        entityType: "CITY",
+        countryCode,
+        coordinates: { lng, lat },
+        boundsSync: true,
+        city
+    };
+
+    // Construction progressive de l’URL
+    let url = 'https://www.viamichelin.fr/itineraires/resultats?';
+    url += 'bounds=-0.39256~43.28581~-0.29476~43.35798';
+    url += '&car=29074~Clio+V~true~false~GASOLINE~RENAULT';
+    url += `&center=${lng}~${lat}`;
+    url += '&currency=eur&distanceSystem=METRIC&energyPrice=1.9009';
+    url += `&itinerary=${encodeURIComponent(JSON.stringify(itineraryObj))}`;
+    url += `&selectedAddress=${encodeURIComponent(JSON.stringify(selectedAddressObj))}`;
+    url += `&selectedRoute=0`;
+    url += `&to=${encodeURIComponent(city)}`;
+    url += `&traffic=CLOSINGS`;
+    url += `&travelMode=CAR`;
+    url += `&tripConstraint=NONE`;
+    url += `&withCaravan=false`;
+    url += `&zoiSettings=false~20`;
+
+    return url;
+}
+
+
 // Route 1 : formulaire de contact
 app.post('/send-mail', async (req, res) => {
     // Récupération des données envoyées depuis le formulaire
@@ -114,9 +174,7 @@ app.post('/send-mail-training-request', async (req, res) => {
     if (!moreInformation) moreInformation = 'Aucune';
 
     const coordinates = await getCoordinates(city);
-    const viaMichelinUrl = coordinates
-        ? `https://www.viamichelin.fr/itineraires/resultats?from=Annezay&to=${encodeURIComponent(city)}&travelMode=CAR&isArrival=true&lat=${coordinates.lat}&lng=${coordinates.lng}`
-        : 'https://www.viamichelin.fr/itineraires/';
+    const viaMichelinUrl = buildViaMichelinUrl(city, coordinates);
 
     const msgToMe = {
         to: process.env.ADMIN_EMAIL,
