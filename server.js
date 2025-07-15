@@ -70,83 +70,87 @@ async function sendEmails(msgToAdmin, msgToUser, res) {
 }
 
 // Route 1 : formulaire de contact
-app.post('/send-mail', limiter, async (req, res) => {
-    const { name, email, phoneNumber, message } = Object.values(req.body);
-  if (!name || !email || !phoneNumber || !message) {
-    return res.status(400).json({ error: 'Champs manquants.' });
-  }
+app.post('/send-mail', async (req, res) => {
+    // Récupération des données envoyées depuis le formulaire
+    const [name, email, phoneNumber, message] = Object.values(req.body);
 
-  const msgToAdmin = {
-    to: process.env.ADMIN_EMAIL,
-    from: process.env.SENDER_EMAIL,
-    replyTo: email,
-    subject: `Nouveau message de ${name}`,
-    text: `Nom : ${name}\nEmail : ${email}\nNuméro de tél : ${phoneNumber}\n\nMessage : ${message}`
-  };
+    // Vérification de la présence de tous les champs requis
+    if (!name || !email || !phoneNumber || !message) {
+        return res.status(400).json({ error: 'Champs nécessaires manquants.' });
+    }
 
-  const msgToUser = {
-    to: email,
-    from: process.env.SENDER_EMAIL,
-    subject: `SAFESEC Formation - Réception de votre message`,
-    text: `Bonjour !\n\nNous avons bien reçu votre message. Nous allons l'examiner et nous y répondrons dans les plus brefs délais.\nEn attendant, vous pouvez visiter le site internet ou mon Linkedin. Merci pour votre confiance !\n\nChristophe ERIBON via SAFESEC Formation`
-  };
+    // Préparation du message à envoyer à l'administrateur
+    const msgToMe = {
+        to: process.env.ADMIN_EMAIL,
+        from: process.env.SENDER_EMAIL,
+        replyTo: email, // l'utilisateur pourra répondre directement
+        subject: `Nouveau message de ${name}`,
+        text: `Nom : ${name}\nEmail : ${email}\nNuméro de tél : ${phoneNumber}\n\nMessage : ${message}`
+    };
 
-  await sendEmails(msgToAdmin, msgToUser, res);
+    const msgToUser = {
+        to: email,
+        from: process.env.SENDER_EMAIL,
+        subject: `SAFESEC Formation - Réception de votre message`,
+        text: `Bonjour !\n\nNous avons bien reçu votre message. Nous allons l'examiner et nous y répondrons dans les plus brefs délais.\nEn attendant, vous pouvez visiter le site internet ou mon Linkedin. Merci pour votre confiance !\n\nChristophe ERIBON via SAFESEC Formation`
+    };
+
+    await sendEmails(msgToAdmin, msgToUser, res);
 });
 
 // Route 2 : demande de formation
-app.post('/send-mail-training-request', limiter, async (req, res) => {
-  let {
-    city, postalCode, country, trainingAddress,
-    referentName, email, phoneNumber,
-    companyName, companySiret, chosenTraining,
-    personNumber, workTrained, trainingDate,
-    moreInformation
-  } = Object.values(req.body);
+app.post('/send-mail-training-request', async (req, res) => {
+    const [
+        city, postalCode, country, trainingAddress,
+        referentName, email, phoneNumber,
+        companyName, companySiret, chosenTraining,
+        personNumber, workTrained, trainingDate,
+        moreInformation
+    ] = Object.values(req.body);
 
-  if (!city || !postalCode || !country || !trainingAddress || !referentName || !email || !phoneNumber || !companyName || !companySiret || !chosenTraining || !personNumber || !workTrained || !trainingDate) {
-    return res.status(400).json({ error: 'Champs nécessaires manquants.' });
-  }
-  if (!moreInformation) moreInformation = 'Aucune';
+    if (!city || !postalCode || !country || !trainingAddress || !referentName || !email || !phoneNumber || !companyName || !companySiret || !chosenTraining || !personNumber || !workTrained || !trainingDate) {
+        return res.status(400).json({ error: 'Champs nécessaires manquants.' });
+    }
+    if (!moreInformation) moreInformation = 'Aucune';
 
-  const coordinates = await getCoordinates(city);
-  const viaMichelinUrl = coordinates
-    ? `https://www.viamichelin.fr/itineraires/resultats?from=Annezay&to=${encodeURIComponent(city)}&travelMode=CAR&isArrival=true&lat=${coordinates.lat}&lng=${coordinates.lng}`
-    : 'https://www.viamichelin.fr/itineraires/';
+    const coordinates = await getCoordinates(city);
+    const viaMichelinUrl = coordinates
+        ? `https://www.viamichelin.fr/itineraires/resultats?from=Annezay&to=${encodeURIComponent(city)}&travelMode=CAR&isArrival=true&lat=${coordinates.lat}&lng=${coordinates.lng}`
+        : 'https://www.viamichelin.fr/itineraires/';
 
-  const msgToAdmin = {
-    to: process.env.ADMIN_EMAIL,
-    from: process.env.SENDER_EMAIL,
-    subject: `Nouvelle demande de formation de ${referentName}`,
-    html: `
-      Ville : ${city}<br>
-      Code postal : ${postalCode}<br>
-      Pays : ${country}<br>
-      Adresse de la formation : ${trainingAddress}<br>
-      <a href="${viaMichelinUrl}" target="_blank">Voir l'itinéraire et le coût du trajet</a><br><br>
+    const msgToAdmin = {
+        to: process.env.ADMIN_EMAIL,
+        from: process.env.SENDER_EMAIL,
+        subject: `Nouvelle demande de formation de ${referentName}`,
+        html: `
+        Ville : ${city}<br>
+        Code postal : ${postalCode}<br>
+        Pays : ${country}<br>
+        Adresse de la formation : ${trainingAddress}<br>
+        <a href="${viaMichelinUrl}" target="_blank">Voir l'itinéraire et le coût du trajet</a><br><br>
 
-      Nom du référent : ${referentName}<br>
-      Email : ${email}<br>
-      Téléphone : ${phoneNumber}<br>
-      Entreprise : ${companyName}<br>
-      SIRET : ${companySiret}<br><br>
+        Nom du référent : ${referentName}<br>
+        Email : ${email}<br>
+        Téléphone : ${phoneNumber}<br>
+        Entreprise : ${companyName}<br>
+        SIRET : ${companySiret}<br><br>
 
-      Formation choisie : ${chosenTraining}<br>
-      Nombre de personnes : ${personNumber}<br>
-      Métier formé : ${workTrained}<br>
-      Date souhaitée de la formation : ${trainingDate}<br>
-      Informations complémentaires : ${moreInformation}<br>
-    `
-  };
+        Formation choisie : ${chosenTraining}<br>
+        Nombre de personnes : ${personNumber}<br>
+        Métier formé : ${workTrained}<br>
+        Date souhaitée de la formation : ${trainingDate}<br>
+        Informations complémentaires : ${moreInformation}<br>
+        `
+    };
 
-  const msgToUser = {
-    to: email,
-    from: process.env.SENDER_EMAIL,
-    subject: `SAFESEC Formation - Votre demande de formation`,
-    text: `Bonjour ${referentName} !\n\nNous avons bien reçu votre demande pour la formation "${chosenTraining}". Nous allons examiner votre demande et vous répondrons dans les plus brefs délais.\n\nMerci pour votre confiance ! \n\nChristophe ERIBON via SAFESEC Formation`
-  };
+    const msgToUser = {
+        to: email,
+        from: process.env.SENDER_EMAIL,
+        subject: `SAFESEC Formation - Votre demande de formation`,
+        text: `Bonjour ${referentName} !\n\nNous avons bien reçu votre demande pour la formation "${chosenTraining}". Nous allons examiner votre demande et vous répondrons dans les plus brefs délais.\n\nMerci pour votre confiance ! \n\nChristophe ERIBON via SAFESEC Formation`
+    };
 
-  await sendEmails(msgToAdmin, msgToUser, res);
+    await sendEmails(msgToAdmin, msgToUser, res);
 });
 
 // Service des fichiers statiques en production
