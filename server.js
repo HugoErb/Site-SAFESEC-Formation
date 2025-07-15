@@ -95,7 +95,7 @@ app.post('/send-mail', async (req, res) => {
         text: `Bonjour !\n\nNous avons bien reçu votre message. Nous allons l'examiner et nous y répondrons dans les plus brefs délais.\nEn attendant, vous pouvez visiter le site internet ou mon Linkedin. Merci pour votre confiance !\n\nChristophe ERIBON via SAFESEC Formation`
     };
 
-    await sendEmails(msgToAdmin, msgToUser, res);
+    await sendEmails(msgToMe, msgToUser, res);
 });
 
 // Route 2 : demande de formation
@@ -118,7 +118,7 @@ app.post('/send-mail-training-request', async (req, res) => {
         ? `https://www.viamichelin.fr/itineraires/resultats?from=Annezay&to=${encodeURIComponent(city)}&travelMode=CAR&isArrival=true&lat=${coordinates.lat}&lng=${coordinates.lng}`
         : 'https://www.viamichelin.fr/itineraires/';
 
-    const msgToAdmin = {
+    const msgToMe = {
         to: process.env.ADMIN_EMAIL,
         from: process.env.SENDER_EMAIL,
         subject: `Nouvelle demande de formation de ${referentName}`,
@@ -150,7 +150,7 @@ app.post('/send-mail-training-request', async (req, res) => {
         text: `Bonjour ${referentName} !\n\nNous avons bien reçu votre demande pour la formation "${chosenTraining}". Nous allons examiner votre demande et vous répondrons dans les plus brefs délais.\n\nMerci pour votre confiance ! \n\nChristophe ERIBON via SAFESEC Formation`
     };
 
-    await sendEmails(msgToAdmin, msgToUser, res);
+    await sendEmails(msgToMe, msgToUser, res);
 });
 
 // Service des fichiers statiques en production
