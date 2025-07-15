@@ -40,24 +40,6 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// Fonction pour récupérer les coordonnées d'une ville via OpenStreetMap
-async function getCoordinates(city) {
-  try {
-    const response = await axios.get('https://nominatim.openstreetmap.org/search', {
-      params: { q: city, format: 'json', limit: 1 },
-      headers: { 'User-Agent': 'SAFESEC Formation' }
-    });
-    if (response.data.length > 0) {
-      const { lat, lon } = response.data[0];
-      return { lat: parseFloat(lat), lng: parseFloat(lon) };
-    }
-    throw new Error('Ville non trouvée.');
-  } catch (err) {
-    console.error('Erreur récupération coordonnées :', err);
-    return null;
-  }
-}
-
 // Helper pour envoyer deux emails (admin et confirmation)
 async function sendEmails(msgToAdmin, msgToUser, res) {
   try {
@@ -68,61 +50,6 @@ async function sendEmails(msgToAdmin, msgToUser, res) {
     return res.status(500).json({ error: error.message });
   }
 }
-
-/**
- * Génère l’URL ViaMichelin pour un trajet de “Annezay” vers la ville donnée,
- * en simulant un départ demain à 14h (trafic normal).
- *
- * @param {string} city         – Nom de la ville d’arrivée (ex: "Pau")
- * @param {{lat: number, lng: number}} coords – Coordonnées de la ville d’arrivée
- * @returns {string}            – URL complète à appeler
- */
-function buildViaMichelinUrl(city, coords) {
-    if (!coords) {
-        return 'https://www.viamichelin.fr/itineraires/';
-    }
-
-    const { lat, lng } = coords;
-
-    // Date de demain à 14h pour simuler un trafic “normal”
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    tomorrow.setHours(14, 0, 0, 0);
-
-    // Itinéraire JSON
-    const itineraryObj = [
-        { t: 3, l: "Annezay", c: { lng: -0.714026, lat: 46.009306 } },
-        { t: 3, l: city, c: { lng, lat }, isArrival: true }
-    ];
-
-    // Adresse de la formation pour l’affichage
-    const selectedAddressObj = {
-        address: city,
-        entityType: "CITY",
-        coordinates: { lng, lat },
-        boundsSync: true,
-        city
-    };
-
-    // Construction progressive de l’URL
-    let url = 'https://www.viamichelin.fr/itineraires/resultats?';
-    url += 'bounds=-0.39256~43.28581~-0.29476~43.35798';
-    url += '&car=29074~Clio+V~true~false~GASOLINE~RENAULT';
-    url += `&center=${lng}~${lat}`;
-    url += '&currency=eur&distanceSystem=METRIC&energyPrice=1.9009';
-    url += `&itinerary=${encodeURIComponent(JSON.stringify(itineraryObj))}`;
-    url += `&selectedAddress=${encodeURIComponent(JSON.stringify(selectedAddressObj))}`;
-    url += `&selectedRoute=0`;
-    url += `&to=${encodeURIComponent(city)}`;
-    url += `&traffic=CLOSINGS`;
-    url += `&travelMode=CAR`;
-    url += `&tripConstraint=NONE`;
-    url += `&withCaravan=false`;
-    url += `&zoiSettings=false~20`;
-
-    return url;
-}
-
 
 // Route 1 : formulaire de contact
 app.post('/send-mail', async (req, res) => {
@@ -140,14 +67,14 @@ app.post('/send-mail', async (req, res) => {
         from: process.env.SENDER_EMAIL,
         replyTo: email, // l'utilisateur pourra répondre directement
         subject: `Nouveau message de ${name}`,
-        text: `Nom : ${name}\nEmail : ${email}\nNuméro de tél : ${phoneNumber}\n\nMessage : ${message}`
+        text: `Nouveau message de ${name} :\n\nNom : ${name}\nEmail : ${email}\nNuméro de tél : ${phoneNumber}\n\nMessage : ${message}\n\nCet e-mail a été envoyé automatiquement, merci de ne pas y répondre.`
     };
 
     const msgToUser = {
         to: email,
         from: process.env.SENDER_EMAIL,
         subject: `SAFESEC Formation - Réception de votre message`,
-        text: `Bonjour !\n\nNous avons bien reçu votre message. Nous allons l'examiner et nous y répondrons dans les plus brefs délais.\nEn attendant, vous pouvez visiter le site internet ou mon Linkedin. Merci pour votre confiance !\n\nChristophe ERIBON via SAFESEC Formation`
+        text: `Bonjour !\n\nNous avons bien reçu votre message. Nous allons l'examiner et nous y répondrons dans les plus brefs délais.\nEn attendant, vous pouvez visiter le site internet ou mon Linkedin. Merci pour votre confiance !\n\nChristophe ERIBON via SAFESEC Formation\n\nCet e-mail a été envoyé automatiquement, merci de ne pas y répondre.`
     };
 
     await sendEmails(msgToMe, msgToUser, res);
@@ -168,19 +95,18 @@ app.post('/send-mail-training-request', async (req, res) => {
     }
     if (!moreInformation) moreInformation = 'Aucune';
 
-    const coordinates = await getCoordinates(city);
-    const viaMichelinUrl = buildViaMichelinUrl(city, coordinates);
-
     const msgToMe = {
         to: process.env.ADMIN_EMAIL,
         from: process.env.SENDER_EMAIL,
         subject: `Nouvelle demande de formation de ${referentName}`,
         html: `
+        Nouvelle demande de formation de ${referentName} pour ${companyName}.<br><br>
+
         Ville : ${city}<br>
         Code postal : ${postalCode}<br>
         Pays : ${country}<br>
         Adresse de la formation : ${trainingAddress}<br>
-        <a href="${viaMichelinUrl}" target="_blank">Voir l'itinéraire et le coût du trajet</a><br><br>
+        <a href="https://www.viamichelin.fr/itineraires/" target="_blank">Voir l'itinéraire et le coût du trajet</a><br><br>
 
         Nom du référent : ${referentName}<br>
         Email : ${email}<br>
@@ -192,7 +118,9 @@ app.post('/send-mail-training-request', async (req, res) => {
         Nombre de personnes : ${personNumber}<br>
         Métier formé : ${workTrained}<br>
         Date souhaitée de la formation : ${trainingDate}<br>
-        Informations complémentaires : ${moreInformation}<br>
+        Informations complémentaires : ${moreInformation}<br><br>
+
+        Cet e-mail a été envoyé automatiquement, merci de ne pas y répondre.
         `
     };
 
@@ -200,7 +128,7 @@ app.post('/send-mail-training-request', async (req, res) => {
         to: email,
         from: process.env.SENDER_EMAIL,
         subject: `SAFESEC Formation - Votre demande de formation`,
-        text: `Bonjour ${referentName} !\n\nNous avons bien reçu votre demande pour la formation "${chosenTraining}". Nous allons examiner votre demande et vous répondrons dans les plus brefs délais.\n\nMerci pour votre confiance ! \n\nChristophe ERIBON via SAFESEC Formation`
+        text: `Bonjour ${referentName} !\n\nNous avons bien reçu votre demande pour la formation "${chosenTraining}". Nous allons examiner votre demande et vous répondrons dans les plus brefs délais.\n\nMerci pour votre confiance ! \n\nChristophe ERIBON via SAFESEC Formation\n\nCet e-mail a été envoyé automatiquement, merci de ne pas y répondre.`
     };
 
     await sendEmails(msgToMe, msgToUser, res);
