@@ -1,192 +1,145 @@
-const axios = require('axios');
+// Charge les variables d'environnement depuis le fichier .env
 require('dotenv').config();
-const express = require('express');
-const nodemailer = require('nodemailer');
-const cors = require('cors');
+
+// Importation des modules nécessaires
+const express = require('express');               // Framework web pour gérer les requêtes HTTP
+const sgMail = require('@sendgrid/mail');         // SDK SendGrid pour l'envoi d'e-mails
+const cors = require('cors');                     // Middleware pour gérer les CORS
+const rateLimit = require('express-rate-limit');  // Middleware pour limiter le nombre de requêtes
+const axios = require('axios');
+
+// Port d'écoute du serveur (par défaut 3000)
 const PORT = process.env.PORT || 3000;
-const optionsCors = {
-    maxHttpBufferSize: 1e9,
+
+// Configuration de SendGrid avec la clé API
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+// Initialisation de l'application Express
+const app = express();
+
+// Analyse du corps des requêtes au format JSON
+app.use(express.json());
+
+// Limitation du nombre de requêtes sur l'endpoint /send-mail et /send-mail-training-request pour prévenir les abus
+const limiter = rateLimit({
+    windowMs: 24 * 60 * 60 * 1000, // fenêtre de 24 heures
+    max: 5,                       // maximum 5 requêtes par fenêtre par adresse IP
+    message: "Trop de requêtes depuis cette IP, veuillez réessayer demain." // réponse en cas de dépassement
+});
+app.use('/send-mail', limiter);
+app.use('/send-mail-training-request', limiter);
+
+// Configuration CORS : n'accepte que les requêtes POST depuis votre frontend
+const corsOptions = {
+    origin: process.env.NODE_ENV === 'dev'
+        ? 'http://localhost:4200'           // en développement
+        : 'https://safesec-formation.fr/',  // en production
+    methods: ['POST'],                      // n'autoriser que la méthode POST
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization']
+};
+app.use(cors(corsOptions));
+
+// Helper pour envoyer deux emails (admin et confirmation)
+async function sendEmails(msgToAdmin, msgToUser, res) {
+  try {
+    await sgMail.send([msgToAdmin, msgToUser]);
+    return res.status(200).json({ message: 'Emails envoyés avec succès.' });
+  } catch (error) {
+    console.error('Erreur envoi email :', error);
+    return res.status(500).json({ error: error.message });
+  }
 }
 
-if (process.env.NODE_ENV === 'dev') {
-    optionsCors.cors = {
-        origin: 'http://localhost:4200/',
-        methods: ["GET", "POST"]
-    }
-}
-
-const app = express();
-app.use(express.json());
-app.use(cors(optionsCors));
-
-// Configurer le transporteur Nodemailer
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    }
-});
-
-async function getCoordinates(city) {
-    try {
-        const response = await axios.get('https://nominatim.openstreetmap.org/search', {
-            params: {
-                q: city,
-                format: 'json',
-                limit: 1
-            },
-            headers: {
-                'User-Agent': 'SAFESEC Formation'
-            }
-        });
-        if (response.data && response.data.length > 0) {
-            const { lat, lon } = response.data[0];
-            return { lat: parseFloat(lat), lng: parseFloat(lon) };
-        } else {
-            throw new Error('Ville non trouvée.');
-        }
-    } catch (error) {
-        console.error('Erreur lors de la récupération des coordonnées :', error);
-        return null; // Retourner null si les coordonnées ne peuvent pas être récupérées
-    }
-}
-
+// Route 1 : formulaire de contact
 app.post('/send-mail', async (req, res) => {
-    // On extrait les valeurs en fonction de l'ordre attendu
+    // Récupération des données envoyées depuis le formulaire
     const [name, email, phoneNumber, message] = Object.values(req.body);
 
-    // Vérification que les valeurs nécessaires sont présentes
+    // Vérification de la présence de tous les champs requis
     if (!name || !email || !phoneNumber || !message) {
-        return res.status(400).json({ error: 'Certaines valeurs nécessaires sont manquantes.' });
+        return res.status(400).json({ error: 'Champs nécessaires manquants.' });
     }
 
-    // Fonction pour préparer les options d'envoi d'email
-    const prepareMailOptions = (from, to, subject, text) => ({
-        from,
-        to,
-        subject,
-        text,
-    });
+    // Préparation du message à envoyer à l'administrateur
+    const msgToMe = {
+        to: process.env.ADMIN_EMAIL,
+        from: process.env.SENDER_EMAIL,
+        replyTo: email, // l'utilisateur pourra répondre directement
+        subject: `Nouveau message de ${name}`,
+        text: `Nouveau message de ${name} :\n\nNom : ${name}\nEmail : ${email}\nNuméro de tél : ${phoneNumber}\n\nMessage : ${message}\n\nCet e-mail a été envoyé automatiquement, merci de ne pas y répondre.`
+    };
 
-    // Préparer les emails
-    const mailOptionsSSF = prepareMailOptions(
-        email,
-        'safesecformation@gmail.com',
-        `Nouveau message de ${name}`,
-        `Nom : ${name}\nEmail : ${email}\nNuméro de tél : ${phoneNumber}\n\nMessage : ${message}`
-    );
+    const msgToUser = {
+        to: email,
+        from: process.env.SENDER_EMAIL,
+        subject: `SAFESEC Formation - Réception de votre message`,
+        text: `Bonjour !\n\nNous avons bien reçu votre message. Nous allons l'examiner et nous y répondrons dans les plus brefs délais.\nEn attendant, vous pouvez visiter le site internet ou mon Linkedin. Merci pour votre confiance !\n\nChristophe ERIBON via SAFESEC Formation\n\nCet e-mail a été envoyé automatiquement, merci de ne pas y répondre.`
+    };
 
-    const mailOptionsConfirmation = prepareMailOptions(
-        'safesecformation@gmail.com',
-        email,
-        `SAFESEC Formation - Réception de votre message`,
-        `Bonjour !\n\nNous avons bien reçu votre message. Nous allons l'examiner et nous y répondrons dans les plus brefs délais.\nEn attendant, vous pouvez visiter le site internet ou mon Linkedin. Merci pour votre confiance !\n\nChristophe ERIBON via SAFESEC Formation`
-    );
-
-    try {
-        // Envoyer le premier email
-        const infoSSF = await transporter.sendMail(mailOptionsSSF);
-
-        // Si le premier email est envoyé avec succès, envoyer le deuxième email
-        const infoConfirmation = await transporter.sendMail(mailOptionsConfirmation);
-
-        res.status(200).json({
-            message: 'Emails envoyés avec succès !',
-            infoSSF: infoSSF,
-            infoConfirmation: infoConfirmation,
-        });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+    await sendEmails(msgToMe, msgToUser, res);
 });
 
-
-// Route pour traiter les demandes de formation
+// Route 2 : demande de formation
 app.post('/send-mail-training-request', async (req, res) => {
-    let [city, postalCode, country, trainingAddress, referentName, email, phoneNumber, companyName, companySiret, chosenTraining, personNumber, workTrained, trainingDate, moreInformation] = Object.values(req.body);
+    const [
+        city, postalCode, country, trainingAddress,
+        referentName, email, phoneNumber,
+        companyName, companySiret, chosenTraining,
+        personNumber, workTrained, trainingDate,
+        moreInformation
+    ] = Object.values(req.body);
 
     if (!city || !postalCode || !country || !trainingAddress || !referentName || !email || !phoneNumber || !companyName || !companySiret || !chosenTraining || !personNumber || !workTrained || !trainingDate) {
-        return res.status(400).json({ error: 'Certaines valeurs nécessaires sont manquantes.' });
+        return res.status(400).json({ error: 'Champs nécessaires manquants.' });
     }
+    if (!moreInformation) moreInformation = 'Aucune';
 
-    if (!moreInformation || moreInformation == '') {
-        moreInformation = 'Aucune';
-    }
-
-    // Essayer de récupérer les coordonnées pour le lien d'itinéraire
-    let viaMichelinUrl;
-    const coordinates = await getCoordinates(city);
-
-    if (coordinates) {
-        const { lat, lng } = coordinates;
-        viaMichelinUrl = `https://www.viamichelin.fr/itineraires/resultats?car=29074~Clio+V+-+Essence~true~false~GASOLINE&currency=eur&distanceSystem=METRIC&energyPrice=1.9009&from=Annezay&itinerary=%7B%22t%22%3A2%2C%22l%22%3A%22Annezay%22%2C%22c%22%3A%7B%22lng%22%3A-0.714026%2C%22lat%22%3A46.009306%7D%7D~%7B%22t%22%3A2%2C%22l%22%3A%22${encodeURIComponent(
-            city
-        )}%22%2C%22c%22%3A%7B%22lng%22%3A${lng}%2C%22lat%22%3A${lat}%7D%2C%22isArrival%22%3Atrue%7D&selectedRoute=0&showPolandModal=false&to=${encodeURIComponent(
-            city
-        )}&traffic=CLOSINGS&travelMode=CAR&tripConstraint=NONE&withCaravan=false&zoiSettings=false~20`;
-    } else {
-        viaMichelinUrl = "https://www.viamichelin.fr/itineraires/";
-    }
-
-    // Préparer les emails
-    const mailOptionsSSF = {
-        from: email,
-        to: 'safesecformation@gmail.com',
+    const msgToMe = {
+        to: process.env.ADMIN_EMAIL,
+        from: process.env.SENDER_EMAIL,
         subject: `Nouvelle demande de formation de ${referentName}`,
         html: `
-            Ville : ${city}<br>
-            Code postal : ${postalCode}<br>
-            Pays : ${country}<br>
-            Adresse de la formation : ${trainingAddress}<br>
-            <a href="${viaMichelinUrl}" target="_blank">Voir l'itinéraire et le coût du trajet</a><br><br>
+        Nouvelle demande de formation de ${referentName} pour ${companyName}.<br><br>
 
-            Nom du référent : ${referentName}<br>
-            Email : ${email}<br>
-            Téléphone : ${phoneNumber}<br>
-            Entreprise : ${companyName}<br>
-            SIRET : ${companySiret}<br><br>
+        Ville : ${city}<br>
+        Code postal : ${postalCode}<br>
+        Pays : ${country}<br>
+        Adresse de la formation : ${trainingAddress}<br>
+        <a href="https://www.viamichelin.fr/itineraires/" target="_blank">Voir l'itinéraire et le coût du trajet</a><br><br>
 
-            Formation choisie : ${chosenTraining}<br>
-            Nombre de personnes : ${personNumber}<br>
-            Métier formé : ${workTrained}<br>
-            Date souhaitée de la formation : ${trainingDate}<br>
-            Informations complémentaires : ${moreInformation}<br>
+        Nom du référent : ${referentName}<br>
+        Email : ${email}<br>
+        Téléphone : ${phoneNumber}<br>
+        Entreprise : ${companyName}<br>
+        SIRET : ${companySiret}<br><br>
+
+        Formation choisie : ${chosenTraining}<br>
+        Nombre de personnes : ${personNumber}<br>
+        Métier formé : ${workTrained}<br>
+        Date souhaitée de la formation : ${trainingDate}<br>
+        Informations complémentaires : ${moreInformation}<br><br>
+
+        Cet e-mail a été envoyé automatiquement, merci de ne pas y répondre.
         `
     };
 
-    const mailOptionsConfirmation = {
-        from: 'safesecformation@gmail.com',
+    const msgToUser = {
         to: email,
+        from: process.env.SENDER_EMAIL,
         subject: `SAFESEC Formation - Votre demande de formation`,
-        text: `Bonjour ${referentName} !\n\nNous avons bien reçu votre demande pour la formation "${chosenTraining}". Nous allons examiner votre demande et vous répondrons dans les plus brefs délais.\n\nMerci pour votre confiance ! \n\nChristophe ERIBON via SAFESEC Formation`
+        text: `Bonjour ${referentName} !\n\nNous avons bien reçu votre demande pour la formation "${chosenTraining}". Nous allons examiner votre demande et vous répondrons dans les plus brefs délais.\n\nMerci pour votre confiance ! \n\nChristophe ERIBON via SAFESEC Formation\n\nCet e-mail a été envoyé automatiquement, merci de ne pas y répondre.`
     };
 
-    try {
-        // Envoyer le premier email
-        const infoSSF = await transporter.sendMail(mailOptionsSSF);
-
-        // Si le premier email est envoyé avec succès, envoyer le deuxième email
-        const infoConfirmation = await transporter.sendMail(mailOptionsConfirmation);
-
-        res.status(200).json({
-            message: 'Emails envoyés avec succès !',
-            infoSSF: infoSSF,
-            infoConfirmation: infoConfirmation,
-        });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+    await sendEmails(msgToMe, msgToUser, res);
 });
 
+// Service des fichiers statiques en production
 if (process.env.NODE_ENV !== 'dev') {
-    var distDir = __dirname + "/dist/";
-    app.use(express.static(distDir));
-
-    app.get('*', (req, res) => {
-        res.sendFile(__dirname + '/dist/index.html');
-    });
+  const distDir = __dirname + '/dist/';
+  app.use(express.static(distDir));
+  app.get('*', (req, res) => res.sendFile(distDir + 'index.html'));
 }
+
+// Démarrage du serveur
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
