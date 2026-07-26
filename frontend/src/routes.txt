@@ -1,3 +1,0 @@
-/home
-/training-form
-/legal-information

@@ -168,6 +168,8 @@ if (process.env.NODE_ENV !== 'dev') {
       if (fs.existsSync(prerenderedPage)) {
         return res.sendFile(prerenderedPage);
       }
+      // Build Angular classique : toutes les routes utilisent l'index principal.
+      return res.sendFile(fallbackPage);
     }
 
     return res.status(cleanPath ? 404 : 200).sendFile(fallbackPage);
