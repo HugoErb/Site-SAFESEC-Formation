@@ -48,7 +48,7 @@ export class LegalInfosComponent {
   *                           un fragment spécifique au sein du composant.
   */
   navigateTo(component: string, section: string) {
-    this.router.navigate([component, { redirectionSection: section }]);
+    this.router.navigate([component], { fragment: section || undefined });
   }
 
   /**

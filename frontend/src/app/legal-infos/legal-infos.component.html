@@ -1,5 +1,5 @@
 <header class="px-4 lg:px-6 h-16 flex items-center fixed w-full bg-white z-50 shadow-sm border-b border-gray-200">
-	<a class="flex items-center justify-center cursor-pointer" href="/home" aria-label="Accueil SAFESEC Formation">
+	<a class="flex items-center justify-center cursor-pointer" href="/home" aria-label="Accueil SAFESEC Formation" (click)="navigateTo('home', 'landing'); $event.preventDefault()">
 		<img src="../../assets/imgs/logo.webp" width="48" height="48" alt="Logo SAFESEC Formation" class="w-12" />
 		<span class="brand-lockup ml-3">
 			<span class="brand-lockup__name">SAFESEC</span>
@@ -8,11 +8,11 @@
 	</a>
 
 	<!-- Navigation principale pour les grands écrans -->
-	<nav class="hidden h-full lg:flex ml-auto items-center">
-		<a class="site-nav-link text-base font-medium" href="/home#services">Services</a>
-		<a class="site-nav-link text-base font-medium" href="/home#formateur">Formateur</a>
-		<a class="site-nav-link text-base font-medium" href="/home#catalogue">Catalogue</a>
-		<a class="site-nav-link text-base font-medium" href="/home#contact">Contact</a>
+	<nav class="hidden h-full lg:flex ml-auto -mr-4 lg:-mr-6 items-center">
+		<a class="site-nav-link text-base font-medium" href="/home#services" (click)="navigateTo('home', 'services'); $event.preventDefault()">Services</a>
+		<a class="site-nav-link text-base font-medium" href="/home#formateur" (click)="navigateTo('home', 'formateur'); $event.preventDefault()">Formateur</a>
+		<a class="site-nav-link text-base font-medium" href="/home#catalogue" (click)="navigateTo('home', 'catalogue'); $event.preventDefault()">Catalogue</a>
+		<a class="site-nav-link text-base font-medium" href="/home#contact" (click)="navigateTo('home', 'contact'); $event.preventDefault()">Contact</a>
 	</nav>
 
 	<!-- Menu burger pour les petits écrans -->
@@ -20,22 +20,24 @@
 		<i class="fa-solid fa-bars text-2xl text-gray-700"></i>
 	</div>
 	<div #menuBurger class="lg:hidden absolute top-full left-0 w-full bg-white shadow-md animate-appear mt-[-5px]" *ngIf="burgerMenuOpened">
-		<a class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white" href="/home#services">
+		<a class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white" href="/home#services" (click)="navigateTo('home', 'services'); $event.preventDefault()">
 			Services
 		</a>
 		<a
 			class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
 			href="/home#formateur"
+			(click)="navigateTo('home', 'formateur'); $event.preventDefault()"
 		>
 			Formateur
 		</a>
 		<a
 			class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
 			href="/home#catalogue"
+			(click)="navigateTo('home', 'catalogue'); $event.preventDefault()"
 		>
 			Catalogue
 		</a>
-		<a class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white" href="/home#contact">
+		<a class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white" href="/home#contact" (click)="navigateTo('home', 'contact'); $event.preventDefault()">
 			Contact
 		</a>
 	</div>

@@ -105,9 +105,10 @@ export class HomeComponent {
 
     this.updateHeaderState();
 
-    // On récupère le nom de la formation de la page home
-    if (this.activatedRoute.snapshot.params.hasOwnProperty('redirectionSection')) {
-      this.scrollToSection(this.activatedRoute.snapshot.params['redirectionSection']);
+    const legacySection = this.activatedRoute.snapshot.params['redirectionSection'];
+    const targetSection = this.activatedRoute.snapshot.fragment || legacySection;
+    if (targetSection) {
+      this.scrollToSection(targetSection);
     }
   }
 
@@ -157,9 +158,11 @@ export class HomeComponent {
   * @param sectionId L'identifiant de l'élément HTML vers lequel défiler.
   */
   scrollToSection(sectionId: string): void {
-    if (this.burgerMenuOpened) {
-      this.burgerMenuOpened = !this.burgerMenuOpened;
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
     }
+
+    this.burgerMenuOpened = false;
 
     setTimeout(() => {
       const section = document.getElementById(sectionId);
@@ -167,9 +170,10 @@ export class HomeComponent {
         const sectionTop = section.getBoundingClientRect().top + window.scrollY;
         const headerHeight = 64;
         const position = sectionTop - headerHeight;
-        window.scrollTo({ top: position, behavior: 'smooth' });
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: position, behavior: reduceMotion ? 'auto' : 'smooth' });
       }
-    }, 50);
+    }, 100);
   }
 
   /**
