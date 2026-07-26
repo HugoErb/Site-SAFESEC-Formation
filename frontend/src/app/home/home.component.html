@@ -1,62 +1,103 @@
-<header class="px-4 lg:px-6 h-16 flex items-center fixed w-full bg-white z-50 shadow-sm border-b border-gray-200">
+<header
+	class="site-header top-0 px-4 lg:px-6 h-16 flex items-center fixed w-full z-50"
+	[class.site-header--scrolled]="headerScrolled"
+	[class.site-header--menu-open]="burgerMenuOpened"
+>
 	<div class="flex items-center justify-center mb-0.5 cursor-pointer" (click)="scrollToSection('landing')">
 		<img src="../../assets/imgs/logo.webp" width="56" height="56" alt="Logo" class="w-10 sm:w-14" />
-		<span class="text-xl font-semibold ml-4">SAFESEC Formation</span>
+		<span class="brand-lockup ml-3">
+			<span class="brand-lockup__name">SAFESEC</span>
+			<span class="brand-lockup__descriptor">Formation</span>
+		</span>
 	</div>
 
 	<!-- Navigation principale pour les grands écrans -->
 	<nav class="hidden lg:flex ml-auto gap-4 sm:gap-6 items-center">
-		<div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="scrollToSection('services')">Services</div>
-		<div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="scrollToSection('formateur')">Formateur</div>
-		<div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="scrollToSection('catalogue')">Catalogue</div>
-		<div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="scrollToSection('contact')">Contact</div>
+		<button type="button" class="site-nav-link text-base font-medium" (click)="scrollToSection('services')">Services</button>
+		<button type="button" class="site-nav-link text-base font-medium" (click)="scrollToSection('formateur')">Formateur</button>
+		<button type="button" class="site-nav-link text-base font-medium" (click)="scrollToSection('catalogue')">Catalogue</button>
+		<button type="button" class="site-nav-link text-base font-medium" (click)="scrollToSection('contact')">Contact</button>
 	</nav>
 
 	<!-- Menu burger pour les petits écrans -->
-	<div class="lg:hidden ml-auto mr-3" (click)="toggleBurgerMenu($event)">
-		<i class="fa-solid fa-bars text-2xl text-gray-700"></i>
-	</div>
-	<div #menuBurger class="lg:hidden absolute top-full left-0 w-full bg-white shadow-md animate-appear mt-[-5px]" *ngIf="burgerMenuOpened">
-		<div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white" (click)="scrollToSection('services')">
-			Services
+	<button
+		type="button"
+		class="site-menu-toggle ml-auto grid lg:hidden"
+		[class.site-menu-toggle--open]="burgerMenuOpened"
+		[attr.aria-expanded]="burgerMenuOpened"
+		aria-controls="mobile-navigation"
+		aria-label="Ouvrir ou fermer le menu"
+		(click)="toggleBurgerMenu($event)"
+	>
+		<i class="fa-solid" [class.fa-bars]="!burgerMenuOpened" [class.fa-xmark]="burgerMenuOpened" aria-hidden="true"></i>
+	</button>
+
+	<nav
+		#menuBurger
+		id="mobile-navigation"
+		class="site-mobile-menu absolute left-0 top-full w-full lg:hidden"
+		aria-label="Navigation mobile"
+		*ngIf="burgerMenuOpened"
+	>
+		<div class="mx-auto grid max-w-[1280px] gap-2 px-4 py-4 sm:grid-cols-2 sm:px-6">
+			<button type="button" class="site-mobile-link" (click)="scrollToSection('services')">
+				<span class="site-mobile-link__icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+				<span>Services</span>
+			</button>
+			<button type="button" class="site-mobile-link" (click)="scrollToSection('formateur')">
+				<span class="site-mobile-link__icon"><i class="fa-solid fa-user-tie" aria-hidden="true"></i></span>
+				<span>Formateur</span>
+			</button>
+			<button type="button" class="site-mobile-link" (click)="scrollToSection('catalogue')">
+				<span class="site-mobile-link__icon"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+				<span>Catalogue</span>
+			</button>
+			<button type="button" class="site-mobile-link" (click)="scrollToSection('contact')">
+				<span class="site-mobile-link__icon"><i class="fa-solid fa-envelope" aria-hidden="true"></i></span>
+				<span>Contact</span>
+			</button>
 		</div>
-		<div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white" (click)="scrollToSection('formateur')">
-			Formateur
-		</div>
-		<div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white" (click)="scrollToSection('catalogue')">
-			Catalogue
-		</div>
-		<div class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white" (click)="scrollToSection('contact')">
-			Contact
-		</div>
-	</div>
+	</nav>
 </header>
 
 <main class="flex-1">
-	<section id="landing" class="relative w-full h-screen md:pt-24 lg:pt-32 border-y px-2 md:px-0 animate-appear">
-		<div class="px-4 md:px-6 space-y-10 xl:space-y-16 flex items-center justify-center h-full" style="margin-top: -5rem">
-			<div class="grid max-w-[1300px] mx-auto gap-4 px-4 sm:px-6 md:px-10 md:grid-cols-2 md:gap-16">
-				<h1 class="lg:leading-tighter text-3xl tracking-tighter mt-40 md:mt-28 sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem]">
-					<span class="text-blue-600 font-bold">SAFESEC Formation</span>
-					L'expertise au service de vos équipes.
+	<section id="landing" class="hero min-h-0 border-b sm:min-h-[92svh]">
+		<div class="mx-auto grid w-full min-h-0 max-w-[1280px] content-start grid-cols-[minmax(0,1fr)] items-center gap-3 overflow-hidden px-6 pb-10 pt-20 sm:min-h-[92svh] sm:content-center sm:pb-8 sm:pt-24 md:content-normal md:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] md:gap-8 md:px-10 md:pb-16 md:pt-24 lg:gap-16 lg:px-14">
+			<div class="order-2 min-w-0 max-w-[720px] md:order-none">
+				<p class="hero-kicker mb-5">Prévention, sécurité et secourisme</p>
+				<h1 class="text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl md:text-5xl lg:text-[3.65rem]">
+					L’imprévu ne s’improvise pas.
+					<span class="block font-bold text-blue-600">Il se prépare.</span>
 				</h1>
-				<div class="flex flex-col space-y-4">
-					<div class="flex justify-center items-center w-full">
-						<img src="../../assets/imgs/logo.webp" width="240" height="240" alt="Logo" class="w-40 md:w-60" />
-					</div>
-					<p class="mx-auto max-w-[700px] text-gray-500 md:text-xl">
-						SAFESEC Formation vous propose des apprentissages délivrés par un professionnel ayant pour objectif de sensibiliser vos
-						équipes à la prévention et à la gestion des risques au quotidien ou au sein de votre coeur de métier.
-					</p>
-					<div class="space-x-4">
-						<div
-							class="inline-flex cursor-pointer h-9 items-center justify-center rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-900"
-							(click)="scrollToSection('services')"
-						>
-							Commencer
-						</div>
-					</div>
+				<p class="mt-4 max-w-[650px] text-base leading-relaxed text-slate-600 sm:mt-6 sm:text-lg">
+					SAFESEC Formation accompagne les organisations dans la préparation de leurs équipes aux situations sensibles, grâce à des
+					enseignements pratiques adaptés aux réalités de chaque métier.
+				</p>
+
+				<div class="mt-6 flex max-w-full flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
+					<button
+						type="button"
+						class="inline-flex h-11 max-w-full items-center justify-center gap-2 rounded-md bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+						(click)="scrollToSection('catalogue')"
+					>
+						Découvrir les formations
+						<i class="fa-solid fa-arrow-down text-xs" aria-hidden="true"></i>
+					</button>
+					<button
+						type="button"
+						class="inline-flex h-11 max-w-full items-center justify-center gap-2 rounded-md border border-slate-300 bg-white/80 px-5 text-sm font-semibold text-slate-700 transition-colors hover:border-blue-300 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+						(click)="scrollToSection('contact')"
+					>
+						Échanger sur votre besoin
+					</button>
 				</div>
+
+			</div>
+
+			<div class="hero-visual order-1 md:order-none" aria-hidden="true">
+				<span class="hero-dot hero-dot--top"></span>
+				<span class="hero-dot hero-dot--bottom"></span>
+				<img src="../../assets/imgs/logo.webp" width="420" height="420" alt="" class="hero-logo" />
 			</div>
 		</div>
 	</section>

@@ -8,11 +8,13 @@ import { CommonService } from '../common.service';
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   constructor(private router: Router, private activatedRoute: ActivatedRoute, protected commonService: CommonService) { }
   burgerMenuOpened: boolean = false;
+  headerScrolled: boolean = false;
 
   // Variables concernants la page de formulaire de demande de formation
   redirectionSection: string = "";
@@ -27,11 +29,17 @@ export class HomeComponent {
   messageMail: string = "";
 
   ngOnInit() {
+    this.updateHeaderState();
 
     // On récupère le nom de la formation de la page home
     if (this.activatedRoute.snapshot.params.hasOwnProperty('redirectionSection')) {
       this.scrollToSection(this.activatedRoute.snapshot.params['redirectionSection']);
     }
+  }
+
+  @HostListener('window:scroll')
+  updateHeaderState(): void {
+    this.headerScrolled = window.scrollY > 16;
   }
 
   /**
