@@ -102,16 +102,19 @@
 }
 
 .site-nav-link {
-	padding: 0.6rem 0.1rem;
+	display: flex;
+	height: 100%;
+	align-items: center;
+	padding: 0 1rem;
+	background: transparent;
 	color: #1e293b;
-	text-shadow: 0 0 0 rgba(37, 99, 235, 0);
-	transition: color 200ms ease, text-shadow 240ms ease;
+	transition: color 180ms ease, background-color 180ms ease;
 }
 
 .site-nav-link:hover,
 .site-nav-link:focus-visible {
+	background: rgba(37, 99, 235, 0.08);
 	color: #1d4ed8;
-	text-shadow: 0 0 14px rgba(37, 99, 235, 0.28);
 }
 
 .site-nav-link:focus-visible {

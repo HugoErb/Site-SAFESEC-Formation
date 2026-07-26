@@ -1,6 +1,6 @@
 <header class="px-4 lg:px-6 h-16 flex items-center fixed w-full bg-white z-50 shadow-sm border-b border-gray-200">
-	<div class="flex items-center justify-center mb-0.5 cursor-pointer" (click)="navigateTo('home', 'landing')">
-		<img src="../../assets/imgs/logo.webp" alt="Logo" class="w-14" />
+	<div class="flex items-center justify-center cursor-pointer" (click)="navigateTo('home', 'landing')">
+		<img src="../../assets/imgs/logo.webp" width="48" height="48" alt="Logo" class="w-12" />
 		<span class="brand-lockup ml-3">
 			<span class="brand-lockup__name">SAFESEC</span>
 			<span class="brand-lockup__descriptor">Formation</span>
@@ -8,17 +8,11 @@
 	</div>
 
 	<!-- Navigation principale pour les grands écrans -->
-	<nav class="hidden lg:flex ml-auto gap-4 sm:gap-6 items-center">
-		<div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="navigateTo('home', 'services')">
-			Services
-		</div>
-		<div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="navigateTo('home', 'formateur')">
-			Formateur
-		</div>
-		<div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="navigateTo('home', 'catalogue')">
-			Catalogue
-		</div>
-		<div class="text-base cursor-pointer font-medium hover:text-blue-600 transition-colors" (click)="navigateTo('home', 'contact')">Contact</div>
+	<nav class="hidden h-full lg:flex ml-auto items-center">
+		<button type="button" class="site-nav-link text-base font-medium" (click)="navigateTo('home', 'services')">Services</button>
+		<button type="button" class="site-nav-link text-base font-medium" (click)="navigateTo('home', 'formateur')">Formateur</button>
+		<button type="button" class="site-nav-link text-base font-medium" (click)="navigateTo('home', 'catalogue')">Catalogue</button>
+		<button type="button" class="site-nav-link text-base font-medium" (click)="navigateTo('home', 'contact')">Contact</button>
 	</nav>
 
 	<!-- Menu burger pour les petits écrans -->
