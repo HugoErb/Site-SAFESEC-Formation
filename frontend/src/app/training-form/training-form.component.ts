@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonService } from '../common.service';
+import { SeoService } from '../seo.service';
 
 @Component({
     selector: 'app-training-form',
@@ -11,7 +12,12 @@ import { CommonService } from '../common.service';
     templateUrl: './training-form.component.html'
 })
 export class TrainingFormComponent implements OnInit {
-    constructor(private router: Router, private activatedRoute: ActivatedRoute, protected commonService: CommonService) {
+    constructor(
+        private router: Router,
+        private activatedRoute: ActivatedRoute,
+        protected commonService: CommonService,
+        private readonly seo: SeoService
+    ) {
     }
     burgerMenuOpened: boolean = false;
 
@@ -34,10 +40,34 @@ export class TrainingFormComponent implements OnInit {
     moreInformationMail: string = "";
 
     ngOnInit() {
+        this.seo.updatePage({
+            title: 'Demande de formation professionnelle | SAFESEC Formation',
+            description: 'Demandez une formation SAFESEC adaptée à votre entreprise, votre métier, vos effectifs et votre localisation. Étude personnalisée de votre besoin.',
+            path: '/training-form',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                    {
+                        '@type': 'ListItem',
+                        position: 1,
+                        name: 'Accueil',
+                        item: 'https://safesec-formation.fr/home'
+                    },
+                    {
+                        '@type': 'ListItem',
+                        position: 2,
+                        name: 'Demande de formation',
+                        item: 'https://safesec-formation.fr/training-form'
+                    }
+                ]
+            }
+        });
 
         // On récupère le nom de la formation de la page home
-        if (this.activatedRoute.snapshot.params.hasOwnProperty('chosenTrainingName')) {
-            this.chosenTrainingName = this.activatedRoute.snapshot.params['chosenTrainingName'];
+        const requestedTraining = this.activatedRoute.snapshot.queryParamMap.get('formation');
+        if (requestedTraining) {
+            this.chosenTrainingName = requestedTraining;
         }
 
         // Gestion du calendrier
@@ -74,7 +104,7 @@ export class TrainingFormComponent implements OnInit {
     *                           un fragment spécifique au sein du composant.
     */
     navigateTo(component: string, section: string) {
-        this.router.navigate([component, { redirectionSection: section }]).then(() => {
+        this.router.navigate([component], { fragment: section || undefined }).then(() => {
             window.scrollTo(0, 0);
         });
     }

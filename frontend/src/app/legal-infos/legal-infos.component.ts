@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { SeoService } from '../seo.service';
 
 @Component({
   selector: 'app-legal-infos',
@@ -9,7 +10,13 @@ import { CommonModule } from '@angular/common';
   templateUrl: './legal-infos.component.html'
 })
 export class LegalInfosComponent {
-  constructor(private router: Router) {
+  constructor(private router: Router, private readonly seo: SeoService) {
+    this.seo.updatePage({
+      title: 'Mentions légales et confidentialité | SAFESEC Formation',
+      description: 'Mentions légales, informations sur l’éditeur et politique de protection des données personnelles du site SAFESEC Formation.',
+      path: '/legal-information',
+      robots: 'noindex, follow'
+    });
   }
   burgerMenuOpened: boolean = false;
 

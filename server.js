@@ -7,6 +7,8 @@ const sgMail = require('@sendgrid/mail');         // SDK SendGrid pour l'envoi d
 const cors = require('cors');                     // Middleware pour gérer les CORS
 const rateLimit = require('express-rate-limit');  // Middleware pour limiter le nombre de requêtes
 const axios = require('axios');
+const fs = require('fs');
+const path = require('path');
 
 // Port d'écoute du serveur (par défaut 3000)
 const PORT = process.env.PORT || 3000;
@@ -136,9 +138,35 @@ app.post('/send-mail-training-request', async (req, res) => {
 
 // Service des fichiers statiques en production
 if (process.env.NODE_ENV !== 'dev') {
-  const distDir = __dirname + '/dist/';
-  app.use(express.static(distDir));
-  app.get('*', (req, res) => res.sendFile(distDir + 'index.html'));
+  const distDir = path.join(__dirname, 'dist', 'browser');
+  app.use(express.static(distDir, {
+    maxAge: '1y',
+    immutable: true,
+    redirect: false,
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith('.html') || filePath.endsWith('robots.txt') || filePath.endsWith('sitemap.xml')) {
+        res.setHeader('Cache-Control', 'public, max-age=3600');
+      }
+    }
+  }));
+  app.get('*', (req, res) => {
+    const cleanPath = req.path.replace(/^\/+|\/+$/g, '');
+    const fallbackPage = path.join(distDir, 'index.html');
+    const prerenderedRoutes = new Set(['home', 'training-form', 'legal-information']);
+
+    if (req.path.length > 1 && req.path.endsWith('/')) {
+      return res.redirect(301, `${req.path.slice(0, -1)}${req.url.includes('?') ? `?${req.url.split('?')[1]}` : ''}`);
+    }
+
+    if (prerenderedRoutes.has(cleanPath)) {
+      const prerenderedPage = path.join(distDir, cleanPath, 'index.html');
+      if (fs.existsSync(prerenderedPage)) {
+        return res.sendFile(prerenderedPage);
+      }
+    }
+
+    return res.status(cleanPath ? 404 : 200).sendFile(fallbackPage);
+  });
 }
 
 // Démarrage du serveur

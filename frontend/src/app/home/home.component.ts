@@ -1,8 +1,10 @@
-import { Component, ElementRef, HostListener, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, ElementRef, HostListener, Inject, PLATFORM_ID, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonService } from '../common.service';
+import { SeoService } from '../seo.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +14,13 @@ import { CommonService } from '../common.service';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, protected commonService: CommonService) { }
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    protected commonService: CommonService,
+    private readonly seo: SeoService,
+    @Inject(PLATFORM_ID) private readonly platformId: object
+  ) { }
   burgerMenuOpened: boolean = false;
   headerScrolled: boolean = false;
 
@@ -29,6 +37,72 @@ export class HomeComponent {
   messageMail: string = "";
 
   ngOnInit() {
+    this.seo.updatePage({
+      title: 'Formations sécurité, SST & gestion des agressions | SAFESEC',
+      description: 'SAFESEC Formation prépare vos équipes aux risques professionnels : SST, gestion des agressions, self-défense, attentat et sécurisation de site.',
+      path: '/home',
+      structuredData: [
+        {
+          '@context': 'https://schema.org',
+          '@type': ['EducationalOrganization', 'LocalBusiness'],
+          '@id': 'https://safesec-formation.fr/#organization',
+          name: 'SAFESEC Formation',
+          url: 'https://safesec-formation.fr/home',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://safesec-formation.fr/assets/imgs/logo_safesec_og.png',
+            width: 1200,
+            height: 630
+          },
+          image: 'https://safesec-formation.fr/assets/imgs/logo_safesec_og.png',
+          description: 'Formations professionnelles en prévention, sécurité, secourisme SST et gestion des situations sensibles.',
+          founder: {
+            '@type': 'Person',
+            name: 'Christophe Eribon',
+            sameAs: 'https://www.linkedin.com/in/christophe-e-7a6813167/'
+          },
+          address: {
+            '@type': 'PostalAddress',
+            postalCode: '17380',
+            addressLocality: 'Annezay',
+            addressCountry: 'FR'
+          },
+          sameAs: [
+            'https://www.linkedin.com/in/christophe-e-7a6813167/',
+            'https://sdcs-formation.fr/'
+          ],
+          hasOfferCatalog: {
+            '@type': 'OfferCatalog',
+            name: 'Catalogue de formations SAFESEC',
+            itemListElement: [
+              'Gestion des incivilités et des agressions',
+              'Self-défense en milieu professionnel',
+              'Sauvetage Secourisme du Travail (SST)',
+              'Attentat et agression collective avec arme',
+              'Sécurisation de site',
+              'Plan de formation personnalisé'
+            ].map((name) => ({
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Course',
+                name,
+                provider: { '@id': 'https://safesec-formation.fr/#organization' }
+              }
+            }))
+          }
+        },
+        {
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          '@id': 'https://safesec-formation.fr/#website',
+          url: 'https://safesec-formation.fr/',
+          name: 'SAFESEC Formation',
+          inLanguage: 'fr-FR',
+          publisher: { '@id': 'https://safesec-formation.fr/#organization' }
+        }
+      ]
+    });
+
     this.updateHeaderState();
 
     // On récupère le nom de la formation de la page home
@@ -39,7 +113,9 @@ export class HomeComponent {
 
   @HostListener('window:scroll')
   updateHeaderState(): void {
-    this.headerScrolled = window.scrollY > 16;
+    if (isPlatformBrowser(this.platformId)) {
+      this.headerScrolled = window.scrollY > 16;
+    }
   }
 
   /**
@@ -118,7 +194,7 @@ export class HomeComponent {
     const target = event.target as HTMLElement;
     const trainingName = target.closest('.rounded-lg')?.querySelector('h3')?.textContent?.trim();
     if (trainingName) {
-      this.router.navigate(['/training-form', { chosenTrainingName: trainingName }]).then(() => {
+      this.router.navigate(['/training-form'], { queryParams: { formation: trainingName } }).then(() => {
         window.scrollTo(0, 0);
       });
     } else {

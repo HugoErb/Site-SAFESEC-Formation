@@ -3,20 +3,20 @@
 	[class.site-header--scrolled]="headerScrolled"
 	[class.site-header--menu-open]="burgerMenuOpened"
 >
-	<div class="flex items-center justify-center cursor-pointer" (click)="scrollToSection('landing')">
-		<img src="../../assets/imgs/logo.webp" width="48" height="48" alt="Logo" class="w-10 sm:w-12" />
+	<a class="flex items-center justify-center cursor-pointer" href="/home" aria-label="Accueil SAFESEC Formation">
+		<img src="../../assets/imgs/logo.webp" width="48" height="48" alt="Logo SAFESEC Formation" class="w-10 sm:w-12" />
 		<span class="brand-lockup ml-3">
 			<span class="brand-lockup__name">SAFESEC</span>
 			<span class="brand-lockup__descriptor">Formation</span>
 		</span>
-	</div>
+	</a>
 
 	<!-- Navigation principale pour les grands écrans -->
 	<nav class="hidden h-full lg:flex ml-auto items-center">
-		<button type="button" class="site-nav-link text-base font-medium" (click)="scrollToSection('services')">Services</button>
-		<button type="button" class="site-nav-link text-base font-medium" (click)="scrollToSection('formateur')">Formateur</button>
-		<button type="button" class="site-nav-link text-base font-medium" (click)="scrollToSection('catalogue')">Catalogue</button>
-		<button type="button" class="site-nav-link text-base font-medium" (click)="scrollToSection('contact')">Contact</button>
+		<a class="site-nav-link text-base font-medium" href="/home#services">Services</a>
+		<a class="site-nav-link text-base font-medium" href="/home#formateur">Formateur</a>
+		<a class="site-nav-link text-base font-medium" href="/home#catalogue">Catalogue</a>
+		<a class="site-nav-link text-base font-medium" href="/home#contact">Contact</a>
 	</nav>
 
 	<!-- Menu burger pour les petits écrans -->
@@ -40,22 +40,22 @@
 		*ngIf="burgerMenuOpened"
 	>
 		<div class="mx-auto grid max-w-[1280px] gap-2 px-4 py-4 sm:grid-cols-2 sm:px-6">
-			<button type="button" class="site-mobile-link" (click)="scrollToSection('services')">
+			<a class="site-mobile-link" href="/home#services">
 				<span class="site-mobile-link__icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
 				<span>Services</span>
-			</button>
-			<button type="button" class="site-mobile-link" (click)="scrollToSection('formateur')">
+			</a>
+			<a class="site-mobile-link" href="/home#formateur">
 				<span class="site-mobile-link__icon"><i class="fa-solid fa-user-tie" aria-hidden="true"></i></span>
 				<span>Formateur</span>
-			</button>
-			<button type="button" class="site-mobile-link" (click)="scrollToSection('catalogue')">
+			</a>
+			<a class="site-mobile-link" href="/home#catalogue">
 				<span class="site-mobile-link__icon"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
 				<span>Catalogue</span>
-			</button>
-			<button type="button" class="site-mobile-link" (click)="scrollToSection('contact')">
+			</a>
+			<a class="site-mobile-link" href="/home#contact">
 				<span class="site-mobile-link__icon"><i class="fa-solid fa-envelope" aria-hidden="true"></i></span>
 				<span>Contact</span>
-			</button>
+			</a>
 		</div>
 	</nav>
 </header>
@@ -176,7 +176,7 @@
 				<div class="flex flex-col items-center justify-center w-full max-w-[400px] p-4 md:p-8">
 					<img
 						src="../../assets/imgs/tof.webp"
-						alt="Photo"
+						alt="Christophe Eribon, formateur SAFESEC Formation"
 						width="350"
 						height="350"
 						loading="lazy"
@@ -204,6 +204,7 @@
 							<a
 								href="https://sdcs-formation.fr/"
 								target="_blank"
+								rel="noopener noreferrer"
 								class="relative text-blue-500 font-semibold before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-blue-500 before:scale-x-0 before:transition-transform before:duration-200 hover:before:scale-x-100"
 							>
 								le site de la SDCS.
@@ -213,6 +214,7 @@
 							class="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 text-sm inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white"
 							href="../../assets/pdf/CV.pdf"
 							target="_blank"
+							rel="noopener noreferrer"
 						>
 							Consulter mon CV
 						</a>
@@ -224,6 +226,7 @@
 						<a
 							href="https://www.linkedin.com/in/christophe-e-7a6813167/"
 							target="_blank"
+							rel="noopener noreferrer"
 							class="text-gray-500 hover:text-blue-600 text-3xl transition-colors"
 							aria-label="Profil LinkedIn de Christophe"
 						>
@@ -366,7 +369,8 @@
 								<i class="fa-solid fa-check text-sm text-gray-700 mr-1"></i>
 								<a
 									href="https://www.defense.gouv.fr/sante/actualites/safe-marche-ryan-bons-gestes-sauver-vie"
-									target="_blank"
+							target="_blank"
+							rel="noopener noreferrer"
 									class="relative text-blue-500 font-semibold before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-blue-500 before:scale-x-0 before:transition-transform before:duration-200 hover:before:scale-x-100"
 								>
 									SAFE MARCHE RYAN
@@ -516,6 +520,6 @@
 <footer class="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
 	<p class="text-sm text-gray-600">© SAFESEC Formation. Tous droits réservés.</p>
 	<nav class="sm:ml-auto flex gap-4 sm:gap-6">
-		<p class="text-sm hover:text-blue-600 cursor-pointer" (click)="navigateTo('legal-information')">Mentions légales</p>
+		<a class="text-sm hover:text-blue-600" href="/legal-information">Mentions légales</a>
 	</nav>
 </footer>
