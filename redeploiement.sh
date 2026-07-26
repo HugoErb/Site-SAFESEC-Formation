@@ -15,6 +15,7 @@ cd /home/ubuntu/Site-SAFESEC-Formation || exit 1
 # Chemins
 dossierRacine=$(pwd)
 dossierDistRacine="$dossierRacine/dist"
+dossierDistTemp="$dossierRacine/dist-next"
 nomApplication="SafesecFormation"
 
 # Déterminer les chemins dynamiques
@@ -30,33 +31,52 @@ fi
 echo "Récupération des dernières modifications Git..."
 git pull origin
 
-# Nettoyage
-echo "Suppression des anciens builds..."
-rm -rf "$dossierDistRacine"
-rm -rf "$dossierRacine/frontend/dist"
-
-# Build frontend
-echo "Lancement du build frontend..."
+# Installation reproductible et build du frontend
 cd frontend || exit 1
-$NPM_CMD run build
-
-# Copier le résultat
-cd "$dossierRacine"
-dossierDistFrontend=$(find "$dossierRacine/frontend/dist" -mindepth 1 -maxdepth 1 -type d)
-
-if [ -d "$dossierDistFrontend" ]; then
-    echo "Copie du build vers $dossierDistRacine"
-    cp -r "$dossierDistFrontend" "$dossierDistRacine"
-else
-    echo "Erreur : Aucun dossier trouvé dans frontend/dist"
+echo "Installation des dépendances frontend..."
+if ! $NPM_CMD ci; then
+    echo "Erreur : L'installation des dépendances frontend a échoué. L'ancien site reste en ligne."
     exit 1
 fi
+
+echo "Lancement du build frontend..."
+if ! $NPM_CMD run build; then
+    echo "Erreur : Le build frontend a échoué. L'ancien site reste en ligne."
+    exit 1
+fi
+
+# Préparer le nouveau build sans interrompre la version en ligne
+cd "$dossierRacine"
+dossierDistFrontend=$(find "$dossierRacine/frontend/dist" -mindepth 1 -maxdepth 1 -type d)
+dossierNavigateur="$dossierDistFrontend/browser"
+
+if [ -d "$dossierNavigateur" ]; then
+    echo "Préparation du build dans $dossierDistTemp"
+    rm -rf "$dossierDistTemp"
+    mkdir -p "$dossierDistTemp"
+    cp -r "$dossierNavigateur"/. "$dossierDistTemp"/
+elif [ -d "$dossierDistFrontend" ]; then
+    # Compatibilité avec l'ancien format de sortie Angular.
+    echo "Préparation du build Angular classique dans $dossierDistTemp"
+    rm -rf "$dossierDistTemp"
+    mkdir -p "$dossierDistTemp"
+    cp -r "$dossierDistFrontend"/. "$dossierDistTemp"/
+else
+    echo "Erreur : Aucun build exploitable trouvé. L'ancien site reste en ligne."
+    exit 1
+fi
+
+# Le remplacement n'a lieu qu'une fois le nouveau build entièrement prêt.
+echo "Mise en ligne du nouveau build..."
+rm -rf "$dossierDistRacine"
+mv "$dossierDistTemp" "$dossierDistRacine"
 
 # Lancement/redémarrage avec PM2
 echo "(Re)démarrage de l'application '$nomApplication' via PM2..."
 $PM2_CMD startOrRestart ecosystem_production.config.js --only "$nomApplication"
 
-if $PM2_CMD describe "$nomApplication" > /dev/null; then
+applicationPid=$($PM2_CMD pid "$nomApplication")
+if [[ "$applicationPid" =~ ^[1-9][0-9]*$ ]]; then
     echo "Application '$nomApplication' active après startOrRestart."
 else
     echo "Erreur : L'application '$nomApplication' n'a pas pu être lancée."

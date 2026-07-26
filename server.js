@@ -138,7 +138,12 @@ app.post('/send-mail-training-request', async (req, res) => {
 
 // Service des fichiers statiques en production
 if (process.env.NODE_ENV !== 'dev') {
-  const distDir = path.join(__dirname, 'dist', 'browser');
+  const legacyDistDir = path.join(__dirname, 'dist');
+  const prerenderDistDir = path.join(legacyDistDir, 'browser');
+  // Accepte le nouveau build pré-rendu ainsi que l'ancienne arborescence.
+  const distDir = fs.existsSync(path.join(prerenderDistDir, 'index.html'))
+    ? prerenderDistDir
+    : legacyDistDir;
   app.use(express.static(distDir, {
     maxAge: '1y',
     immutable: true,
