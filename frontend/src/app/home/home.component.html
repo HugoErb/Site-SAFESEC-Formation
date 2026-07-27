@@ -6,10 +6,9 @@
 	<a
 		class="flex items-center justify-center cursor-pointer"
 		href="/home"
-		aria-label="Accueil SAFESEC Formation"
 		(click)="scrollToSection('landing'); $event.preventDefault()"
 	>
-		<img src="../../assets/imgs/logo.webp" width="48" height="48" alt="Logo SAFESEC Formation" class="w-10 sm:w-12" />
+		<img src="/assets/imgs/logo-64.webp" width="48" height="48" alt="" class="w-10 sm:w-12" />
 		<span class="brand-lockup ml-3">
 			<span class="brand-lockup__name">SAFESEC</span>
 			<span class="brand-lockup__descriptor">Formation</span>
@@ -102,7 +101,16 @@
 			<div class="hero-visual order-1 md:order-none" aria-hidden="true">
 				<span class="hero-dot hero-dot--top"></span>
 				<span class="hero-dot hero-dot--bottom"></span>
-				<img src="/assets/imgs/logo.webp" width="420" height="420" alt="" class="hero-logo" fetchpriority="high" />
+				<img
+					src="/assets/imgs/logo-320.webp"
+					srcset="/assets/imgs/logo-160.webp 160w, /assets/imgs/logo-320.webp 320w, /assets/imgs/logo.webp 420w"
+					sizes="(max-width: 767px) 130px, (max-width: 1023px) 280px, 320px"
+					width="420"
+					height="420"
+					alt=""
+					class="hero-logo"
+					fetchpriority="high"
+				/>
 			</div>
 		</div>
 	</section>
@@ -181,7 +189,9 @@
 			<div class="flex flex-col items-center justify-center gap-6 md:flex-row md:gap-10 lg:gap-16">
 				<figure class="flex w-full max-w-[400px] flex-col items-center justify-center p-4 md:p-8">
 					<img
-						src="../../assets/imgs/tof.webp"
+						src="/assets/imgs/tof-320.webp"
+						srcset="/assets/imgs/tof-320.webp 320w, /assets/imgs/tof-640.webp 640w, /assets/imgs/tof.webp 1000w"
+						sizes="(max-width: 767px) calc(100vw - 64px), 350px"
 						alt="Christophe Eribon, formateur SAFESEC Formation"
 						width="350"
 						height="350"
