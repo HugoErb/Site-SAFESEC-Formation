@@ -29,7 +29,6 @@ export class LegalInfosComponent {
   * 
   * @param event L'objet MouseEvent associé au clic du document.
   */
-  @ViewChild('menuContainerRef') menuContainerRef!: ElementRef;
   @ViewChild('menuBurger') menuBurger!: ElementRef;
   @HostListener('document:click', ['$event'])
   onClickOutside(event: MouseEvent) {

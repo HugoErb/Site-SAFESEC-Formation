@@ -102,7 +102,7 @@
 			<div class="hero-visual order-1 md:order-none" aria-hidden="true">
 				<span class="hero-dot hero-dot--top"></span>
 				<span class="hero-dot hero-dot--bottom"></span>
-				<img src="../../assets/imgs/logo.webp" width="420" height="420" alt="" class="hero-logo" />
+				<img src="/assets/imgs/logo.webp" width="420" height="420" alt="" class="hero-logo" fetchpriority="high" />
 			</div>
 		</div>
 	</section>
@@ -485,7 +485,6 @@
 						<input
 							class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
 							id="name"
-							#inputField
 							[(ngModel)]="nameMail"
 							placeholder="Entrez votre nom et votre prénom"
 						/>
@@ -495,7 +494,6 @@
 						<input
 							class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
 							id="email"
-							#inputField
 							[(ngModel)]="emailMail"
 							placeholder="Entrez votre adresse email"
 							type="email"
@@ -506,7 +504,6 @@
 						<input
 							class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
 							id="phoneNumber"
-							#inputField
 							placeholder="Entrez votre numéro de téléphone"
 							type="tel"
 							[(ngModel)]="phoneNumberMail"
@@ -518,7 +515,6 @@
 						<textarea
 							class="flex w-full transition-all duration-100 ease-out rounded-md border border-input resize-none bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-h-[125px]"
 							id="message"
-							#inputField
 							[(ngModel)]="messageMail"
 							placeholder="Entrez votre message"
 						></textarea>

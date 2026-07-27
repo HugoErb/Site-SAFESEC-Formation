@@ -6,7 +6,6 @@ const express = require('express');               // Framework web pour gérer l
 const sgMail = require('@sendgrid/mail');         // SDK SendGrid pour l'envoi d'e-mails
 const cors = require('cors');                     // Middleware pour gérer les CORS
 const rateLimit = require('express-rate-limit');  // Middleware pour limiter le nombre de requêtes
-const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 
@@ -19,8 +18,8 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 // Initialisation de l'application Express
 const app = express();
 
-// Analyse du corps des requêtes au format JSON
-app.use(express.json());
+// Analyse du corps des requêtes au format JSON avec une limite adaptée aux formulaires.
+app.use(express.json({ limit: '32kb' }));
 
 // Limitation du nombre de requêtes sur l'endpoint /send-mail et /send-mail-training-request pour prévenir les abus
 const limiter = rateLimit({
@@ -33,14 +32,29 @@ app.use('/send-mail-training-request', limiter);
 
 // Configuration CORS : n'accepte que les requêtes POST depuis votre frontend
 const corsOptions = {
-    origin: process.env.NODE_ENV === 'dev'
+    origin: process.env.FRONTEND_ORIGIN || (process.env.NODE_ENV === 'dev'
         ? 'http://localhost:4200'           // en développement
-        : 'https://safesec-formation.fr/',  // en production
+        : 'https://safesec-formation.fr'),  // en production
     methods: ['POST'],                      // n'autoriser que la méthode POST
     credentials: true,
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ['Content-Type']
 };
 app.use(cors(corsOptions));
+
+const isNonEmptyString = (value) => typeof value === 'string' && value.trim().length > 0;
+const isValidEmail = (value) => (
+  isNonEmptyString(value)
+  && value.length <= 254
+  && !/[\r\n]/.test(value)
+  && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+);
+const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;'
+})[character]);
 
 // Helper pour envoyer deux emails (admin et confirmation)
 async function sendEmails(msgToAdmin, msgToUser, res) {
@@ -49,17 +63,21 @@ async function sendEmails(msgToAdmin, msgToUser, res) {
     return res.status(200).json({ message: 'Emails envoyés avec succès.' });
   } catch (error) {
     console.error('Erreur envoi email :', error);
-    return res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: 'Impossible d’envoyer les emails.' });
   }
 }
 
 // Route 1 : formulaire de contact
 app.post('/send-mail', async (req, res) => {
-    // Récupération des données envoyées depuis le formulaire
-    const [name, email, phoneNumber, message] = Object.values(req.body);
+    const {
+        nometprenom: name,
+        email,
+        telephone: phoneNumber,
+        message
+    } = req.body ?? {};
 
     // Vérification de la présence de tous les champs requis
-    if (!name || !email || !phoneNumber || !message) {
+    if (![name, phoneNumber, message].every(isNonEmptyString) || !isValidEmail(email)) {
         return res.status(400).json({ error: 'Champs nécessaires manquants.' });
     }
 
@@ -68,7 +86,7 @@ app.post('/send-mail', async (req, res) => {
         to: process.env.ADMIN_EMAIL,
         from: process.env.SENDER_EMAIL,
         replyTo: email, // l'utilisateur pourra répondre directement
-        subject: `Nouveau message de ${name}`,
+        subject: `Nouveau message de ${name.replace(/[\r\n]/g, ' ')}`,
         text: `Nouveau message de ${name} :\n\nNom : ${name}\nEmail : ${email}\nNuméro de tél : ${phoneNumber}\n\nMessage : ${message}\n\nCet e-mail a été envoyé automatiquement, merci de ne pas y répondre.`
     };
 
@@ -84,43 +102,75 @@ app.post('/send-mail', async (req, res) => {
 
 // Route 2 : demande de formation
 app.post('/send-mail-training-request', async (req, res) => {
-    const [
-        city, postalCode, country, trainingAddress,
-        referentName, email, phoneNumber,
-        companyName, companySiret, chosenTraining,
-        personNumber, workTrained, trainingDate,
-        moreInformation
-    ] = Object.values(req.body);
+    const {
+        ville: city,
+        codepostal: postalCode,
+        pays: country,
+        adressedelaformation: trainingAddress,
+        nom: referentName,
+        email,
+        telephone: phoneNumber,
+        entreprise: companyName,
+        numerosiret: companySiret,
+        formationchoisie: chosenTraining,
+        nombredepersonnes: personNumber,
+        metierforme: workTrained,
+        datesouhaiteedelaformation: trainingDate,
+        informationscomplementaires
+    } = req.body ?? {};
 
-    if (!city || !postalCode || !country || !trainingAddress || !referentName || !email || !phoneNumber || !companyName || !companySiret || !chosenTraining || !personNumber || !workTrained || !trainingDate) {
+    const requiredFields = [
+        city, postalCode, country, trainingAddress, referentName, phoneNumber,
+        companyName, companySiret, chosenTraining, personNumber, workTrained, trainingDate
+    ];
+    if (!requiredFields.every(isNonEmptyString) || !isValidEmail(email)) {
         return res.status(400).json({ error: 'Champs nécessaires manquants.' });
     }
-    if (!moreInformation) moreInformation = 'Aucune';
+
+    const moreInformation = isNonEmptyString(informationscomplementaires)
+        ? informationscomplementaires
+        : 'Aucune';
+    const safe = {
+        city: escapeHtml(city),
+        postalCode: escapeHtml(postalCode),
+        country: escapeHtml(country),
+        trainingAddress: escapeHtml(trainingAddress),
+        referentName: escapeHtml(referentName),
+        email: escapeHtml(email),
+        phoneNumber: escapeHtml(phoneNumber),
+        companyName: escapeHtml(companyName),
+        companySiret: escapeHtml(companySiret),
+        chosenTraining: escapeHtml(chosenTraining),
+        personNumber: escapeHtml(personNumber),
+        workTrained: escapeHtml(workTrained),
+        trainingDate: escapeHtml(trainingDate),
+        moreInformation: escapeHtml(moreInformation)
+    };
 
     const msgToMe = {
         to: process.env.ADMIN_EMAIL,
         from: process.env.SENDER_EMAIL,
-        subject: `Nouvelle demande de formation de ${referentName}`,
+        subject: `Nouvelle demande de formation de ${referentName.replace(/[\r\n]/g, ' ')}`,
         html: `
-        Nouvelle demande de formation de ${referentName} pour ${companyName}.<br><br>
+        Nouvelle demande de formation de ${safe.referentName} pour ${safe.companyName}.<br><br>
 
-        Ville : ${city}<br>
-        Code postal : ${postalCode}<br>
-        Pays : ${country}<br>
-        Adresse de la formation : ${trainingAddress}<br>
+        Ville : ${safe.city}<br>
+        Code postal : ${safe.postalCode}<br>
+        Pays : ${safe.country}<br>
+        Adresse de la formation : ${safe.trainingAddress}<br>
         <a href="https://www.viamichelin.fr/itineraires/" target="_blank">Voir l'itinéraire et le coût du trajet</a><br><br>
 
-        Nom du référent : ${referentName}<br>
-        Email : ${email}<br>
-        Téléphone : ${phoneNumber}<br>
-        Entreprise : ${companyName}<br>
-        SIRET : ${companySiret}<br><br>
+        Nom du référent : ${safe.referentName}<br>
+        Email : ${safe.email}<br>
+        Téléphone : ${safe.phoneNumber}<br>
+        Entreprise : ${safe.companyName}<br>
+        SIRET : ${safe.companySiret}<br><br>
 
-        Formation choisie : ${chosenTraining}<br>
-        Nombre de personnes : ${personNumber}<br>
-        Métier formé : ${workTrained}<br>
-        Date souhaitée de la formation : ${trainingDate}<br>
-        Informations complémentaires : ${moreInformation}<br><br>
+        Formation choisie : ${safe.chosenTraining}<br>
+        Nombre de personnes : ${safe.personNumber}<br>
+        Métier formé : ${safe.workTrained}<br>
+        Date souhaitée de la formation : ${safe.trainingDate}<br>
+        Informations complémentaires : ${safe.moreInformation}<br><br>
 
         Cet e-mail a été envoyé automatiquement, merci de ne pas y répondre.
         `
@@ -140,6 +190,7 @@ app.post('/send-mail-training-request', async (req, res) => {
 if (process.env.NODE_ENV !== 'dev') {
   const legacyDistDir = path.join(__dirname, 'dist');
   const prerenderDistDir = path.join(legacyDistDir, 'browser');
+  const prerenderedRoutes = new Set(['home', 'training-form', 'legal-information']);
   // Accepte le nouveau build pré-rendu ainsi que l'ancienne arborescence.
   const distDir = fs.existsSync(path.join(prerenderDistDir, 'index.html'))
     ? prerenderDistDir
@@ -157,7 +208,6 @@ if (process.env.NODE_ENV !== 'dev') {
   app.get('*', (req, res) => {
     const cleanPath = req.path.replace(/^\/+|\/+$/g, '');
     const fallbackPage = path.join(distDir, 'index.html');
-    const prerenderedRoutes = new Set(['home', 'training-form', 'legal-information']);
 
     if (req.path.length > 1 && req.path.endsWith('/')) {
       return res.redirect(301, `${req.path.slice(0, -1)}${req.url.includes('?') ? `?${req.url.split('?')[1]}` : ''}`);

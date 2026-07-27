@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, ElementRef, HostListener, Inject, PLATFORM_ID, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, HostListener, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -24,13 +24,7 @@ export class HomeComponent {
   burgerMenuOpened: boolean = false;
   headerScrolled: boolean = false;
 
-  // Variables concernants la page de formulaire de demande de formation
-  redirectionSection: string = "";
-  chosenTrainingName: string = "";
-
   // Variables pour le mail
-  @ViewChildren('inputField') inputFields!: QueryList<ElementRef>;
-  public inputLabelMap = new Map<string, string>();
   nameMail: string = "";
   emailMail: string = "";
   phoneNumberMail: string = "";
@@ -105,8 +99,7 @@ export class HomeComponent {
 
     this.updateHeaderState();
 
-    const legacySection = this.activatedRoute.snapshot.params['redirectionSection'];
-    const targetSection = this.activatedRoute.snapshot.fragment || legacySection;
+    const targetSection = this.activatedRoute.snapshot.fragment;
     if (targetSection) {
       this.scrollToSection(targetSection);
     }
@@ -140,7 +133,6 @@ export class HomeComponent {
   * 
   * @param event L'objet MouseEvent associé au clic du document.
   */
-  @ViewChild('menuContainerRef') menuContainerRef!: ElementRef;
   @ViewChild('menuBurger') menuBurger!: ElementRef;
   @HostListener('document:click', ['$event'])
   onClickOutside(event: MouseEvent) {
@@ -214,36 +206,25 @@ export class HomeComponent {
   * champs de saisie ont été réinitialisés en cas de succès.
   */
   async sendMail(): Promise<void> {
-    this.getDataIntoDictionary();
-    if (await this.commonService.sendMail(this.inputLabelMap, false)) {
+    const fields = new Map([
+      ['Nom et prénom', this.nameMail],
+      ['Adresse email', this.emailMail],
+      ['Téléphone', this.phoneNumberMail],
+      ['Message', this.messageMail]
+    ]);
+    if (await this.commonService.sendMail(fields, false)) {
       this.resetInputFields();
     }
   }
 
   /**
-  * Parcourt les champs de saisie dans le HTML et mappe leurs valeurs à leurs labels correspondants.
-  * La méthode utilise `inputFields` pour obtenir une liste des éléments de saisie. Pour chaque champ de saisie, elle récupère
-  * le label associé en utilisant son attribut 'id'. Si un label est trouvé pour une valeur de champ, la méthode les mappent dans `inputLabelMap`.
-  */
-  private getDataIntoDictionary() {
-    this.inputFields.forEach(input => {
-      const label = document.querySelector(`label[for="${input.nativeElement.id}"]`);
-      if (label) {
-        this.inputLabelMap.set(label.textContent!.trim(), input.nativeElement.value);
-      }
-    });
-  }
-
-  /**
-  * Réinitialise les valeurs de tous les champs de saisie marqués avec la directive locale #inputField.
-  * En l'occurence, la méthode permet de réinitialiser la valeur des champs de l'envoi de mail.
+  * Réinitialise les valeurs du formulaire de contact après un envoi réussi.
   */
   resetInputFields() {
-    this.inputFields.forEach(field => {
-      if (field.nativeElement instanceof HTMLInputElement || field.nativeElement instanceof HTMLTextAreaElement) {
-        field.nativeElement.value = '';
-      }
-    });
+    this.nameMail = '';
+    this.emailMail = '';
+    this.phoneNumberMail = '';
+    this.messageMail = '';
   }
 
 }

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MailService } from './mail.service';
-import Swal from 'sweetalert2';
-import axios from 'axios';
+import type { SweetAlertOptions } from 'sweetalert2';
 
 // Définition de l'interface pour la réponse de l'API de MailCheck.ai
 interface EmailValidityResponse {
@@ -17,7 +16,7 @@ export class CommonService {
     constructor(private mailService: MailService) { }
 
     // Liste blanche des domaines populaires considérés comme fiables
-	private trustedEmailDomains = new Set([
+	private readonly trustedEmailDomains = new Set([
 		'gmail.com',
 		'hotmail.com',
 		'outlook.com',
@@ -37,15 +36,12 @@ export class CommonService {
     *              L'événement doit être de type `Event`.
     */
     formatAndRestrictPhoneInput(event: Event): string {
-        let input = event.target as HTMLInputElement;
-        let value = input.value;
+        const input = event.target as HTMLInputElement;
+        const value = input.value;
         let formattedValue = '';
 
         // Supprimer tout caractère non numérique et appliquer le formatage
-        let numbers = value.replace(/\D/g, '');
-
-        // Limiter à 10 chiffres
-        numbers = numbers.slice(0, 10);
+        const numbers = value.replace(/\D/g, '').slice(0, 10);
 
         // Ajouter des espaces tous les deux chiffres
         for (let i = 0; i < numbers.length; i++) {
@@ -76,10 +72,10 @@ export class CommonService {
 
         const mailData = this.createMailData(inputLabelMap);
 
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             this.mailService.sendMail(mailData, trainingRequest).subscribe({
-                next: (response) => {
-                    Swal.fire({
+                next: () => {
+                    void this.showAlert({
                         position: 'top-end',
                         toast: true,
                         icon: 'success',
@@ -90,8 +86,8 @@ export class CommonService {
                     });
                     resolve(true);
                 },
-                error: (error) => {
-                    Swal.fire({
+                error: () => {
+                    void this.showAlert({
                         position: 'top-end',
                         toast: true,
                         icon: 'error',
@@ -100,7 +96,7 @@ export class CommonService {
                         width: 'auto',
                         timer: 3500
                     });
-                    reject(false);
+                    resolve(false);
                 }
             });
         });
@@ -191,12 +187,17 @@ export class CommonService {
     * @param message Le message à afficher dans l'alerte.
     */
     private showValidationError(message: string): void {
-        Swal.fire({
+        void this.showAlert({
             icon: 'error',
             title: 'Erreur de saisie',
             text: message,
             confirmButtonColor: "#3B82F6"
         });
+    }
+
+    private async showAlert(options: SweetAlertOptions): Promise<void> {
+        const { default: Swal } = await import('sweetalert2/dist/sweetalert2.esm.all.js');
+        await Swal.fire(options);
     }
 
     /**
@@ -208,20 +209,21 @@ export class CommonService {
     *                             sinon `false`. Renvoie également `false` en cas d'erreur lors de la requête à l'API.
     */
     async checkEmailValidity(email: string): Promise<boolean> {
-        const url = `https://api.mailcheck.ai/email/${email}`;
+        const url = `https://api.mailcheck.ai/email/${encodeURIComponent(email)}`;
         try {
-            const response = await axios.get<EmailValidityResponse>(url);
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`Réponse HTTP ${response.status}`);
+            }
+            const data = await response.json() as EmailValidityResponse;
             // Retourne false si l'email est jetable ou si mx est false
-            if (response.data.disposable || !response.data.mx) {
+            if (data.disposable || !data.mx) {
                 return false;
             }
             return true;
         } catch (error) {
-            if (axios.isAxiosError(error)) {
-                console.error(`Impossible de vérifier l'email : ${error.message}`);
-            } else {
-                console.error('Erreur inattendue lors de la vérification de l\email.');
-            }
+            const details = error instanceof Error ? ` : ${error.message}` : '';
+            console.error(`Impossible de vérifier l'email${details}`);
             return false;
         }
     }
@@ -232,8 +234,8 @@ export class CommonService {
     * @returns {any} L'objet `mailData` contenant les données des champs sous forme d'objets avec des clés appropriées.
     *                Les clés sont des versions normalisées des labels des champs, et les valeurs sont celles entrées par l'utilisateur.
     */
-    public createMailData(inputLabelMap: Map<string, string>): any {
-        const mailData: any = {};
+    public createMailData(inputLabelMap: Map<string, string>): Record<string, string> {
+        const mailData: Record<string, string> = {};
         inputLabelMap.forEach((value, key) => {
             const objectKey = this.convertLabelToObjectKey(key);
             mailData[objectKey] = value;

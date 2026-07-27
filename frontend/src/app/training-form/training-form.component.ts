@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, ViewChild, OnInit, ViewChildren, QueryList } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -22,8 +22,6 @@ export class TrainingFormComponent implements OnInit {
     burgerMenuOpened: boolean = false;
 
     // Variables pour le mail
-    @ViewChildren('inputField') inputFields!: QueryList<ElementRef>;
-    public inputLabelMap = new Map<string, string>();
     postalCodeMail: string = "";
     cityMail: string = "";
     countryMail: string = "";
@@ -85,7 +83,6 @@ export class TrainingFormComponent implements OnInit {
     * 
     * @param event L'objet MouseEvent associé au clic du document.
     */
-    @ViewChild('menuContainerRef') menuContainerRef!: ElementRef;
     @ViewChild('menuBurger') menuBurger!: ElementRef;
     @HostListener('document:click', ['$event'])
     onClickOutside(event: MouseEvent) {
@@ -205,25 +202,25 @@ export class TrainingFormComponent implements OnInit {
     * champs de saisie ont été réinitialisés en cas de succès.
     */
     async sendMail(): Promise<void> {
-        this.getDataIntoDictionary();
-        //console.log(this.inputLabelMap)
-        if (await this.commonService.sendMail(this.inputLabelMap, true)) {
-            this.navigateTo('home', 'catalogue')
+        const fields = new Map([
+            ['Ville', this.cityMail],
+            ['Code postal', this.postalCodeMail],
+            ['Pays', this.countryMail],
+            ['Adresse de la formation', this.addressMail],
+            ['Nom', this.nameMail],
+            ['Email', this.emailMail],
+            ['Téléphone', this.phoneNumberMail],
+            ['Entreprise', this.companyMail],
+            ['Numéro SIRET', this.companySiretMail],
+            ['Formation choisie', this.chosenTrainingName],
+            ['Nombre de personnes', this.personNumberMail],
+            ['Métier formé', this.jobTrainedMail],
+            ['Date souhaitée de la formation', this.trainingDateMail],
+            ['Informations complémentaires', this.moreInformationMail]
+        ]);
+        if (await this.commonService.sendMail(fields, true)) {
+            this.navigateTo('home', 'catalogue');
         }
-    }
-
-    /**
-    * Parcourt les champs de saisie dans le HTML et mappe leurs valeurs à leurs labels correspondants.
-    * La méthode utilise `inputFields` pour obtenir une liste des éléments de saisie. Pour chaque champ de saisie, elle récupère
-    * le label associé en utilisant son attribut 'id'. Si un label est trouvé pour une valeur de champ, la méthode les mappent dans `inputLabelMap`.
-    */
-    private getDataIntoDictionary() {
-        this.inputFields.forEach(input => {
-            const label = document.querySelector(`label[for="${input.nativeElement.id}"]`);
-            if (label) {
-                this.inputLabelMap.set(label.textContent!.trim(), input.nativeElement.value);
-            }
-        });
     }
 
     // Gestion du calendrier à partir d'ici
@@ -274,10 +271,6 @@ export class TrainingFormComponent implements OnInit {
 
     prevent(event: MouseEvent) {
         event.preventDefault();
-    }
-
-    getCurrentDate() {
-        return new Date().toJSON().slice(0, 10).replace(/-/g, '/');
     }
 
     getCurrentDay() {
