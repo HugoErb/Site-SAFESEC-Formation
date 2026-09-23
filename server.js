@@ -3,7 +3,7 @@ require('dotenv').config();
 
 // Importation des modules nécessaires
 const express = require('express');               // Framework web pour gérer les requêtes HTTP
-const sgMail = require('@sendgrid/mail');         // SDK SendGrid pour l'envoi d'e-mails
+const { Resend } = require('resend');             // SDK Resend pour l'envoi d'e-mails
 const cors = require('cors');                     // Middleware pour gérer les CORS
 const rateLimit = require('express-rate-limit');  // Middleware pour limiter le nombre de requêtes
 const fs = require('fs');
@@ -12,8 +12,8 @@ const path = require('path');
 // Port d'écoute du serveur (par défaut 3000)
 const PORT = process.env.PORT || 3000;
 
-// Configuration de SendGrid avec la clé API
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+// Configuration de Resend avec la clé API
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Initialisation de l'application Express
 const app = express();
@@ -59,7 +59,14 @@ const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => (
 // Helper pour envoyer deux emails (admin et confirmation)
 async function sendEmails(msgToAdmin, msgToUser, res) {
   try {
-    await sgMail.send([msgToAdmin, msgToUser]);
+    const results = await Promise.all([
+      resend.emails.send(msgToAdmin),
+      resend.emails.send(msgToUser)
+    ]);
+    const failedResult = results.find((result) => result.error);
+    if (failedResult) {
+      throw new Error(failedResult.error.message);
+    }
     return res.status(200).json({ message: 'Emails envoyés avec succès.' });
   } catch (error) {
     console.error('Erreur envoi email :', error);
