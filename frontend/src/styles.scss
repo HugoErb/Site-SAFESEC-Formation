@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "sweetalert2/dist/sweetalert2.min.css";
+
 /* Import des polices d'écriture */
 @font-face {
 	font-family: "Inter";
@@ -242,4 +244,20 @@
 		animation: none;
 		transition: none;
 	}
+}
+
+/* Tailwind réinitialise les fonds des boutons après le CSS SweetAlert. */
+.swal2-container button.swal2-styled.swal2-confirm {
+	background-color: var(--swal2-confirm-button-background-color);
+	color: var(--swal2-confirm-button-color);
+}
+
+.swal2-container button.swal2-styled.swal2-deny {
+	background-color: var(--swal2-deny-button-background-color);
+	color: var(--swal2-deny-button-color);
+}
+
+.swal2-container button.swal2-styled.swal2-cancel {
+	background-color: var(--swal2-cancel-button-background-color);
+	color: var(--swal2-cancel-button-color);
 }

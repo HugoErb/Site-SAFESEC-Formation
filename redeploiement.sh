@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Charger NVM et rendre npm/pm2 disponibles dans un contexte systemd
 export NVM_DIR="/home/ubuntu/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -71,13 +73,12 @@ echo "Mise en ligne du nouveau build..."
 rm -rf "$dossierDistRacine"
 mv "$dossierDistTemp" "$dossierDistRacine"
 
-# Lancement/redémarrage avec PM2
-echo "(Re)démarrage de l'application '$nomApplication' via PM2..."
-$PM2_CMD startOrRestart ecosystem_production.config.js --only "$nomApplication"
+# Lancement/rechargement sans interruption avec PM2
+echo "Démarrage ou rechargement de l'application '$nomApplication' via PM2..."
+$PM2_CMD startOrReload ecosystem_production.config.js --only "$nomApplication"
 
-applicationPid=$($PM2_CMD pid "$nomApplication")
-if [[ "$applicationPid" =~ ^[1-9][0-9]*$ ]]; then
-    echo "Application '$nomApplication' active après startOrRestart."
+if $PM2_CMD pid "$nomApplication" | grep -Eq '^[1-9][0-9]*$'; then
+    echo "Application '$nomApplication' active après startOrReload."
 else
     echo "Erreur : L'application '$nomApplication' n'a pas pu être lancée."
     exit 1
