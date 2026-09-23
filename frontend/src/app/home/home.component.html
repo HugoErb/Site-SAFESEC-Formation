@@ -304,12 +304,13 @@
 						</ul>
 					</div>
 					<div class="flex items-center p-6">
-						<div
+						<button
+							type="button"
 							(click)="chooseTraining($event)"
 							class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full cursor-pointer"
 						>
 							Choisir cette formation
-						</div>
+						</button>
 					</div>
 				</div>
 				<div class="rounded-lg bg-card text-card-foreground shadow-sm w-[340px] bg-white border-2 border-blue-500 relative flex flex-col">
@@ -340,12 +341,13 @@
 						</ul>
 					</div>
 					<div class="flex items-center p-6">
-						<div
+						<button
+							type="button"
 							(click)="chooseTraining($event)"
 							class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full cursor-pointer"
 						>
 							Choisir cette formation
-						</div>
+						</button>
 					</div>
 				</div>
 				<div class="rounded-lg bg-card text-card-foreground shadow-sm w-[340px] bg-white border-2 border-blue-500 relative flex flex-col">
@@ -376,12 +378,13 @@
 						</ul>
 					</div>
 					<div class="flex items-center p-6">
-						<div
+						<button
+							type="button"
 							(click)="chooseTraining($event)"
 							class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full cursor-pointer"
 						>
 							Choisir cette formation
-						</div>
+						</button>
 					</div>
 				</div>
 				<div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
@@ -412,12 +415,13 @@
 						</ul>
 					</div>
 					<div class="flex items-center p-6">
-						<div
+						<button
+							type="button"
 							(click)="chooseTraining($event)"
 							class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full cursor-pointer"
 						>
 							Choisir cette formation
-						</div>
+						</button>
 					</div>
 				</div>
 				<div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
@@ -445,12 +449,13 @@
 						</ul>
 					</div>
 					<div class="flex items-center p-6">
-						<div
+						<button
+							type="button"
 							(click)="chooseTraining($event)"
 							class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full cursor-pointer"
 						>
 							Choisir cette formation
-						</div>
+						</button>
 					</div>
 				</div>
 				<div class="rounded-lg bg-white border border-gray-300 shadow-md w-[340px] flex flex-col">
@@ -466,12 +471,13 @@
 						</ul>
 					</div>
 					<div class="flex items-center p-6">
-						<div
+						<button
+							type="button"
 							(click)="chooseTraining($event)"
 							class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 w-full cursor-pointer"
 						>
 							Choisir cette formation
-						</div>
+						</button>
 					</div>
 				</div>
 			</div>
@@ -489,12 +495,14 @@
 				</div>
 			</div>
 			<div class="flex flex-col items-center justify-center cursor-default">
-				<div class="inline-flex flex-col space-y-4 w-full max-w-md">
+				<form class="inline-flex flex-col space-y-4 w-full max-w-md" (ngSubmit)="sendMail()">
 					<div class="space-y-2">
 						<label class="text-sm font-medium leading-none" for="name">Nom et prénom</label>
 						<input
 							class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
 							id="name"
+							name="name"
+							autocomplete="name"
 							[(ngModel)]="nameMail"
 							placeholder="Entrez votre nom et votre prénom"
 						/>
@@ -504,6 +512,8 @@
 						<input
 							class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
 							id="email"
+							name="email"
+							autocomplete="email"
 							[(ngModel)]="emailMail"
 							placeholder="Entrez votre adresse email"
 							type="email"
@@ -514,6 +524,8 @@
 						<input
 							class="flex h-10 w-full transition-all duration-100 ease-out rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
 							id="phoneNumber"
+							name="phoneNumber"
+							autocomplete="tel"
 							placeholder="Entrez votre numéro de téléphone"
 							type="tel"
 							[(ngModel)]="phoneNumberMail"
@@ -525,23 +537,25 @@
 						<textarea
 							class="flex w-full transition-all duration-100 ease-out rounded-md border border-input resize-none bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-h-[125px]"
 							id="message"
+							name="message"
 							[(ngModel)]="messageMail"
 							placeholder="Entrez votre message"
 						></textarea>
 					</div>
-					<div
-						(click)="sendMail()"
+					<button
+						type="submit"
+						[disabled]="commonService.isSending"
 						class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 cursor-pointer"
 					>
 						Envoyer le message
-					</div>
+					</button>
 					<p class="text-gray-500 text-sm text-center mt-2">
 						Tous les champs sont obligatoires.
 						<br />
 						Vos données servent uniquement à répondre à votre demande et ne sont pas vendues.
 						<a class="text-blue-600 hover:underline" href="/legal-information">En savoir plus sur leur traitement.</a>
 					</p>
-				</div>
+				</form>
 			</div>
 		</div>
 	</section>

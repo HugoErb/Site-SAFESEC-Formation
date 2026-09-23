@@ -18,6 +18,15 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 // Initialisation de l'application Express
 const app = express();
 
+app.disable('x-powered-by');
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('Permissions-Policy', 'geolocation=(), microphone=(), camera=()');
+  next();
+});
+
 // Analyse du corps des requêtes au format JSON avec une limite adaptée aux formulaires.
 app.use(express.json({ limit: '32kb' }));
 
@@ -41,7 +50,12 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-const isNonEmptyString = (value) => typeof value === 'string' && value.trim().length > 0;
+const isNonEmptyString = (value, maxLength = 500) => (
+  typeof value === 'string' && value.trim().length > 0 && value.length <= maxLength
+);
+const isOptionalString = (value, maxLength = 500) => value === undefined || (
+  typeof value === 'string' && value.length <= maxLength
+);
 const isValidEmail = (value) => (
   isNonEmptyString(value)
   && value.length <= 254
@@ -86,7 +100,10 @@ app.post('/send-mail', async (req, res) => {
     const email = emailAddress ?? adresseemail;
 
     // Vérification de la présence de tous les champs requis
-    if (![name, phoneNumber, message].every(isNonEmptyString) || !isValidEmail(email)) {
+    if (!isNonEmptyString(name, 120)
+      || !isNonEmptyString(phoneNumber, 32)
+      || !isNonEmptyString(message, 5000)
+      || !isValidEmail(email)) {
         return res.status(400).json({ error: 'Champs nécessaires manquants.' });
     }
 
@@ -129,10 +146,13 @@ app.post('/send-mail-training-request', async (req, res) => {
     } = req.body ?? {};
 
     const requiredFields = [
-        city, postalCode, country, trainingAddress, referentName, phoneNumber,
-        companyName, companySiret, chosenTraining, personNumber, workTrained, trainingDate
+      [city, 120], [postalCode, 16], [country, 80], [trainingAddress, 255],
+      [referentName, 120], [phoneNumber, 32], [companyName, 160], [companySiret, 14],
+      [chosenTraining, 160], [personNumber, 2], [workTrained, 160], [trainingDate, 32]
     ];
-    if (!requiredFields.every(isNonEmptyString) || !isValidEmail(email)) {
+    if (!requiredFields.every(([value, maxLength]) => isNonEmptyString(value, maxLength))
+      || !isOptionalString(informationscomplementaires, 5000)
+      || !isValidEmail(email)) {
         return res.status(400).json({ error: 'Champs nécessaires manquants.' });
     }
 

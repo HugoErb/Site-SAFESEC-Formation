@@ -16,10 +16,17 @@
 	</nav>
 
 	<!-- Menu burger pour les petits écrans -->
-	<div class="lg:hidden ml-auto mr-3" (click)="toggleBurgerMenu($event)">
-		<i class="fa-solid fa-bars text-2xl text-gray-700"></i>
-	</div>
-	<div #menuBurger class="lg:hidden absolute top-full left-0 w-full bg-white shadow-md animate-appear mt-[-5px]" *ngIf="burgerMenuOpened">
+	<button
+		type="button"
+		class="site-menu-toggle lg:hidden ml-auto mr-3"
+		aria-label="Ouvrir ou fermer le menu"
+		[attr.aria-expanded]="burgerMenuOpened"
+		aria-controls="mobile-navigation"
+		(click)="toggleBurgerMenu($event)"
+	>
+		<i class="fa-solid fa-bars" aria-hidden="true"></i>
+	</button>
+	<nav #menuBurger id="mobile-navigation" class="lg:hidden absolute top-full left-0 w-full bg-white shadow-md animate-appear mt-[-5px]" aria-label="Navigation mobile" *ngIf="burgerMenuOpened">
 		<a class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white" href="/home#services" (click)="navigateTo('home', 'services'); $event.preventDefault()">
 			Services
 		</a>
@@ -40,7 +47,7 @@
 		<a class="block cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white" href="/home#contact" (click)="navigateTo('home', 'contact'); $event.preventDefault()">
 			Contact
 		</a>
-	</div>
+	</nav>
 </header>
 
 <main class="flex-1 container mx-auto pt-16">

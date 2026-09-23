@@ -13,7 +13,13 @@ interface EmailValidityResponse {
 })
 export class CommonService {
 
+    private sending = false;
+
     constructor(private mailService: MailService) { }
+
+    get isSending(): boolean {
+        return this.sending;
+    }
 
     // Liste blanche des domaines populaires considérés comme fiables
 	private readonly trustedEmailDomains = new Set([
@@ -64,6 +70,10 @@ export class CommonService {
    */
     async sendMail(inputLabelMap: Map<string, string>, trainingRequest: boolean): Promise<boolean> {
 
+        if (this.sending) {
+            return false;
+        }
+
         // On vérifie les données
         const areInputsValid = await this.validateInputs(inputLabelMap);
         if (!areInputsValid) {
@@ -71,10 +81,12 @@ export class CommonService {
         }
 
         const mailData = this.createMailData(inputLabelMap);
+        this.sending = true;
 
         return new Promise((resolve) => {
             this.mailService.sendMail(mailData, trainingRequest).subscribe({
                 next: () => {
+                    this.sending = false;
                     void this.showAlert({
                         position: 'top-end',
                         toast: true,
@@ -87,6 +99,7 @@ export class CommonService {
                     resolve(true);
                 },
                 error: () => {
+                    this.sending = false;
                     void this.showAlert({
                         position: 'top-end',
                         toast: true,
