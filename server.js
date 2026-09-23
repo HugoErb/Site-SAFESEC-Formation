@@ -78,10 +78,12 @@ async function sendEmails(msgToAdmin, msgToUser, res) {
 app.post('/send-mail', async (req, res) => {
     const {
         nometprenom: name,
-        email,
+        email: emailAddress,
+        adresseemail,
         telephone: phoneNumber,
         message
     } = req.body ?? {};
+    const email = emailAddress ?? adresseemail;
 
     // Vérification de la présence de tous les champs requis
     if (![name, phoneNumber, message].every(isNonEmptyString) || !isValidEmail(email)) {
