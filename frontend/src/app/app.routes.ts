@@ -14,5 +14,9 @@ export const routes: Routes = [
     loadComponent: () => import('./legal-infos/legal-infos.component')
       .then(({ LegalInfosComponent }) => LegalInfosComponent)
   },
-  { path: '**', redirectTo: 'home' }
+  {
+    path: '**',
+    loadComponent: () => import('./not-found/not-found.component')
+      .then(({ NotFoundComponent }) => NotFoundComponent)
+  }
 ];

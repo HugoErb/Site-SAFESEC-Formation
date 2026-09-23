@@ -1,0 +1,64 @@
+<header class="px-4 lg:px-6 h-16 flex items-center fixed w-full bg-white z-50 shadow-sm border-b border-gray-200">
+	<a class="flex items-center justify-center" href="/home" aria-label="Accueil SAFESEC Formation">
+		<img src="/assets/imgs/logo-64.webp" width="48" height="48" alt="Logo SAFESEC Formation" class="w-12" />
+		<span class="brand-lockup ml-3">
+			<span class="brand-lockup__name">SAFESEC</span>
+			<span class="brand-lockup__descriptor">Formation</span>
+		</span>
+	</a>
+
+	<nav class="hidden h-full lg:flex ml-auto -mr-4 lg:-mr-6 items-center" aria-label="Navigation principale">
+		<a class="site-nav-link text-base font-medium" href="/home#services">Services</a>
+		<a class="site-nav-link text-base font-medium" href="/home#formateur">Formateur</a>
+		<a class="site-nav-link text-base font-medium" href="/home#catalogue">Catalogue</a>
+		<a class="site-nav-link text-base font-medium" href="/home#contact">Contact</a>
+	</nav>
+
+	<button
+		type="button"
+		class="site-menu-toggle lg:hidden ml-auto mr-3"
+		aria-label="Ouvrir ou fermer le menu"
+		[attr.aria-expanded]="burgerMenuOpened"
+		aria-controls="not-found-mobile-navigation"
+		(click)="toggleBurgerMenu()"
+	>
+		<i class="fa-solid" [class.fa-bars]="!burgerMenuOpened" [class.fa-xmark]="burgerMenuOpened" aria-hidden="true"></i>
+	</button>
+	<nav
+		*ngIf="burgerMenuOpened"
+		id="not-found-mobile-navigation"
+		class="site-mobile-menu absolute top-full left-0 w-full px-4"
+		aria-label="Navigation mobile"
+	>
+		<a class="site-mobile-link" href="/home#services">Services</a>
+		<a class="site-mobile-link" href="/home#formateur">Formateur</a>
+		<a class="site-mobile-link" href="/home#catalogue">Catalogue</a>
+		<a class="site-mobile-link" href="/home#contact">Contact</a>
+	</nav>
+</header>
+
+<main id="main-content" class="min-h-screen bg-slate-50 pt-16">
+	<section class="container mx-auto flex min-h-[calc(100vh-4rem)] items-center px-4 py-16 md:px-6">
+		<div class="mx-auto max-w-2xl text-center">
+			<p class="text-7xl font-bold tracking-tighter text-blue-500 sm:text-8xl" aria-hidden="true">404</p>
+			<h1 class="mt-5 text-3xl font-bold tracking-tighter text-slate-900 sm:text-5xl">Page introuvable</h1>
+			<p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-slate-600">
+				La page demandée n’existe pas ou a été déplacée.
+			</p>
+			<div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+				<a
+					class="inline-flex h-11 items-center justify-center rounded-md bg-blue-500 px-5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+					href="/home"
+				>
+					Retour à l’accueil
+				</a>
+				<a
+					class="inline-flex h-11 items-center justify-center rounded-md border border-slate-300 bg-white px-5 text-sm font-semibold text-slate-700 transition-colors hover:border-blue-300 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+					href="/home#contact"
+				>
+					Nous contacter
+				</a>
+			</div>
+		</div>
+	</section>
+</main>
