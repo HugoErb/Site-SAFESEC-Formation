@@ -2,12 +2,6 @@ import { Injectable } from '@angular/core';
 import { MailService } from './mail.service';
 import type { SweetAlertOptions } from 'sweetalert2';
 
-// Définition de l'interface pour la réponse de l'API de MailCheck.ai
-interface EmailValidityResponse {
-    disposable: boolean;
-    mx: boolean;
-}
-
 @Injectable({
     providedIn: 'root'
 })
@@ -20,18 +14,6 @@ export class CommonService {
     get isSending(): boolean {
         return this.sending;
     }
-
-    // Liste blanche des domaines populaires considérés comme fiables
-	private readonly trustedEmailDomains = new Set([
-		'gmail.com',
-		'hotmail.com',
-		'outlook.com',
-		'yahoo.com',
-		'yahoo.fr',
-		'live.com',
-		'protonmail.com',
-		'icloud.com',
-	]);
 
     /**
     * Filtre et formate la saisie d'un numéro de téléphone dans un champ de saisie HTML.
@@ -121,7 +103,7 @@ export class CommonService {
    * @returns {Promise<boolean>} Retourne une promesse avec `true` si toutes les validations sont passées, sinon `false`.
    */
     async validateInputs(inputLabelMap: Map<string, string>): Promise<boolean> {
-        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        const emailRegex = /^(?!\.)(?!.*\.\.)[A-Za-z0-9.!#$%&'*+/=?^_\`{|}~-]{1,64}(?<!\.)@(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+[A-Za-z]{2,63}$/;
         const phoneNumberRegex = /^(0[1-9]) (\d{2}) (\d{2}) (\d{2}) (\d{2})$/;
         const postalCodeRegex = /^\d{5}$/;
 
@@ -145,17 +127,6 @@ export class CommonService {
                 if (!emailRegex.test(trimmedValue)) {
                     this.showValidationError('Le format de l\'adresse email est invalide.');
                     return false;
-                } else {
-                    // Vérification du domaine de l'email
-                    const domain = trimmedValue.split('@')[1]?.toLowerCase();
-                    if (this.trustedEmailDomains.has(domain)) {
-                        continue;
-                    }
-                    const isEmailValid = await this.checkEmailValidity(trimmedValue);
-                    if (!isEmailValid) {
-                        this.showValidationError('Le domaine de l\'adresse email n\'est pas accepté.');
-                        return false;
-                    }
                 }
             }
             // Vérification pour le numéro de téléphone
@@ -211,34 +182,6 @@ export class CommonService {
     private async showAlert(options: SweetAlertOptions): Promise<void> {
         const { default: Swal } = await import('sweetalert2/dist/sweetalert2.esm.all.js');
         await Swal.fire(options);
-    }
-
-    /**
-    * Vérifie la validité d'une adresse email en utilisant l'API Mailcheck AI.
-    * Pour cela la méthode évalue si l'email n'est pas jetable et si un enregistrement MX valide est présent.
-    * 
-    * @param {string} email L'adresse email à vérifier.
-    * @returns {Promise<boolean>} La promesse renvoie `true` si l'email n'est pas jetable et a un enregistrement MX valide,
-    *                             sinon `false`. Renvoie également `false` en cas d'erreur lors de la requête à l'API.
-    */
-    async checkEmailValidity(email: string): Promise<boolean> {
-        const url = `https://api.mailcheck.ai/email/${encodeURIComponent(email)}`;
-        try {
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(`Réponse HTTP ${response.status}`);
-            }
-            const data = await response.json() as EmailValidityResponse;
-            // Retourne false si l'email est jetable ou si mx est false
-            if (data.disposable || !data.mx) {
-                return false;
-            }
-            return true;
-        } catch (error) {
-            const details = error instanceof Error ? ` : ${error.message}` : '';
-            console.error(`Impossible de vérifier l'email${details}`);
-            return false;
-        }
     }
 
     /**

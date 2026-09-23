@@ -8,6 +8,7 @@ const cors = require('cors');                     // Middleware pour gérer les 
 const rateLimit = require('express-rate-limit');  // Middleware pour limiter le nombre de requêtes
 const fs = require('fs');
 const path = require('path');
+const { isValidEmail } = require('./email-validation');
 
 // Port d'écoute du serveur (par défaut 3000)
 const PORT = process.env.PORT || 3000;
@@ -55,12 +56,6 @@ const isNonEmptyString = (value, maxLength = 500) => (
 );
 const isOptionalString = (value, maxLength = 500) => value === undefined || (
   typeof value === 'string' && value.length <= maxLength
-);
-const isValidEmail = (value) => (
-  isNonEmptyString(value)
-  && value.length <= 254
-  && !/[\r\n]/.test(value)
-  && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
 );
 const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({
   '&': '&amp;',
