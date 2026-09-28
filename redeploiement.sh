@@ -73,6 +73,10 @@ echo "Mise en ligne du nouveau build..."
 rm -rf "$dossierDistRacine"
 mv "$dossierDistTemp" "$dossierDistRacine"
 
+# Effacement des logs PM2 de la version précédente
+echo "Effacement des logs PM2 de '$nomApplication'..."
+$PM2_CMD flush "$nomApplication" || true
+
 # Lancement/rechargement sans interruption avec PM2
 echo "Démarrage ou rechargement de l'application '$nomApplication' via PM2..."
 $PM2_CMD startOrReload ecosystem_production.config.js --only "$nomApplication"
